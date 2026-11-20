@@ -1,0 +1,38 @@
+---
+description: Angular Login proje mimarisi, stack ve klasör yapısı
+alwaysApply: true
+---
+
+# Mimari
+
+**Stack (sabit):** Angular **14** · Bootstrap **5** · Node **16** (bkz. `.nvmrc`).  
+Angular 17+ API kullanma: `signal`, `input()`, `output()`, `@if` / `@for` / `@switch` yok.
+
+## En Az Güç (Rule of Least Power)
+
+İşi çözen **en basit** teknolojiyi seç. Güç hiyerarşisi: **HTML → CSS → JS/TS**.
+
+- HTML ile yapılabiliyorsa HTML
+- CSS ile yapılabiliyorsa CSS
+- JS/TS yalnızca mantık ve veri yönetimi için; en sade ve en az kullanılan katman olsun
+
+Feature bazlı yapı kullan. Ortak kod `shared/`, uygulama geneli `core/` altında olsun.
+
+```
+src/app/
+  core/           # singleton servisler, guard'lar, interceptors
+  shared/         # ortak UI, pipe, directive
+  features/       # auth, dashboard…
+    auth/
+      pages/
+      components/
+      services/
+```
+
+- Feature route'ları lazy load et (`loadChildren` / `loadComponent`); ilk yüklemeyi hafif tut.
+- Feature route dosyası: `features/<ad>/<ad>.routes.ts` (örn. `auth.routes.ts`).
+- Auth akışını `core` guard ve interceptor ile merkezileştir.
+- API base URL / config → `environment` dosyaları.
+- Side-effect'ler (navigate, toast, storage) açık ve izlenebilir yerde olsun.
+- Bağımlılıkları `inject()` ile al; test edilebilir tut, doğrudan `new` ile bağlama.
+- Secret, `.env` ve credential commit etme.

@@ -1,0 +1,30 @@
+---
+description: Bootstrap 5 ve modern UI tasarım kuralları
+globs: "**/*.html,**/*.css,**/*.scss"
+alwaysApply: false
+---
+
+# Tasarım
+
+## En Az Güç
+
+Görünüm ve layout için önce **HTML semantiği**, sonra **CSS** (Bootstrap + değişkenler). JS/TS ile stil veya layout çözme.
+
+## Stil sistemi
+
+- Bootstrap 5 (`bootstrap` paketi, `src/styles.css` import).
+- Layout / form / buton: Bootstrap utility ve bileşen sınıfları (`d-flex`, `form-control`, `btn`, …).
+- Marka / spacing / renk: `:root` CSS değişkenleri (`src/styles.css`); component'te rastgele hex yok.
+- Özel CSS yalnızca Bootstrap’ın yetmediği marka ve layout ince ayarı için.
+
+## Kompozisyon
+
+- Login ve branded ekranlar tek kompozisyon; dashboard görünümü verme.
+- Marka / ürün adı hero seviyesinde; başlık markayı ezmesin.
+- Tipografi bilinçli seç; Inter, Roboto, Arial, system stack'e yaslanma.
+- Düz tek renk arka plan yetmez; hafif gradient, texture veya atmosfer kullan.
+- Kart sınırlı: yalnızca etkileşim için gerekliyse.
+- İlk viewport'ta istatistik, badge, chip, promo kutusu yok.
+- Mor-indigo gradient klişesi, aşırı glow, gereksiz pill yığını yok.
+- Mobil + masaüstü; label, kontrast, focus state zorunlu.
+- Hareket: 2–3 bilinçli transition/animation; gürültü yaratma.

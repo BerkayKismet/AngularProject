@@ -1,0 +1,155 @@
+<app-google-signin-button (pressed)="onGoogleSignIn()"></app-google-signin-button>
+
+<div class="divider d-flex align-items-center gap-3 my-4">
+  <hr />
+  <span class="divider-label text-secondary small">VEYA</span>
+  <hr />
+</div>
+
+<form
+  class="d-flex flex-column gap-3"
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+>
+  <div class="row g-3">
+    <div class="col-12 col-sm-6">
+      <label class="visually-hidden" for="reg-first-name">Ad</label>
+      <input
+        id="reg-first-name"
+        class="form-control form-control-auth"
+        type="text"
+        formControlName="firstName"
+        placeholder="Ad"
+        autocomplete="given-name"
+      />
+    </div>
+
+    <div class="col-12 col-sm-6">
+      <label class="visually-hidden" for="reg-last-name">Soyad</label>
+      <input
+        id="reg-last-name"
+        class="form-control form-control-auth"
+        type="text"
+        formControlName="lastName"
+        placeholder="Soyad"
+        autocomplete="family-name"
+      />
+    </div>
+  </div>
+
+  <div class="row g-3">
+    <div class="col-12 col-sm-6">
+      <label class="visually-hidden" for="reg-email">E-Posta Adresiniz</label>
+      <input
+        id="reg-email"
+        class="form-control form-control-auth"
+        type="email"
+        formControlName="email"
+        placeholder="E-Posta Adresiniz"
+        autocomplete="email"
+      />
+    </div>
+
+    <div class="col-12 col-sm-6">
+      <label class="visually-hidden" for="reg-phone">Cep Telefonu</label>
+      <input
+        id="reg-phone"
+        class="form-control form-control-auth"
+        type="tel"
+        formControlName="phone"
+        placeholder="Cep Telefonu"
+        autocomplete="tel"
+      />
+    </div>
+  </div>
+
+  <app-password-field
+    [control]="form.controls.password"
+    inputId="reg-password"
+    autocomplete="new-password"
+  ></app-password-field>
+
+  <fieldset class="consents d-flex flex-column gap-2 m-0 p-3">
+    <legend class="visually-hidden">Sözleşme ve onaylar</legend>
+
+    <label class="consent-item d-flex align-items-start gap-2 m-0">
+      <input
+        class="consent-check"
+        type="checkbox"
+        formControlName="termsAccepted"
+      />
+      <small class="consent-text">
+        <button type="button" class="consent-link">Çerez Politikası’nı</button>,
+        <button type="button" class="consent-link">
+          Bilgi Güvenliği Politikası’nı
+        </button>,
+        <button type="button" class="consent-link">Üyelik Sözleşmesi’ni</button>,
+        <button type="button" class="consent-link">
+          Potansiyel Ürün veya Hizmet Alan Kişi (Potansiyel Kullanıcı)
+          Aydınlatma Metni’ni
+        </button>,
+        <button type="button" class="consent-link">Portal Sözleşmesi’ni</button>
+        okudum, onayladım.
+      </small>
+    </label>
+
+    <label class="consent-item d-flex align-items-start gap-2 m-0">
+      <input
+        class="consent-check"
+        type="checkbox"
+        formControlName="marketingAccepted"
+      />
+      <small class="consent-text">
+        İletişim bilgilerime kampanya, tanıtım ve reklam içerikli ticari
+        elektronik ileti gönderilmesine, bu amaçla kişisel verilerimin
+        işlenmesine, tedarikçileriniz ve İYS AŞ ile paylaşılmasına Açık Rıza
+        veriyorum, okudum, onayladım.
+      </small>
+    </label>
+
+    <label class="consent-item d-flex align-items-start gap-2 m-0">
+      <input
+        class="consent-check"
+        type="checkbox"
+        formControlName="surveyAccepted"
+      />
+      <small class="consent-text">
+        İşletmeniz tarafından reklam/pazarlama ve memnuniyet sağlama amacı ile
+        gerçekleştirilen anket-çekiliş faaliyetlerinde kişisel verilerimin
+        işlenmesine, internet sitesi ve sair ortamlar ile kamuoyu ile
+        paylaşılmasına, bu faaliyetin gerçekleştirilebilmesi için
+        tedarikçileriniz ile paylaşılmasına Açık Rıza veriyorum, okudum,
+        onayladım.
+      </small>
+    </label>
+  </fieldset>
+
+  <button
+    type="button"
+    class="corporate-cta d-flex flex-column w-100 text-start gap-2"
+    (click)="onCorporateAccount()"
+  >
+    <span class="corporate-cta__text"
+      >Bir işletmeniz mi var? Hemen kurumsal hesap oluşturun!</span
+    >
+    <span
+      class="corporate-cta__footer d-flex justify-content-end align-items-center pt-2"
+    >
+      <app-icon name="chevron-right" class="corporate-cta__arrow"></app-icon>
+    </span>
+  </button>
+
+  <div
+    class="auth-actions d-flex flex-column flex-sm-row-reverse justify-content-sm-between align-items-stretch align-items-sm-center gap-2 gap-sm-3"
+  >
+    <button type="submit" class="btn btn-auth btn-auth-primary">
+      Kayıt Ol
+      <app-icon name="login" class="btn-icon btn-icon--login"></app-icon>
+    </button>
+
+    <a class="btn btn-auth btn-auth-gold" [routerLink]="loginLink">
+      <app-icon name="chevron-left" class="btn-icon"></app-icon>
+      Giriş Yap
+    </a>
+  </div>
+</form>

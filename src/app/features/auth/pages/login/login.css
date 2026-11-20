@@ -1,0 +1,16 @@
+:host {
+  display: block;
+}
+
+.forgot-link {
+  margin: -0.15rem 0 0.35rem;
+  color: var(--text-ink);
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.forgot-link:hover {
+  color: var(--text-ink-deep);
+  text-decoration: underline !important;
+}

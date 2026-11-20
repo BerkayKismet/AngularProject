@@ -1,0 +1,23 @@
+:host {
+  display: block;
+}
+
+.google-btn {
+  min-height: 3.15rem;
+  border-color: #dadce0 !important;
+  border-radius: 0.35rem;
+  color: #3c4043;
+  font-weight: 500;
+}
+
+.google-btn:hover {
+  background: #f8f9fa;
+  box-shadow: 0 1px 3px rgb(60 64 67 / 0.12);
+}
+
+.google-logo {
+  display: block;
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+}

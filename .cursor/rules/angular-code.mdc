@@ -1,0 +1,49 @@
+---
+description: Angular 14 kod, component ve TypeScript kuralları
+globs: "**/*.ts,**/*.html"
+alwaysApply: false
+---
+
+# Angular kod
+
+Template (`.html`) düzenlerken de bu kurallara uy.
+
+- Anlamlı isimler, kısa fonksiyonlar; gereksiz soyutlama yok.
+- Dosya adları kebab-case (`login-form.ts`, `auth-shell.css`).
+- Standalone component (`standalone: true`); NgModule ekleme.
+- Durum: class alanı + getter; `signal` / `input()` / `output()` yok.
+- Template'de iş mantığı yok → component veya service.
+- Formlar: Reactive Forms.
+- HTTP yalnızca service'te; component sadece UI + orchestration.
+- `providedIn: 'root'` yalnızca gerçek uygulama geneli singleton'larda.
+- `any` yasak; API modellerini `interface` / `type` ile tanımla.
+- Tek sorumluluk: bir dosya / class bir iş.
+- Magic string ve tekrarlayan sabitleri merkezi sabitlere taşı.
+- Prettier ile formatla.
+- En Az Güç: görünüm/davranış mümkünse HTML/CSS; TS sadece mantık ve veri için.
+
+## Component
+
+```bash
+ng generate component features/auth/pages/login --standalone
+```
+
+- Selector: `app-` önekli.
+- `templateUrl` + `styleUrls` tercih et; inline sadece çok küçük parçalarda.
+- Büyük template'leri alt component'lere böl.
+- `@Input` / `@Output` + `EventEmitter` kullan.
+- Template: `*ngIf` / `*ngFor` (Angular 17+ control flow yok); self-closing component tag kullanma.
+
+```typescript
+// ❌ BAD
+export class Login {
+  redirectUrl = input('/');
+  data: any;
+}
+
+// ✅ GOOD
+export class Login {
+  @Input() redirectUrl = '/';
+  data: LoginResponse | null = null;
+}
+```
