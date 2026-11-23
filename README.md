@@ -32,14 +32,11 @@ Uygulama: [http://localhost:4200](http://localhost:4200)
 src/app/
   core/           # singleton servisler, guard'lar, interceptors
   shared/         # ortak UI, pipe, directive
-  features/       # özellik bazlı modüller (auth, dashboard…)
-    auth/
-      pages/
-      components/
-      services/
+  auth/           # login, register, auth-shell, ilgili component'ler
+  home/           # ana sayfa
 ```
 
-Feature bazlı ayrım; ortak kod `shared/`, uygulama geneli `core/` altında.
+Domain klasörleri `app/` altında; ortak kod `shared/`, uygulama geneli `core/` altında.
 
 ## Katkı / kod kuralları
 
@@ -47,5 +44,5 @@ Mimari, Angular kod, component ve UI tasarım kuralları **[`.cursor/rules/`](.c
 
 Özet:
 - Standalone component; Reactive Forms; HTTP yalnızca service’te
-- Feature route’ları lazy load; auth `core` guard / interceptor ile
+- Domain route’ları lazy load; auth `core` guard / interceptor ile
 - Secret, `.env` ve credential commit etme

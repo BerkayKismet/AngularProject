@@ -1,0 +1,25 @@
+:host {
+  display: block;
+  flex: 1;
+  background: var(--surface);
+}
+
+.home-page {
+  box-sizing: border-box;
+  min-height: 100%;
+  padding-inline: var(--content-pad-inline);
+  padding-block: 1.5rem
+    max(1.5rem, env(safe-area-inset-bottom, 0px));
+}
+
+.home-page__inner {
+  width: 100%;
+  max-width: var(--content-max-width);
+  margin-inline: auto;
+}
+
+@media (max-width: 575.98px) {
+  .home-page {
+    padding-block: 1rem max(1rem, env(safe-area-inset-bottom, 0px));
+  }
+}

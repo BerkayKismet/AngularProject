@@ -1,0 +1,181 @@
+<!-- Üst bar: logo | arama | menü + kayıt butonu + dil.
+     lg altında yalnızca logo + hamburger görünür; öğeler açılır panelde listelenir. -->
+<header class="app-header d-flex align-items-center">
+  <a routerLink="/" class="app-header__brand">
+    <img
+      class="app-header__logo"
+      src="assets/images/gaboraslogo.png"
+      [attr.alt]="'header.logoAlt' | translate"
+    />
+  </a>
+
+  <input
+    #menuToggle
+    type="checkbox"
+    id="app-header-toggle"
+    class="app-header__toggle"
+    [attr.aria-label]="'header.menuToggle' | translate"
+    (change)="onMenuToggle()"
+  />
+  <label for="app-header-toggle" class="app-header__burger d-lg-none" aria-hidden="true">
+    <span></span>
+    <span></span>
+    <span></span>
+  </label>
+  <label
+    for="app-header-toggle"
+    class="app-header__backdrop d-lg-none"
+    aria-hidden="true"
+  ></label>
+
+  <div class="app-header__panel">
+    <div class="app-header__panel-bar d-lg-none">
+      <p class="app-header__panel-title">{{ 'header.panelTitle' | translate }}</p>
+      <button
+        type="button"
+        class="app-header__panel-close"
+        [attr.aria-label]="'auth.close' | translate"
+        (click)="closeMenu()"
+      >
+        <app-icon name="close"></app-icon>
+      </button>
+    </div>
+
+    <div class="app-header__search">
+      <input
+        type="search"
+        class="form-control app-header__search-input"
+        [attr.placeholder]="'header.search' | translate"
+        [attr.aria-label]="'header.search' | translate"
+      />
+      <button
+        type="button"
+        class="app-header__search-btn"
+        [attr.aria-label]="'header.search' | translate"
+      >
+        <app-icon name="search"></app-icon>
+      </button>
+    </div>
+
+    <!-- Masaüstü: satır içi nav -->
+    <nav class="app-header__nav ms-lg-auto d-none d-lg-flex align-items-lg-center">
+      <div class="app-header__dropdown">
+        <a href="#" class="app-header__link app-header__link--dropdown" aria-haspopup="true">
+          {{ 'header.products' | translate }}
+        </a>
+        <div class="app-header__dropdown-menu" role="menu">
+          <a href="#" class="app-header__dropdown-item" role="menuitem">
+            {{ 'header.product.broker' | translate }}
+          </a>
+          <a href="#" class="app-header__dropdown-item" role="menuitem">
+            {{ 'header.product.propertyMgmt' | translate }}
+          </a>
+          <a href="#" class="app-header__dropdown-item" role="menuitem">
+            {{ 'header.product.report' | translate }}
+          </a>
+        </div>
+      </div>
+      <a class="app-header__link" routerLink="/login">
+        {{ 'header.freeListing' | translate }}
+      </a>
+      <a
+        class="app-header__link"
+        [routerLink]="[{ outlets: { modal: ['login'] } }]"
+        [skipLocationChange]="true"
+      >
+        {{ 'header.login' | translate }}
+      </a>
+      <a
+        class="app-header__signup btn"
+        [routerLink]="[{ outlets: { modal: ['register'] } }]"
+        [skipLocationChange]="true"
+      >
+        {{ 'header.freeRegister' | translate }}
+      </a>
+      <div class="app-header__lang">
+        <button
+          type="button"
+          class="app-header__avatar"
+          [attr.aria-label]="'header.languageMenu' | translate"
+          aria-haspopup="true"
+        >
+          {{ languageLabel }}
+        </button>
+        <div class="app-header__lang-menu" role="menu">
+          <button
+            *ngFor="let locale of locales"
+            type="button"
+            class="app-header__lang-item"
+            role="menuitem"
+            [class.app-header__lang-item--active]="isCurrentLocale(locale)"
+            (click)="selectLocale(locale)"
+          >
+            {{ localeLabel(locale) }}
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Mobil: bölümlü panel -->
+    <div class="app-header__sections d-lg-none">
+      <section class="app-header__section">
+        <h2 class="app-header__section-title">{{ 'header.products' | translate }}</h2>
+        <nav class="app-header__section-list" [attr.aria-label]="'header.products' | translate">
+          <a href="#" class="app-header__section-link" (click)="closeMenu()">
+            {{ 'header.product.broker' | translate }}
+          </a>
+          <a href="#" class="app-header__section-link" (click)="closeMenu()">
+            {{ 'header.product.propertyMgmt' | translate }}
+          </a>
+          <a href="#" class="app-header__section-link" (click)="closeMenu()">
+            {{ 'header.product.report' | translate }}
+          </a>
+        </nav>
+      </section>
+
+      <section class="app-header__section">
+        <h2 class="app-header__section-title">{{ 'header.actions' | translate }}</h2>
+        <nav class="app-header__section-list" [attr.aria-label]="'header.actions' | translate">
+          <a class="app-header__section-link" routerLink="/login" (click)="closeMenu()">
+            {{ 'header.freeListing' | translate }}
+          </a>
+          <a
+            class="app-header__section-link"
+            [routerLink]="[{ outlets: { modal: ['login'] } }]"
+            [skipLocationChange]="true"
+            (click)="closeMenu()"
+          >
+            {{ 'header.login' | translate }}
+          </a>
+          <a
+            class="app-header__section-link"
+            [routerLink]="[{ outlets: { modal: ['register'] } }]"
+            [skipLocationChange]="true"
+            (click)="closeMenu()"
+          >
+            {{ 'header.freeRegister' | translate }}
+          </a>
+        </nav>
+      </section>
+
+      <section class="app-header__section">
+        <h2 class="app-header__section-title">{{ 'header.language' | translate }}</h2>
+        <div
+          class="app-header__lang-pills"
+          role="group"
+          [attr.aria-label]="'header.languageMenu' | translate"
+        >
+          <button
+            *ngFor="let locale of locales"
+            type="button"
+            class="app-header__lang-pill"
+            [class.app-header__lang-pill--active]="isCurrentLocale(locale)"
+            (click)="selectLocale(locale)"
+          >
+            {{ localeLabel(locale) }}
+          </button>
+        </div>
+      </section>
+    </div>
+  </div>
+</header>

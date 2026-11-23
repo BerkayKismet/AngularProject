@@ -1,0 +1,68 @@
+{
+  "header": {
+    "logoAlt": "Gaboraş logosu",
+    "panelTitle": "Menü",
+    "menuToggle": "Menüyü aç/kapat",
+    "search": "Ara",
+    "products": "Ürünler",
+    "product": {
+      "broker": "Aracı",
+      "propertyMgmt": "Mülk Yönetimi",
+      "report": "Gayrimenkul Raporu"
+    },
+    "actions": "İşlemler",
+    "freeListing": "Ücretsiz İlan Ver",
+    "login": "Giriş Yap",
+    "freeRegister": "Ücretsiz Kayıt Ol",
+    "language": "Dil",
+    "languageMenu": "Dil seç"
+  },
+  "auth": {
+    "dialog": "Kimlik doğrulama",
+    "login": "Giriş Yap",
+    "freeRegister": "Ücretsiz Kayıt Ol",
+    "close": "Kapat",
+    "title": {
+      "login": "Giriş Yap",
+      "register": "Ücretsiz Kayıt Ol"
+    }
+  },
+  "login": {
+    "identifier": "E-Posta Adresi veya GSM",
+    "forgotPassword": "Şifreni mi unuttun?",
+    "submit": "Giriş Yap",
+    "register": "Kayıt Ol",
+    "orGoogle": "veya Google ile giriş yap"
+  },
+  "register": {
+    "or": "VEYA",
+    "firstName": "Ad",
+    "lastName": "Soyad",
+    "email": "E-Posta Adresiniz",
+    "phone": "Cep Telefonu",
+    "consentsLegend": "Sözleşme ve onaylar",
+    "terms": {
+      "prefix": "",
+      "cookie": "Çerez Politikası’nı",
+      "security": "Bilgi Güvenliği Politikası’nı",
+      "membership": "Üyelik Sözleşmesi’ni",
+      "potentialUser": "Potansiyel Ürün veya Hizmet Alan Kişi (Potansiyel Kullanıcı) Aydınlatma Metni’ni",
+      "portal": "Portal Sözleşmesi’ni",
+      "suffix": " okudum, onayladım."
+    },
+    "marketing": "İletişim bilgilerime kampanya, tanıtım ve reklam içerikli ticari elektronik ileti gönderilmesine, bu amaçla kişisel verilerimin işlenmesine, tedarikçileriniz ve İYS AŞ ile paylaşılmasına Açık Rıza veriyorum, okudum, onayladım.",
+    "survey": "İşletmeniz tarafından reklam/pazarlama ve memnuniyet sağlama amacı ile gerçekleştirilen anket-çekiliş faaliyetlerinde kişisel verilerimin işlenmesine, internet sitesi ve sair ortamlar ile kamuoyu ile paylaşılmasına, bu faaliyetin gerçekleştirilebilmesi için tedarikçileriniz ile paylaşılmasına Açık Rıza veriyorum, okudum, onayladım.",
+    "corporateCta": "Bir işletmeniz mi var? Hemen kurumsal hesap oluşturun!",
+    "submit": "Kayıt Ol",
+    "login": "Giriş Yap"
+  },
+  "password": {
+    "label": "Parola",
+    "placeholder": "Parola",
+    "show": "Parolayı göster",
+    "hide": "Parolayı gizle"
+  },
+  "google": {
+    "signIn": "Google ile oturum açın"
+  }
+}

@@ -1,0 +1,597 @@
+:host {
+  display: block;
+}
+
+.app-header {
+  /* İçerik en fazla --content-max-width kadar genişler ve ortalanır;
+     arka plan ve alt çizgi yine tam genişlikte kalır. */
+  box-sizing: border-box;
+  height: calc(4rem + env(safe-area-inset-top, 0px));
+  gap: 1.5rem;
+  padding-inline: var(--content-pad-inline);
+  padding-top: env(safe-area-inset-top, 0px);
+  background-color: var(--surface);
+  border-bottom: 1px solid var(--border-default);
+}
+
+.app-header__logo {
+  width: 160px;
+  height: 56px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.app-header__backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  margin: 0;
+  background: rgb(15 23 42 / 0.4);
+  cursor: pointer;
+}
+
+.app-header__search {
+  position: relative;
+  flex: 1 1 auto;
+  max-width: 22rem;
+}
+
+.app-header__search-input {
+  height: 2.5rem;
+  padding-right: 2.75rem;
+  font-size: 0.9rem;
+  border-color: var(--border-input);
+  border-radius: 0.35rem;
+  background-color: #fff;
+}
+
+.app-header__search-input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.app-header__search-input:focus {
+  border-color: var(--border-strong);
+  box-shadow: 0 0 0 0.2rem color-mix(in srgb, var(--text-muted) 28%, transparent);
+  outline: none;
+}
+
+.app-header__search-btn {
+  position: absolute;
+  top: 50%;
+  right: 0.35rem;
+  transform: translateY(-50%);
+  width: 2rem;
+  height: 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 0.3rem;
+  background-color: var(--surface-soft);
+  color: var(--text-muted);
+  font-size: 1.1rem;
+}
+
+.app-header__search-btn:hover {
+  background-color: var(--surface-soft-hover);
+}
+
+.app-header__nav {
+  gap: 1.25rem;
+  white-space: nowrap;
+}
+
+/* Panel: lg ve üstünde satır içi (arama + nav), altında açılır menü */
+.app-header__panel {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  min-width: 0;
+}
+
+@media (min-width: 992px) {
+  .app-header__panel,
+  .app-header__nav {
+    align-self: stretch;
+  }
+}
+
+.app-header__toggle {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.app-header__burger {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  margin-inline-start: auto;
+  flex-shrink: 0;
+  border-radius: 0.35rem;
+  cursor: pointer;
+}
+
+.app-header__burger:hover {
+  background-color: var(--surface-soft);
+}
+
+.app-header__burger span {
+  width: 1.4rem;
+  height: 2px;
+  border-radius: 2px;
+  background-color: var(--header-link);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.app-header__toggle:focus-visible ~ .app-header__burger {
+  outline: 2px solid var(--accent-teal);
+  outline-offset: 2px;
+}
+
+.app-header__toggle:checked ~ .app-header__burger {
+  display: none;
+}
+
+.app-header__panel-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--border-default);
+}
+
+.app-header__panel-title {
+  margin: 0;
+  color: var(--header-avatar);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.app-header__panel-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0.35rem;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.app-header__panel-close:hover {
+  background-color: var(--surface-soft);
+  color: var(--text-secondary);
+}
+
+.app-header__panel-close:focus-visible {
+  outline: 2px solid var(--accent-teal);
+  outline-offset: 2px;
+}
+
+.app-header__sections {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.app-header__section-title {
+  margin: 0 0 0.55rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid var(--border-default);
+  color: var(--header-avatar);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.app-header__section-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.app-header__section-link {
+  display: block;
+  padding: 0.55rem 0.65rem;
+  margin-inline: -0.65rem;
+  border-radius: 0.35rem;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.app-header__section-link:hover,
+.app-header__section-link:focus-visible {
+  color: var(--header-avatar);
+  background-color: var(--page-bg);
+  box-shadow: 0 0.2rem 0.65rem color-mix(in srgb, var(--page-bg-deep) 70%, transparent);
+  outline: none;
+}
+
+.app-header__lang-pills {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.app-header__lang-pill {
+  flex: 1 1 0;
+  min-height: 2.5rem;
+  padding: 0.45rem 0.5rem;
+  border: 1px solid var(--border-input);
+  border-radius: 0.4rem;
+  background-color: var(--surface);
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.app-header__lang-pill:hover {
+  border-color: var(--border-strong);
+  color: var(--header-avatar);
+}
+
+.app-header__lang-pill:focus-visible {
+  outline: 2px solid var(--accent-teal);
+  outline-offset: 2px;
+}
+
+.app-header__lang-pill--active {
+  border-color: var(--header-avatar);
+  background-color: var(--header-avatar);
+  color: var(--surface);
+}
+
+.app-header__lang-pill--active:hover {
+  border-color: var(--header-avatar);
+  color: var(--surface);
+}
+
+@media (max-width: 991.98px) {
+  .app-header {
+    position: relative;
+  }
+
+  .app-header__toggle:checked ~ .app-header__backdrop {
+    display: block;
+  }
+
+  .app-header__panel {
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    inset-inline-end: 0;
+    inset-inline-start: auto;
+    width: min(20rem, 100%);
+    z-index: 1000;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.25rem;
+    padding: calc(1rem + env(safe-area-inset-top, 0px)) 1.25rem
+      calc(1.25rem + env(safe-area-inset-bottom, 0px));
+    overflow-y: auto;
+    background-color: var(--surface);
+    border: 1px solid var(--border-default);
+    border-block: 0;
+    border-inline-end: 0;
+    border-radius: 0;
+    box-shadow: -0.35rem 0 1.25rem rgba(0, 0, 0, 0.1);
+  }
+
+  .app-header__toggle:checked ~ .app-header__panel {
+    display: flex;
+  }
+
+  .app-header__search {
+    max-width: none;
+    flex: 0 0 auto;
+  }
+
+  .app-header__search-btn {
+    background-color: var(--header-avatar);
+    color: var(--surface);
+  }
+
+  .app-header__search-btn:hover {
+    background-color: var(--header-link);
+    color: var(--surface);
+  }
+}
+
+.app-header__link {
+  color: var(--header-avatar);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0.35rem 0.55rem;
+  border-radius: 0.35rem;
+  transition: box-shadow 0.15s ease;
+}
+
+.app-header__link:hover {
+  color: var(--header-avatar);
+  background-color: var(--page-bg);
+  box-shadow: 0 0.2rem 0.65rem color-mix(in srgb, var(--page-bg-deep) 70%, transparent);
+}
+
+/* Ürünler: hover ile yeşil çizgi + açılır menü (masaüstü) */
+.app-header__dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+}
+
+.app-header__link--dropdown {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
+  padding-inline: 0.15rem;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.app-header__link--dropdown::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  z-index: 1;
+  height: 3px;
+  border-radius: 999px;
+  background-color: var(--brand-green);
+  opacity: 0;
+  transform: scaleX(0.85);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.app-header__link--dropdown:hover,
+.app-header__dropdown:hover > .app-header__link--dropdown,
+.app-header__dropdown:focus-within > .app-header__link--dropdown {
+  color: var(--header-avatar);
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.app-header__dropdown:hover > .app-header__link--dropdown::after,
+.app-header__dropdown:focus-within > .app-header__link--dropdown::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.app-header__dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1100;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 13.5rem;
+  padding: 0;
+  background-color: transparent;
+  border: 0;
+  box-shadow: none;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(0.25rem);
+  transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s ease;
+}
+
+/* Hover köprüsü: tetikleyiciden menüye geçerken menü kapanmasın */
+.app-header__dropdown-menu::before {
+  content: '';
+  position: absolute;
+  top: -0.75rem;
+  left: 0;
+  right: 0;
+  height: 0.75rem;
+}
+
+.app-header__dropdown:focus-within > .app-header__dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.app-header__dropdown-item {
+  display: block;
+  padding: 0.85rem 1.1rem;
+  background-color: var(--surface);
+  color: var(--header-avatar);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 0.15rem 0.45rem rgba(0, 0, 0, 0.06);
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.app-header__dropdown-item:hover,
+.app-header__dropdown-item:focus-visible {
+  background-color: var(--brand-green);
+  color: var(--surface);
+  outline: none;
+}
+
+
+.app-header__signup.btn {
+  padding: 0.45rem 1.1rem;
+  border: 1.5px solid var(--brand-green);
+  border-radius: 999px;
+  background-color: transparent;
+  color: var(--brand-green);
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.app-header__signup.btn:hover,
+.app-header__signup.btn:focus-visible {
+  background-color: var(--brand-green);
+  border-color: var(--brand-green);
+  color: var(--surface);
+}
+
+.app-header__lang {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  align-self: stretch;
+}
+
+.app-header__avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 0;
+  border-radius: 50%;
+  background-color: var(--header-avatar);
+  color: var(--surface);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.app-header__avatar:hover {
+  opacity: 0.9;
+}
+
+.app-header__avatar:focus-visible {
+  outline: 2px solid var(--accent-teal);
+  outline-offset: 2px;
+}
+
+.app-header__lang-menu {
+  position: absolute;
+  top: calc(100% + 0.35rem);
+  inset-inline-end: 0;
+  z-index: 1100;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 7.5rem;
+  padding: 0.35rem;
+  background-color: var(--surface);
+  border: 1px solid var(--border-default);
+  border-radius: 0.5rem;
+  box-shadow: 0 0.35rem 0.85rem rgba(0, 0, 0, 0.08);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(0.25rem);
+  transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s ease;
+}
+
+/* Hover köprüsü: avatar ile menü arasında boşlukta kapanmasın */
+.app-header__lang-menu::before {
+  content: '';
+  position: absolute;
+  top: -0.5rem;
+  left: 0;
+  right: 0;
+  height: 0.5rem;
+}
+
+.app-header__lang:focus-within > .app-header__lang-menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.app-header__lang-item {
+  display: block;
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  border: 0;
+  border-radius: 0.35rem;
+  background-color: transparent;
+  color: var(--header-avatar);
+  font-size: 0.9rem;
+  font-weight: 400;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.app-header__lang-item--active {
+  font-weight: 700;
+}
+
+.app-header__lang-item:hover,
+.app-header__lang-item:focus-visible {
+  background-color: var(--brand-green);
+  color: var(--surface);
+  outline: none;
+}
+
+@media (max-width: 575.98px) {
+  .app-header {
+    height: calc(3.5rem + env(safe-area-inset-top, 0px));
+    gap: 0.75rem;
+  }
+
+  .app-header__logo {
+    width: 132px;
+    height: 46px;
+  }
+
+  .app-header__nav {
+    gap: 0.75rem;
+  }
+
+  .app-header__signup.btn {
+    padding: 0.35rem 0.8rem;
+    font-size: 0.85rem;
+  }
+
+  .app-header__avatar {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  .app-header__panel {
+    width: min(100%, 20rem);
+  }
+}
+
+/* Hover menüleri yalnızca fare/izleme noktası olan cihazlarda */
+@media (hover: hover) and (pointer: fine) {
+  .app-header__dropdown:hover > .app-header__dropdown-menu,
+  .app-header__lang:hover > .app-header__lang-menu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+}

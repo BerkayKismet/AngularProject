@@ -16,23 +16,21 @@ Angular 17+ API kullanma: `signal`, `input()`, `output()`, `@if` / `@for` / `@sw
 - CSS ile yapılabiliyorsa CSS
 - JS/TS yalnızca mantık ve veri yönetimi için; en sade ve en az kullanılan katman olsun
 
-Feature bazlı yapı kullan. Ortak kod `shared/`, uygulama geneli `core/` altında olsun.
+Domain klasörleri doğrudan `app/` altında olsun. Ortak kod `shared/`, uygulama çerçevesi `layout/`, uygulama geneli `core/` altında.
 
 ```
 src/app/
   core/           # singleton servisler, guard'lar, interceptors
-  shared/         # ortak UI, pipe, directive
-  features/       # auth, dashboard…
-    auth/
-      pages/
-      components/
-      services/
+  layout/         # header, app chrome / sayfa iskeleti
+  shared/         # ortak UI, pipe, directive (icon vb.)
+  auth/           # login, register, auth-shell, ilgili component'ler
+  home/           # ana sayfa
 ```
 
-- Feature route'ları lazy load et (`loadChildren` / `loadComponent`); ilk yüklemeyi hafif tut.
-- Feature route dosyası: `features/<ad>/<ad>.routes.ts` (örn. `auth.routes.ts`).
+- Domain route'ları lazy load et (`loadChildren` / `loadComponent`); ilk yüklemeyi hafif tut.
+- Route dosyası: `<domain>/<domain>.routes.ts` (örn. `auth/auth.routes.ts`).
 - Auth akışını `core` guard ve interceptor ile merkezileştir.
 - API base URL / config → `environment` dosyaları.
 - Side-effect'ler (navigate, toast, storage) açık ve izlenebilir yerde olsun.
-- Bağımlılıkları `inject()` ile al; test edilebilir tut, doğrudan `new` ile bağlama.
+- Bağımlılıkları **constructor injection** ile al (`inject()` kullanma); test edilebilir tut, doğrudan `new` ile bağlama.
 - Secret, `.env` ve credential commit etme.

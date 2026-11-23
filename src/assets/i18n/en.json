@@ -1,0 +1,68 @@
+{
+  "header": {
+    "logoAlt": "Gaboras logo",
+    "panelTitle": "Menu",
+    "menuToggle": "Open/close menu",
+    "search": "Search",
+    "products": "Products",
+    "product": {
+      "broker": "Broker",
+      "propertyMgmt": "Property Management",
+      "report": "Real Estate Report"
+    },
+    "actions": "Actions",
+    "freeListing": "Post a Free Listing",
+    "login": "Sign In",
+    "freeRegister": "Sign Up Free",
+    "language": "Language",
+    "languageMenu": "Select language"
+  },
+  "auth": {
+    "dialog": "Authentication",
+    "login": "Sign In",
+    "freeRegister": "Sign Up Free",
+    "close": "Close",
+    "title": {
+      "login": "Sign In",
+      "register": "Sign Up Free"
+    }
+  },
+  "login": {
+    "identifier": "Email or Mobile Number",
+    "forgotPassword": "Forgot your password?",
+    "submit": "Sign In",
+    "register": "Sign Up",
+    "orGoogle": "or sign in with Google"
+  },
+  "register": {
+    "or": "OR",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "email": "Your email address",
+    "phone": "Mobile phone",
+    "consentsLegend": "Agreements and consents",
+    "terms": {
+      "prefix": "I have read and accept the ",
+      "cookie": "Cookie Policy",
+      "security": "Information Security Policy",
+      "membership": "Membership Agreement",
+      "potentialUser": "Potential Product or Service Recipient (Potential User) Privacy Notice",
+      "portal": "Portal Agreement",
+      "suffix": "."
+    },
+    "marketing": "I give my explicit consent to receiving commercial electronic messages with campaign, promotional and advertising content to my contact details, and to the processing of my personal data for this purpose and sharing it with your suppliers and İYS AŞ; I have read and accept.",
+    "survey": "I give my explicit consent to the processing of my personal data in survey and raffle activities carried out by your business for advertising/marketing and satisfaction purposes, to sharing them with the public via the website and other media, and to sharing them with your suppliers so these activities can be carried out; I have read and accept.",
+    "corporateCta": "Do you have a business? Create a corporate account now!",
+    "submit": "Sign Up",
+    "login": "Sign In"
+  },
+  "password": {
+    "label": "Password",
+    "placeholder": "Password",
+    "show": "Show password",
+    "hide": "Hide password"
+  },
+  "google": {
+    "signIn": "Sign in with Google"
+  }
+}
