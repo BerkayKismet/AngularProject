@@ -1,0 +1,170 @@
+:host {
+  display: block;
+}
+
+.consents {
+  min-inline-size: 0;
+  border: 0;
+}
+
+.consent-item {
+  display: flex;
+  align-items: flex-start;
+  cursor: pointer;
+}
+
+.consent-text {
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 400;
+  line-height: 1.45;
+  cursor: pointer;
+}
+
+.consent-link {
+  color: var(--brand-navy);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.consent-link:hover {
+  text-decoration: underline;
+}
+
+/* —— boxed (bireysel kayıt) —— */
+:host.register-consents--boxed .consents {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  border: 1px solid var(--border-default);
+  border-radius: 0.95rem;
+  background: var(--surface);
+  box-shadow: 0 1px 2px rgb(var(--shadow-ink) / 0.04);
+}
+
+:host.register-consents--boxed .consent-item {
+  gap: 0.5rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.75rem;
+  background: var(--surface-muted);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.7);
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+:host.register-consents--boxed .consent-item:focus-within {
+  border-color: var(--accent-sky);
+  box-shadow: 0 0 0 1px rgb(185 215 234 / 0.55);
+}
+
+:host.register-consents--boxed .consent-control {
+  appearance: none;
+  position: relative;
+  flex-shrink: 0;
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-top: 0.1rem;
+  border: 1.5px solid var(--border-strong);
+  border-radius: 0.3rem;
+  background: var(--surface);
+  cursor: pointer;
+  transition:
+    border-color 0.15s ease,
+    background-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+:host.register-consents--boxed .consent-control::before {
+  content: '';
+  position: absolute;
+  inset: 50%;
+  width: 2.75rem;
+  height: 2.75rem;
+  transform: translate(-50%, -50%);
+}
+
+:host.register-consents--boxed .consent-control:checked {
+  border-color: var(--brand-navy);
+  background: var(--brand-navy);
+  box-shadow: inset 0 0 0 0.22rem var(--surface);
+}
+
+:host.register-consents--boxed .consent-control:focus-visible {
+  outline: 0;
+  border-color: var(--brand-navy);
+  box-shadow:
+    inset 0 0 0 0.22rem var(--surface),
+    0 0 0 0.2rem var(--focus-ring-soft);
+}
+
+:host.register-consents--boxed .consent-control:checked + .consent-text {
+  font-weight: 700;
+}
+
+/* —— switch (kurumsal kayıt) —— */
+:host.register-consents--switch .consent-item {
+  gap: 0.75rem;
+  padding: 0.55rem 0;
+}
+
+:host.register-consents--switch .consent-control {
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 1.35rem;
+  margin: 0.15rem 0 0;
+  background-color: var(--border-strong);
+  border: 0;
+  border-radius: 2rem;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: left center;
+  cursor: pointer;
+  appearance: none;
+  transition:
+    background-color 0.15s ease,
+    background-position 0.15s ease;
+}
+
+:host.register-consents--switch .consent-control:focus {
+  box-shadow: none;
+}
+
+:host.register-consents--switch .consent-control:focus-visible {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem var(--focus-ring-soft);
+}
+
+:host.register-consents--switch .consent-control:checked {
+  background-color: var(--brand-primary);
+  background-position: right center;
+}
+
+@media (max-width: 575.98px) {
+  :host.register-consents--boxed .consents {
+    padding: 0.55rem;
+    border-radius: 0.75rem;
+  }
+
+  :host.register-consents--boxed .consent-item {
+    padding: 0.65rem 0.7rem;
+    border-radius: 0.6rem;
+  }
+
+  :host.register-consents--boxed .consent-control {
+    width: 1.15rem;
+    height: 1.15rem;
+  }
+
+  :host.register-consents--switch .consent-item {
+    gap: 0.65rem;
+    padding: 0.45rem 0;
+  }
+
+  .consent-text {
+    font-size: 0.72rem;
+    line-height: 1.4;
+  }
+}

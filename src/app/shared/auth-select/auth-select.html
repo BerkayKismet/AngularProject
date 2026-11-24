@@ -1,0 +1,12 @@
+<label class="visually-hidden" [attr.for]="inputId">{{
+  labelKey | transloco
+}}</label>
+<select
+  class="form-select form-control-auth"
+  [id]="inputId"
+  [formControl]="control"
+>
+  <option value="" disabled>
+    {{ labelKey | transloco }}
+  </option>
+</select>

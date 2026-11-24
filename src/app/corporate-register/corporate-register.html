@@ -1,0 +1,192 @@
+<div
+  class="corporate-register-page d-flex align-items-center justify-content-center"
+>
+  <form
+    class="corporate-register-card"
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+    novalidate
+  >
+    <h1 class="corporate-register-card__title">
+      {{ 'corporateRegister.title' | transloco }}
+    </h1>
+
+    <div class="row g-0">
+      <div
+        class="col-12 col-lg-6 corporate-register-card__col corporate-register-card__col--left"
+      >
+        <div class="d-flex flex-column flex-sm-row gap-3 mb-3">
+          <app-auth-input
+            class="w-100"
+            [control]="form.controls.firstName"
+            inputId="corp-first-name"
+            labelKey="corporateRegister.firstName"
+            autocomplete="given-name"
+          ></app-auth-input>
+          <app-auth-input
+            class="w-100"
+            [control]="form.controls.lastName"
+            inputId="corp-last-name"
+            labelKey="corporateRegister.lastName"
+            autocomplete="family-name"
+          ></app-auth-input>
+        </div>
+
+        <app-hint-field
+          class="mb-3"
+          [control]="form.controls.email"
+          inputId="corp-email"
+          labelKey="corporateRegister.email"
+          hintKey="corporateRegister.hints.email"
+          type="email"
+          autocomplete="email"
+        ></app-hint-field>
+
+        <div class="mb-3">
+          <app-password-field
+            [control]="form.controls.password"
+            inputId="corp-password"
+            autocomplete="new-password"
+          ></app-password-field>
+        </div>
+
+        <app-hint-field
+          class="mb-3"
+          [control]="form.controls.mobilePhone"
+          inputId="corp-mobile"
+          labelKey="corporateRegister.mobilePhone"
+          hintKey="corporateRegister.hints.mobilePhone"
+          type="tel"
+          autocomplete="tel"
+        ></app-hint-field>
+
+        <app-hint-field
+          class="mb-3"
+          [control]="form.controls.landlinePhone"
+          inputId="corp-landline"
+          labelKey="corporateRegister.landlinePhone"
+          hintKey="corporateRegister.hints.landlinePhone"
+          type="tel"
+          autocomplete="tel-national"
+        ></app-hint-field>
+
+        <app-hint-field
+          class="mb-3 mb-lg-0"
+          [control]="form.controls.authorizationCertificateNumber"
+          inputId="corp-auth-cert"
+          labelKey="corporateRegister.authorizationCertificateNumber"
+          hintKey="corporateRegister.hints.authorizationCertificateNumber"
+        ></app-hint-field>
+      </div>
+
+      <div
+        class="col-12 col-lg-6 corporate-register-card__col corporate-register-card__col--right"
+      >
+        <app-auth-input
+          class="mb-3"
+          [control]="form.controls.companyName"
+          inputId="corp-company"
+          labelKey="corporateRegister.companyName"
+          autocomplete="organization"
+        ></app-auth-input>
+
+        <app-auth-select
+          class="mb-3"
+          [control]="form.controls.province"
+          inputId="corp-province"
+          labelKey="corporateRegister.province"
+        ></app-auth-select>
+
+        <div class="d-flex flex-column flex-sm-row gap-3 mb-3">
+          <app-auth-select
+            class="w-100"
+            [control]="form.controls.district"
+            inputId="corp-district"
+            labelKey="corporateRegister.district"
+          ></app-auth-select>
+          <app-auth-select
+            class="w-100"
+            [control]="form.controls.neighborhood"
+            inputId="corp-neighborhood"
+            labelKey="corporateRegister.neighborhood"
+          ></app-auth-select>
+        </div>
+
+        <fieldset class="business-type mb-3">
+          <legend class="business-type__legend">
+            {{ 'corporateRegister.businessType' | transloco }}
+          </legend>
+          <div class="d-flex flex-wrap gap-3 gap-md-4">
+            <label class="business-type__option form-check m-0">
+              <input
+                class="form-check-input"
+                type="radio"
+                formControlName="businessType"
+                value="sole"
+              />
+              <span class="form-check-label">{{
+                'corporateRegister.businessTypeSole' | transloco
+              }}</span>
+            </label>
+            <label class="business-type__option form-check m-0">
+              <input
+                class="form-check-input"
+                type="radio"
+                formControlName="businessType"
+                value="limited"
+              />
+              <span class="form-check-label">{{
+                'corporateRegister.businessTypeLimited' | transloco
+              }}</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="d-flex flex-column flex-md-row gap-3 mb-3">
+          <app-auth-select
+            class="w-100"
+            [control]="form.controls.taxProvince"
+            inputId="corp-tax-province"
+            labelKey="corporateRegister.taxProvince"
+          ></app-auth-select>
+          <app-auth-select
+            class="w-100"
+            [control]="form.controls.taxOffice"
+            inputId="corp-tax-office"
+            labelKey="corporateRegister.taxOffice"
+          ></app-auth-select>
+        </div>
+
+        <div class="d-flex flex-column flex-md-row gap-3">
+          <app-auth-input
+            class="w-100"
+            [control]="form.controls.taxId"
+            inputId="corp-tax-id"
+            labelKey="corporateRegister.taxId"
+            inputmode="numeric"
+          ></app-auth-input>
+          <app-auth-input
+            class="w-100"
+            [control]="form.controls.nationalId"
+            inputId="corp-national-id"
+            labelKey="corporateRegister.nationalId"
+            inputmode="numeric"
+          ></app-auth-input>
+        </div>
+      </div>
+    </div>
+
+    <app-register-consents
+      class="mt-4"
+      variant="switch"
+    ></app-register-consents>
+
+    <div
+      class="corporate-register-card__actions d-flex justify-content-end mt-4"
+    >
+      <button type="submit" class="btn btn-auth btn-auth-primary">
+        {{ 'corporateRegister.submit' | transloco }}
+      </button>
+    </div>
+  </form>
+</div>

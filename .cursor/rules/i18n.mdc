@@ -1,28 +1,28 @@
 ---
-description: Çok dilli metin (i18n) — ngx-translate, JSON katalog, dil ekleme
+description: Çok dilli metin (i18n) — Transloco, JSON katalog, dil ekleme
 alwaysApply: true
 ---
 
-# i18n (ngx-translate)
+# i18n (Transloco)
 
 **Kaynak dil:** Türkçe (`tr`). Diğer diller `tr` ile aynı anahtar ağacına sahip olmalı.
 
 ## Stack
 
-- `@ngx-translate/core` + `@ngx-translate/http-loader`
+- `@ngneat/transloco` (Angular 14 → v4)
 - Katalog: `src/assets/i18n/<locale>.json` (iç içe namespace)
-- Kurulum: `core/i18n/provideI18n()` (`TranslateModule.forRoot` + `APP_INITIALIZER`)
+- Kurulum: `core/i18n/provideI18n()` (`TRANSLOCO_CONFIG` + `TRANSLOCO_LOADER` + `APP_INITIALIZER`)
 - Dil tercihi / `html[lang]` / `localStorage`: `LanguageService` (ince sarmalayıcı)
-- Template: `TranslateModule` import + `{{ 'header.login' | translate }}`
-- Parametre: `{{ 'key' | translate:{ name: x } }}` → JSON’da `{{name}}`
-- TS: `TranslateService.instant('key')` veya `.get('key')`
+- Template: `TranslocoModule` import + `{{ 'header.login' | transloco }}`
+- Parametre: `{{ 'key' | transloco:{ name: x } }}` → JSON’da `{{name}}`
+- TS: `TranslocoService.translate('key')` veya `.selectTranslate('key')`
 
 ## Yeni metin
 
 1. Hardcoded UI metni yazma
 2. Önce `tr.json`, sonra diğer locale dosyalarına aynı yolu yaz
-3. Standalone component’te `TranslateModule` import et
-4. Özel `TranslatePipe` yazma / kullanma
+3. Standalone component’te `TranslocoModule` import et
+4. Özel translate pipe yazma / kullanma
 
 ## Yeni dil
 
@@ -32,5 +32,5 @@ alwaysApply: true
 ## Yapma
 
 - Çeviriyi `.ts` içine gömme
-- `@angular/localize` (build-time) ile karıştırma — runtime ngx-translate kullanıyoruz
-- Domain şişince JSON’u böl; gerekirse `TranslateHttpLoader` / multi-loader ile merge
+- `@angular/localize` (build-time) ile karıştırma — runtime Transloco kullanıyoruz
+- Domain şişince JSON’u böl; gerekirse Transloco scope / multi-loader ile merge

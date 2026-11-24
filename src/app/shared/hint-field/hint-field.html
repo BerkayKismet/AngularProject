@@ -1,0 +1,22 @@
+<label class="visually-hidden" [attr.for]="inputId">{{
+  labelKey | transloco
+}}</label>
+<input
+  class="form-control form-control-auth pe-5"
+  [id]="inputId"
+  [type]="type"
+  [formControl]="control"
+  [attr.placeholder]="labelKey | transloco"
+  [attr.autocomplete]="autocomplete"
+  [attr.aria-describedby]="inputId + '-hint'"
+/>
+<span class="hint-field__icon" aria-hidden="true">
+  <app-icon name="help"></app-icon>
+  <span
+    class="hint-field__tooltip"
+    role="tooltip"
+    [id]="inputId + '-hint'"
+  >
+    {{ hintKey | transloco }}
+  </span>
+</span>

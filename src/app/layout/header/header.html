@@ -5,7 +5,7 @@
     <img
       class="app-header__logo"
       src="assets/images/gaboraslogo.png"
-      [attr.alt]="'header.logoAlt' | translate"
+      [attr.alt]="'header.logoAlt' | transloco"
     />
   </a>
 
@@ -14,7 +14,7 @@
     type="checkbox"
     id="app-header-toggle"
     class="app-header__toggle"
-    [attr.aria-label]="'header.menuToggle' | translate"
+    [attr.aria-label]="'header.menuToggle' | transloco"
     (change)="onMenuToggle()"
   />
   <label for="app-header-toggle" class="app-header__burger d-lg-none" aria-hidden="true">
@@ -30,11 +30,11 @@
 
   <div class="app-header__panel">
     <div class="app-header__panel-bar d-lg-none">
-      <p class="app-header__panel-title">{{ 'header.panelTitle' | translate }}</p>
+      <p class="app-header__panel-title">{{ 'header.panelTitle' | transloco }}</p>
       <button
         type="button"
         class="app-header__panel-close"
-        [attr.aria-label]="'auth.close' | translate"
+        [attr.aria-label]="'auth.close' | transloco"
         (click)="closeMenu()"
       >
         <app-icon name="close"></app-icon>
@@ -45,13 +45,13 @@
       <input
         type="search"
         class="form-control app-header__search-input"
-        [attr.placeholder]="'header.search' | translate"
-        [attr.aria-label]="'header.search' | translate"
+        [attr.placeholder]="'header.search' | transloco"
+        [attr.aria-label]="'header.search' | transloco"
       />
       <button
         type="button"
         class="app-header__search-btn"
-        [attr.aria-label]="'header.search' | translate"
+        [attr.aria-label]="'header.search' | transloco"
       >
         <app-icon name="search"></app-icon>
       </button>
@@ -61,42 +61,42 @@
     <nav class="app-header__nav ms-lg-auto d-none d-lg-flex align-items-lg-center">
       <div class="app-header__dropdown">
         <a href="#" class="app-header__link app-header__link--dropdown" aria-haspopup="true">
-          {{ 'header.products' | translate }}
+          {{ 'header.products' | transloco }}
         </a>
         <div class="app-header__dropdown-menu" role="menu">
           <a href="#" class="app-header__dropdown-item" role="menuitem">
-            {{ 'header.product.broker' | translate }}
+            {{ 'header.product.broker' | transloco }}
           </a>
           <a href="#" class="app-header__dropdown-item" role="menuitem">
-            {{ 'header.product.propertyMgmt' | translate }}
+            {{ 'header.product.propertyMgmt' | transloco }}
           </a>
           <a href="#" class="app-header__dropdown-item" role="menuitem">
-            {{ 'header.product.report' | translate }}
+            {{ 'header.product.report' | transloco }}
           </a>
         </div>
       </div>
       <a class="app-header__link" routerLink="/login">
-        {{ 'header.freeListing' | translate }}
+        {{ 'header.freeListing' | transloco }}
       </a>
       <a
         class="app-header__link"
         [routerLink]="[{ outlets: { modal: ['login'] } }]"
         [skipLocationChange]="true"
       >
-        {{ 'header.login' | translate }}
+        {{ 'header.login' | transloco }}
       </a>
       <a
         class="app-header__signup btn"
         [routerLink]="[{ outlets: { modal: ['register'] } }]"
         [skipLocationChange]="true"
       >
-        {{ 'header.freeRegister' | translate }}
+        {{ 'header.freeRegister' | transloco }}
       </a>
       <div class="app-header__lang">
         <button
           type="button"
           class="app-header__avatar"
-          [attr.aria-label]="'header.languageMenu' | translate"
+          [attr.aria-label]="'header.languageMenu' | transloco"
           aria-haspopup="true"
         >
           {{ languageLabel }}
@@ -119,25 +119,25 @@
     <!-- Mobil: bölümlü panel -->
     <div class="app-header__sections d-lg-none">
       <section class="app-header__section">
-        <h2 class="app-header__section-title">{{ 'header.products' | translate }}</h2>
-        <nav class="app-header__section-list" [attr.aria-label]="'header.products' | translate">
+        <h2 class="app-header__section-title">{{ 'header.products' | transloco }}</h2>
+        <nav class="app-header__section-list" [attr.aria-label]="'header.products' | transloco">
           <a href="#" class="app-header__section-link" (click)="closeMenu()">
-            {{ 'header.product.broker' | translate }}
+            {{ 'header.product.broker' | transloco }}
           </a>
           <a href="#" class="app-header__section-link" (click)="closeMenu()">
-            {{ 'header.product.propertyMgmt' | translate }}
+            {{ 'header.product.propertyMgmt' | transloco }}
           </a>
           <a href="#" class="app-header__section-link" (click)="closeMenu()">
-            {{ 'header.product.report' | translate }}
+            {{ 'header.product.report' | transloco }}
           </a>
         </nav>
       </section>
 
       <section class="app-header__section">
-        <h2 class="app-header__section-title">{{ 'header.actions' | translate }}</h2>
-        <nav class="app-header__section-list" [attr.aria-label]="'header.actions' | translate">
+        <h2 class="app-header__section-title">{{ 'header.actions' | transloco }}</h2>
+        <nav class="app-header__section-list" [attr.aria-label]="'header.actions' | transloco">
           <a class="app-header__section-link" routerLink="/login" (click)="closeMenu()">
-            {{ 'header.freeListing' | translate }}
+            {{ 'header.freeListing' | transloco }}
           </a>
           <a
             class="app-header__section-link"
@@ -145,7 +145,7 @@
             [skipLocationChange]="true"
             (click)="closeMenu()"
           >
-            {{ 'header.login' | translate }}
+            {{ 'header.login' | transloco }}
           </a>
           <a
             class="app-header__section-link"
@@ -153,17 +153,17 @@
             [skipLocationChange]="true"
             (click)="closeMenu()"
           >
-            {{ 'header.freeRegister' | translate }}
+            {{ 'header.freeRegister' | transloco }}
           </a>
         </nav>
       </section>
 
       <section class="app-header__section">
-        <h2 class="app-header__section-title">{{ 'header.language' | translate }}</h2>
+        <h2 class="app-header__section-title">{{ 'header.language' | transloco }}</h2>
         <div
           class="app-header__lang-pills"
           role="group"
-          [attr.aria-label]="'header.languageMenu' | translate"
+          [attr.aria-label]="'header.languageMenu' | transloco"
         >
           <button
             *ngFor="let locale of locales"

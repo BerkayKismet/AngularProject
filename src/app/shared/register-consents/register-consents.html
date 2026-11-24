@@ -1,0 +1,69 @@
+<fieldset class="consents m-0">
+  <legend class="visually-hidden">{{
+    'register.consentsLegend' | transloco
+  }}</legend>
+
+  <label class="consent-item m-0">
+    <input
+      type="checkbox"
+      class="consent-control"
+      formControlName="termsAccepted"
+      [attr.role]="variant === 'switch' ? 'switch' : null"
+    />
+    <small class="consent-text"
+      >{{ 'register.terms.prefix' | transloco
+      }}<a
+        href="#"
+        class="consent-link"
+        (click)="$event.preventDefault()"
+        >{{ 'register.terms.cookie' | transloco }}</a
+      >,
+      <a
+        href="#"
+        class="consent-link"
+        (click)="$event.preventDefault()"
+        >{{ 'register.terms.security' | transloco }}</a
+      >,
+      <a
+        href="#"
+        class="consent-link"
+        (click)="$event.preventDefault()"
+        >{{ 'register.terms.membership' | transloco }}</a
+      >,
+      <a
+        href="#"
+        class="consent-link"
+        (click)="$event.preventDefault()"
+        >{{ 'register.terms.potentialUser' | transloco }}</a
+      >,
+      <a
+        href="#"
+        class="consent-link"
+        (click)="$event.preventDefault()"
+        >{{ 'register.terms.portal' | transloco }}</a
+      >{{ 'register.terms.suffix' | transloco }}</small
+    >
+  </label>
+
+  <label class="consent-item m-0">
+    <input
+      type="checkbox"
+      class="consent-control"
+      formControlName="marketingAccepted"
+      [attr.role]="variant === 'switch' ? 'switch' : null"
+    />
+    <small class="consent-text">{{
+      'register.marketing' | transloco
+    }}</small>
+  </label>
+
+  <label class="consent-item m-0">
+    <input
+      type="checkbox"
+      class="consent-control"
+      formControlName="surveyAccepted"
+      [attr.role]="variant === 'switch' ? 'switch' : null"
+    />
+    <small class="consent-text">{{ 'register.survey' | transloco }}</small>
+  </label>
+</fieldset>

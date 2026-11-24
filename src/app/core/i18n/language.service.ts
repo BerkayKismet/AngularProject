@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslocoService } from '@ngneat/transloco';
 import { firstValueFrom } from 'rxjs';
 import {
   DEFAULT_LOCALE,
@@ -11,17 +11,16 @@ import {
 
 @Injectable({ providedIn: 'root' })
 export class LanguageService {
-  constructor(private readonly translate: TranslateService) {}
+  constructor(private readonly transloco: TranslocoService) {}
 
   get current(): Locale {
-    const lang = this.translate.currentLang || this.translate.defaultLang;
+    const lang = this.transloco.getActiveLang();
     return LOCALES.includes(lang as Locale)
       ? (lang as Locale)
       : DEFAULT_LOCALE;
   }
 
   init(): Promise<void> {
-    this.translate.setDefaultLang(DEFAULT_LOCALE);
     return this.setLocale(this.readStoredLocale() ?? DEFAULT_LOCALE, false);
   }
 
@@ -37,7 +36,9 @@ export class LanguageService {
       }
     }
 
-    return firstValueFrom(this.translate.use(locale)).then(() => undefined);
+    return firstValueFrom(this.transloco.load(locale)).then(() => {
+      this.transloco.setActiveLang(locale);
+    });
   }
 
   private readStoredLocale(): Locale | null {

@@ -64,5 +64,78 @@
   },
   "google": {
     "signIn": "Google ile oturum açın"
+  },
+  "footer": {
+    "logoAlt": "Gaboraş logosu",
+    "navLabel": "Alt menü",
+    "address": "YTÜ Davutpaşa Kampüsü Yıldız Teknopark 151/8 A2 Blok, Daire 706 Esenler/İSTANBUL",
+    "email": "info@gaboras.com.tr",
+    "phoneLabel": "Telefon",
+    "phone": "+90 (850) 711 06 00",
+    "copyright": "© 2019 - {{year}} GABORAS Her Hakkı Saklıdır.",
+    "social": {
+      "instagram": "Instagram",
+      "facebook": "Facebook",
+      "youtube": "YouTube",
+      "twitter": "Twitter",
+      "linkedin": "LinkedIn"
+    },
+    "about": {
+      "title": "Hakkımızda",
+      "about": "Hakkımızda"
+    },
+    "gaboras": {
+      "title": "Gaboras",
+      "market": "Piyasa",
+      "propertyMgmt": "Mülk Yönetimi",
+      "createRequest": "Talep Oluştur",
+      "requestList": "Talep Listesi",
+      "rentMgmt": "Kira Yönetimi"
+    },
+    "legal": {
+      "title": "Sözleşmeler",
+      "membership": "Üyelik Sözleşmesi",
+      "kvkk": "KVKK Aydınlatma Metni",
+      "terms": "Kullanım Koşulları",
+      "security": "Bilgi Güvenliği Politikası",
+      "cookie": "Çerez Politikası"
+    },
+    "more": {
+      "title": "Daha Fazla",
+      "faq": "Sıkça Sorulan Sorular",
+      "mobileApp": "Mobil Uygulama",
+      "contact": "İletişim",
+      "blog": "Blog",
+      "press": "Basında Biz",
+      "references": "Referanslarımız",
+      "tv": "GABORAS TV"
+    }
+  },
+  "corporateRegister": {
+    "title": "Kurumsal Hesap Oluştur",
+    "firstName": "Adınız",
+    "lastName": "Soyadınız",
+    "email": "E-Posta Adresiniz",
+    "mobilePhone": "Cep Telefonu",
+    "landlinePhone": "Sabit Telefonu",
+    "authorizationCertificateNumber": "Yetki Belgesi No",
+    "companyName": "Şirketinizin Adı",
+    "province": "İl",
+    "district": "İlçe",
+    "neighborhood": "Mahalle",
+    "businessType": "İşletme Türü",
+    "businessTypeSole": "Şahıs Şirketi",
+    "businessTypeLimited": "Limited veya Anonim Şirketi",
+    "taxProvince": "Vergi Dairesi İli",
+    "taxOffice": "Vergi Dairesi",
+    "taxId": "Vergi Kimlik No",
+    "nationalId": "T.C. Kimlik No",
+    "submit": "Hesap Oluştur",
+    "hints": {
+      "email": "E-posta adresinizin güncel ve aktif bir adres olmasına özen göstermenizi rica ederiz. Bilgilendirmeler, bu e-posta adresi üzerinden yapılacaktır.",
+      "mobilePhone": "Size ulaşabileceğimiz telefon numarasını belirtmenizi rica ederiz. Doğrulama işlemi, bu numara üzerinden gerçekleştirilecektir.",
+      "landlinePhone": "Sabit telefon bilgisi isteğe bağlıdır.",
+      "authorizationCertificateNumber": "Taşınmaz Ticareti Yetki Belgesi numarası yazınız."
+    }
   }
 }

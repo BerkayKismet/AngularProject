@@ -1,12 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { TranslateModule } from '@ngx-translate/core';
-import { Icon } from '../../shared/icon/icon';
+import { TranslocoModule } from '@ngneat/transloco';
+import { Icon } from '../icon/icon';
 
 @Component({
   selector: 'app-password-field',
   standalone: true,
-  imports: [ReactiveFormsModule, Icon, TranslateModule],
+  imports: [ReactiveFormsModule, Icon, TranslocoModule],
   templateUrl: './password-field.html',
   styleUrls: ['./password-field.css'],
 })

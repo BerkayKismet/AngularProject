@@ -7,7 +7,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { RouterLinkWithHref } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslocoModule } from '@ngneat/transloco';
 import { LanguageService } from '../../core/i18n/language.service';
 import { Locale, LOCALES } from '../../core/i18n/locale';
 import { Icon } from '../../shared/icon/icon';
@@ -17,7 +17,7 @@ const MENU_OPEN_CLASS = 'header-menu-open';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [Icon, NgFor, RouterLinkWithHref, TranslateModule],
+  imports: [Icon, NgFor, RouterLinkWithHref, TranslocoModule],
   templateUrl: './header.html',
   styleUrls: ['./header.css'],
 })

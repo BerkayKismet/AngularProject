@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterLinkWithHref } from '@angular/router';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslocoModule, TranslocoService } from '@ngneat/transloco';
 import { Subscription } from 'rxjs';
 import { Icon } from '../../shared/icon/icon';
 import { Login } from '../login/login';
@@ -21,7 +21,7 @@ type AuthCommands = string | unknown[];
 @Component({
   selector: 'app-auth-shell',
   standalone: true,
-  imports: [NgIf, RouterLinkWithHref, Icon, Login, Register, TranslateModule],
+  imports: [NgIf, RouterLinkWithHref, Icon, Login, Register, TranslocoModule],
   templateUrl: './auth-shell.html',
   styleUrls: ['./auth-shell.css'],
   host: {
@@ -54,7 +54,7 @@ export class AuthShell implements OnInit, AfterViewInit, OnDestroy {
     private readonly route: ActivatedRoute,
     private readonly router: Router,
     private readonly title: Title,
-    private readonly translate: TranslateService,
+    private readonly transloco: TranslocoService,
   ) {}
 
   ngOnInit(): void {
@@ -68,7 +68,7 @@ export class AuthShell implements OnInit, AfterViewInit, OnDestroy {
       this.queueHeightSync();
     });
 
-    this.localeSub = this.translate.onLangChange.subscribe(() => {
+    this.localeSub = this.transloco.langChanges$.subscribe(() => {
       this.updateTitle();
       this.queueHeightSync();
     });
@@ -92,7 +92,7 @@ export class AuthShell implements OnInit, AfterViewInit, OnDestroy {
 
   private updateTitle(): void {
     this.title.setTitle(
-      this.translate.instant(
+      this.transloco.translate(
         this.isRegister ? 'auth.title.register' : 'auth.title.login',
       ),
     );

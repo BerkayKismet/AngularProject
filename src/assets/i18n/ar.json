@@ -64,5 +64,78 @@
   },
   "google": {
     "signIn": "تسجيل الدخول عبر Google"
+  },
+  "footer": {
+    "logoAlt": "شعار غابوراش",
+    "navLabel": "قائمة التذييل",
+    "address": "حرم جامعة يلدز التقنية دافوت باشا، يلدز تكنوبارك 151/8 مبنى A2، شقة 706 إسنلر/إسطنبول",
+    "email": "info@gaboras.com.tr",
+    "phoneLabel": "الهاتف",
+    "phone": "+90 (850) 711 06 00",
+    "copyright": "© 2019 - {{year}} غابوراش جميع الحقوق محفوظة.",
+    "social": {
+      "instagram": "إنستغرام",
+      "facebook": "فيسبوك",
+      "youtube": "يوتيوب",
+      "twitter": "تويتر",
+      "linkedin": "لينكدإن"
+    },
+    "about": {
+      "title": "من نحن",
+      "about": "من نحن"
+    },
+    "gaboras": {
+      "title": "غابوراش",
+      "market": "السوق",
+      "propertyMgmt": "إدارة العقارات",
+      "createRequest": "إنشاء طلب",
+      "requestList": "قائمة الطلبات",
+      "rentMgmt": "إدارة الإيجار"
+    },
+    "legal": {
+      "title": "الاتفاقيات",
+      "membership": "اتفاقية العضوية",
+      "kvkk": "إشعار خصوصية KVKK",
+      "terms": "شروط الاستخدام",
+      "security": "سياسة أمن المعلومات",
+      "cookie": "سياسة ملفات تعريف الارتباط"
+    },
+    "more": {
+      "title": "المزيد",
+      "faq": "الأسئلة الشائعة",
+      "mobileApp": "التطبيق للجوال",
+      "contact": "اتصل بنا",
+      "blog": "المدونة",
+      "press": "في الصحافة",
+      "references": "مراجعنا",
+      "tv": "غابوراش TV"
+    }
+  },
+  "corporateRegister": {
+    "title": "إنشاء حساب مؤسسي",
+    "firstName": "الاسم الأول",
+    "lastName": "اسم العائلة",
+    "email": "عنوان بريدك الإلكتروني",
+    "mobilePhone": "رقم الجوال",
+    "landlinePhone": "رقم الهاتف الثابت",
+    "authorizationCertificateNumber": "رقم وثيقة التفويض",
+    "companyName": "اسم شركتك",
+    "province": "المحافظة",
+    "district": "المنطقة",
+    "neighborhood": "الحي",
+    "businessType": "نوع النشاط",
+    "businessTypeSole": "مؤسسة فردية",
+    "businessTypeLimited": "شركة محدودة أو مساهمة",
+    "taxProvince": "محافظة دائرة الضرائب",
+    "taxOffice": "دائرة الضرائب",
+    "taxId": "الرقم الضريبي",
+    "nationalId": "رقم الهوية الوطنية",
+    "submit": "إنشاء الحساب",
+    "hints": {
+      "email": "يرجى التأكد من أن عنوان بريدك الإلكتروني حديث وفعّال. ستُرسل الإشعارات إلى هذا العنوان.",
+      "mobilePhone": "يرجى إدخال رقم هاتف يمكننا التواصل معك من خلاله. ستتم عملية التحقق عبر هذا الرقم.",
+      "landlinePhone": "معلومات الهاتف الثابت اختيارية.",
+      "authorizationCertificateNumber": "أدخل رقم شهادة تفويض تجارة العقارات."
+    }
   }
 }

@@ -1,0 +1,153 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  background: var(--brand-navy-deep);
+}
+
+.corporate-register-page {
+  box-sizing: border-box;
+  flex: 1 1 auto;
+  padding-inline: var(--content-pad-inline);
+  padding-block: 1.5rem max(1.5rem, env(safe-area-inset-bottom, 0px));
+  background: var(--brand-navy-deep);
+  animation: page-in 0.45s ease-out;
+}
+
+.corporate-register-card {
+  width: min(100%, 68rem);
+  margin-inline: auto;
+  padding: 2rem 2.25rem 2.25rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 0.75rem;
+  background: var(--surface);
+  box-shadow:
+    0 1px 2px rgb(var(--shadow-ink) / 0.04),
+    0 12px 40px rgb(var(--shadow-ink) / 0.12);
+  animation: card-rise 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.corporate-register-card__title {
+  margin: 0 0 1.5rem;
+  color: var(--brand-navy);
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.corporate-register-card__col--left {
+  padding-right: 0;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border-default);
+}
+
+.corporate-register-card__col--right {
+  padding-left: 0;
+  padding-top: 1.25rem;
+}
+
+.business-type {
+  min-inline-size: 0;
+  padding: 0;
+  border: 0;
+}
+
+.business-type__legend {
+  float: none;
+  width: auto;
+  margin-bottom: 0.65rem;
+  padding: 0;
+  color: var(--text-ink);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.business-type__option {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  cursor: pointer;
+}
+
+.business-type__option .form-check-input {
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-top: 0;
+  border-color: var(--border-strong);
+  cursor: pointer;
+}
+
+.business-type__option .form-check-input:checked {
+  background-color: var(--brand-primary);
+  border-color: var(--brand-primary);
+}
+
+.business-type__option .form-check-label {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  cursor: pointer;
+}
+
+.corporate-register-card__actions .btn-auth {
+  min-width: 11rem;
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes card-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (min-width: 992px) {
+  .corporate-register-card__col--left {
+    padding-right: 2rem;
+    padding-bottom: 0;
+    border-bottom: 0;
+    border-right: 1px solid var(--border-default);
+  }
+
+  .corporate-register-card__col--right {
+    padding-left: 2rem;
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .corporate-register-page {
+    padding-block: 1rem max(1rem, env(safe-area-inset-bottom, 0px));
+  }
+
+  .corporate-register-card {
+    padding: 1.25rem 1rem 1.35rem;
+    border-radius: 0.65rem;
+  }
+
+  .corporate-register-card__title {
+    margin-bottom: 1.15rem;
+    font-size: 1.15rem;
+  }
+
+  .corporate-register-card__actions .btn-auth {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .corporate-register-page,
+  .corporate-register-card {
+    animation: none;
+  }
+}

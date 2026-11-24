@@ -1,0 +1,230 @@
+:host {
+  display: block;
+  background-color: var(--footer-bg);
+}
+
+.app-footer {
+  box-sizing: border-box;
+  padding-inline: var(--content-pad-inline);
+  padding-top: 4.75rem;
+  padding-bottom: calc(3.5rem + env(safe-area-inset-bottom, 0px));
+  background-color: var(--footer-bg);
+  color: var(--footer-text);
+}
+
+.app-footer__inner {
+  max-width: var(--content-max-width);
+  margin-inline: auto;
+}
+
+.app-footer__top {
+  display: grid;
+  gap: 2.75rem 1.75rem;
+}
+
+.app-footer__brand {
+  max-width: 22rem;
+}
+
+.app-footer__logo-link {
+  display: inline-block;
+  margin-bottom: 1rem;
+  text-decoration: none;
+}
+
+.app-footer__logo {
+  display: block;
+  width: min(100%, 13.5rem);
+  height: auto;
+  /* Beyaz zeminli PNG: invert + screen ile zemin kaybolur, marka beyaz kalır */
+  filter: invert(1) grayscale(1) brightness(1.35);
+  mix-blend-mode: screen;
+}
+
+.app-footer__address,
+.app-footer__contact {
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--footer-muted);
+}
+
+.app-footer__address {
+  margin-bottom: 0.65rem;
+}
+
+.app-footer__contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.35rem;
+  margin-bottom: 1.15rem;
+}
+
+.app-footer__contact-sep {
+  opacity: 0.7;
+}
+
+.app-footer__social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.app-footer__social-link {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background: var(--footer-text);
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    background 0.18s ease;
+}
+
+.app-footer__social-link:hover,
+.app-footer__social-link:focus-visible {
+  --social-icon-primary: #fff;
+  --social-icon-secondary: transparent;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgb(0 0 0 / 0.22);
+  outline: none;
+}
+
+.app-footer__social-link--instagram:hover,
+.app-footer__social-link--instagram:focus-visible {
+  background: var(--social-instagram);
+}
+
+.app-footer__social-link--facebook:hover,
+.app-footer__social-link--facebook:focus-visible {
+  background: var(--social-facebook);
+}
+
+.app-footer__social-link--youtube:hover,
+.app-footer__social-link--youtube:focus-visible {
+  --social-icon-secondary: var(--social-youtube);
+  background: var(--social-youtube);
+}
+
+.app-footer__social-link--twitter:hover,
+.app-footer__social-link--twitter:focus-visible {
+  background: var(--social-twitter);
+}
+
+.app-footer__social-link--linkedin:hover,
+.app-footer__social-link--linkedin:focus-visible {
+  --social-icon-secondary: var(--social-linkedin);
+  background: var(--social-linkedin);
+}
+
+.app-footer__social-icon {
+  font-size: 1.1rem;
+  line-height: 0;
+}
+
+.app-footer__nav {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem 1.25rem;
+}
+
+.app-footer__heading {
+  margin: 0 0 0.85rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--footer-text);
+}
+
+.app-footer__links {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.app-footer__links > li + li {
+  margin-top: 0.7rem;
+}
+
+.app-footer__link {
+  display: inline-block;
+  color: var(--footer-muted);
+  font-size: 0.875rem;
+  line-height: 1.4;
+  text-decoration: none;
+  transform: translateY(0) scale(1);
+  transition:
+    color 0.18s ease,
+    transform 0.18s ease;
+}
+
+.app-footer__link:hover,
+.app-footer__link:focus-visible {
+  color: var(--brand-green);
+  text-decoration: none;
+  transform: translateY(2px) scale(0.99);
+  outline: none;
+}
+
+.app-footer__copyright {
+  margin: 3rem 0 0;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--footer-divider);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--footer-muted);
+}
+
+@media (min-width: 768px) {
+  .app-footer {
+    padding-top: 5.75rem;
+  }
+
+  .app-footer__nav {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 992px) {
+  .app-footer {
+    height: 524px;
+    padding-top: 3.25rem;
+    padding-bottom: 2rem;
+  }
+
+  .app-footer__inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  .app-footer__top {
+    grid-template-columns: minmax(16rem, 1.35fr) minmax(0, 2.65fr);
+    align-items: start;
+  }
+
+  .app-footer__copyright {
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 1299px) {
+  :host {
+    display: flex;
+    justify-content: center;
+  }
+
+  .app-footer {
+    width: 1299px;
+    /* Sayfa padding'i 1200px'e göre; bu kutu 1299px olduğu için
+       iç boşluğu header içeriğiyle aynı hizaya çekilir. */
+    padding-inline: calc((1299px - var(--content-max-width)) / 2);
+  }
+}

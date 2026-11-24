@@ -13,6 +13,13 @@ export const routes: Routes = [
       import('./auth/auth.routes').then((m) => m.AUTH_ROUTES),
   },
   {
+    path: 'corporate-register',
+    loadChildren: () =>
+      import('./corporate-register/corporate-register.routes').then(
+        (m) => m.CORPORATE_REGISTER_ROUTES
+      ),
+  },
+  {
     path: ':mode',
     outlet: 'modal',
     canMatch: [matchAuthMode],

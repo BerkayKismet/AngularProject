@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-google-signin-button',
   standalone: true,
-  imports: [TranslateModule],
+  imports: [TranslocoModule],
   templateUrl: './google-signin-button.html',
   styleUrls: ['./google-signin-button.css'],
 })

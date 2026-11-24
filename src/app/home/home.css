@@ -1,12 +1,12 @@
 :host {
-  display: block;
-  flex: 1;
+  display: flex;
+  flex-direction: column;
   background: var(--surface);
 }
 
 .home-page {
   box-sizing: border-box;
-  min-height: 100%;
+  flex: 1 1 auto;
   padding-inline: var(--content-pad-inline);
   padding-block: 1.5rem
     max(1.5rem, env(safe-area-inset-bottom, 0px));

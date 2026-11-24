@@ -110,27 +110,6 @@
 
 .auth-slide--register {
   max-height: var(--auth-slide-max-height);
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  scrollbar-width: thin;
-  scrollbar-color: var(--border-strong) transparent;
-}
-
-.auth-slide--register::-webkit-scrollbar {
-  width: 0.35rem;
-}
-
-.auth-slide--register::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.auth-slide--register::-webkit-scrollbar-thumb {
-  border-radius: 999px;
-  background: var(--border-strong);
-}
-
-.auth-slide--register::-webkit-scrollbar-thumb:hover {
-  background: var(--text-muted);
 }
 
 .auth-slide--ready {
@@ -143,6 +122,7 @@
   align-items: flex-start;
   gap: var(--auth-slide-gap);
   width: calc(200% + var(--auth-slide-gap));
+  height: 100%;
   transition: transform var(--auth-slide-duration) var(--auth-slide-easing);
 }
 
@@ -155,6 +135,33 @@
   flex-shrink: 0;
   min-width: 0;
   background: var(--surface);
+}
+
+/* Keep scroll container always — removing it on mode change jumps scrollTop to 0. */
+.auth-slide__panel--register {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}
+
+.auth-slide__panel--register::-webkit-scrollbar {
+  width: 0.35rem;
+}
+
+.auth-slide__panel--register::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.auth-slide__panel--register::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: var(--border-strong);
+}
+
+.auth-slide__panel--register::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
 }
 
 .auth-slide__panel[aria-hidden='true'] {

@@ -8,7 +8,13 @@ export type IconName =
   | 'chevron-left'
   | 'chevron-right'
   | 'login'
-  | 'search';
+  | 'search'
+  | 'help'
+  | 'instagram'
+  | 'facebook'
+  | 'youtube'
+  | 'twitter'
+  | 'linkedin';
 
 @Component({
   selector: 'app-icon',

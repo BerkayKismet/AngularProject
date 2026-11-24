@@ -1,10 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLinkWithHref } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
-import { GoogleSigninButton } from '../google-signin-button/google-signin-button';
-import { PasswordField } from '../password-field/password-field';
+import { TranslocoModule } from '@ngneat/transloco';
+import { AuthInput } from '../../shared/auth-input/auth-input';
 import { Icon } from '../../shared/icon/icon';
+import { PasswordField } from '../../shared/password-field/password-field';
+import { RegisterConsents } from '../../shared/register-consents/register-consents';
+import { GoogleSigninButton } from '../google-signin-button/google-signin-button';
 
 @Component({
   selector: 'app-register',
@@ -14,8 +16,10 @@ import { Icon } from '../../shared/icon/icon';
     RouterLinkWithHref,
     PasswordField,
     GoogleSigninButton,
+    AuthInput,
+    RegisterConsents,
     Icon,
-    TranslateModule,
+    TranslocoModule,
   ],
   templateUrl: './register.html',
   styleUrls: ['./register.css'],
@@ -45,6 +49,4 @@ export class Register {
   }
 
   onGoogleSignIn(): void {}
-
-  onCorporateAccount(): void {}
 }

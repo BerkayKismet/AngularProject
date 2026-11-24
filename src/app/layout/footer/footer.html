@@ -1,0 +1,63 @@
+<footer class="app-footer">
+  <div class="app-footer__inner">
+    <div class="app-footer__top">
+      <div class="app-footer__brand">
+        <a class="app-footer__logo-link" href="/">
+          <img
+            class="app-footer__logo"
+            src="assets/images/gaboraslogo.png"
+            [attr.alt]="'footer.logoAlt' | transloco"
+          />
+        </a>
+
+        <p class="app-footer__address">{{ 'footer.address' | transloco }}</p>
+
+        <p class="app-footer__contact">
+          <span>{{ 'footer.email' | transloco }}</span>
+          <span class="app-footer__contact-sep" aria-hidden="true">-</span>
+          <span>{{ 'footer.phoneLabel' | transloco }}:</span>
+          <span>{{ 'footer.phone' | transloco }}</span>
+        </p>
+
+        <ul class="app-footer__social">
+          <li *ngFor="let social of socialLinks">
+            <a
+              class="app-footer__social-link"
+              [ngClass]="'app-footer__social-link--' + social.name"
+              [attr.href]="social.href"
+              target="_blank"
+              rel="noopener noreferrer"
+              [attr.aria-label]="social.labelKey | transloco"
+            >
+              <app-icon
+                class="app-footer__social-icon"
+                [name]="social.name"
+              ></app-icon>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <nav class="app-footer__nav" [attr.aria-label]="'footer.navLabel' | transloco">
+        <div class="app-footer__col" *ngFor="let column of columns">
+          <h2 class="app-footer__heading">{{ column.titleKey | transloco }}</h2>
+          <ul class="app-footer__links">
+            <li *ngFor="let link of column.links">
+              <a
+                class="app-footer__link"
+                href="#"
+                (click)="$event.preventDefault()"
+              >
+                {{ link.labelKey | transloco }}
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <p class="app-footer__copyright">
+      {{ 'footer.copyright' | transloco:{ year: copyrightYear } }}
+    </p>
+  </div>
+</footer>

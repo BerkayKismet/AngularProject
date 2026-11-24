@@ -1,14 +1,14 @@
 <form class="d-flex flex-column gap-3" [formGroup]="form" (ngSubmit)="onSubmit()">
   <div>
     <label class="visually-hidden" for="identifier">{{
-      'login.identifier' | translate
+      'login.identifier' | transloco
     }}</label>
     <input
       id="identifier"
       class="form-control form-control-auth"
       type="text"
       formControlName="identifier"
-      [attr.placeholder]="'login.identifier' | translate"
+      [attr.placeholder]="'login.identifier' | transloco"
       autocomplete="username"
     />
   </div>
@@ -23,14 +23,14 @@
     type="button"
     class="forgot-link btn btn-link p-0 border-0 align-self-end fw-medium"
   >
-    {{ 'login.forgotPassword' | translate }}
+    {{ 'login.forgotPassword' | transloco }}
   </button>
 
   <div
     class="auth-actions d-flex flex-column flex-sm-row-reverse justify-content-sm-between align-items-stretch align-items-sm-center gap-2 gap-sm-3"
   >
     <button type="submit" class="btn btn-auth btn-auth-primary">
-      {{ 'login.submit' | translate }}
+      {{ 'login.submit' | transloco }}
       <app-icon name="login" class="btn-icon btn-icon--login"></app-icon>
     </button>
 
@@ -40,15 +40,17 @@
       [skipLocationChange]="skipLocationChange"
     >
       <app-icon name="chevron-left" class="btn-icon"></app-icon>
-      {{ 'login.register' | translate }}
+      {{ 'login.register' | transloco }}
     </a>
   </div>
 </form>
 
 <div class="divider d-flex align-items-center gap-3 my-4">
   <hr />
-  <span class="text-secondary small">{{ 'login.orGoogle' | translate }}</span>
+  <span class="text-secondary small">{{ 'login.orGoogle' | transloco }}</span>
   <hr />
 </div>
 
-<app-google-signin-button (pressed)="onGoogleSignIn()"></app-google-signin-button>
+<app-google-signin-button
+  (pressed)="onGoogleSignIn()"
+></app-google-signin-button>

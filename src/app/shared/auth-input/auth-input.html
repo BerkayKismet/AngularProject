@@ -1,0 +1,12 @@
+<label class="visually-hidden" [attr.for]="inputId">{{
+  labelKey | transloco
+}}</label>
+<input
+  class="form-control form-control-auth"
+  [id]="inputId"
+  [type]="type"
+  [formControl]="control"
+  [attr.placeholder]="labelKey | transloco"
+  [attr.autocomplete]="autocomplete"
+  [attr.inputmode]="inputmode"
+/>

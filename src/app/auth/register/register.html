@@ -1,9 +1,11 @@
-<app-google-signin-button (pressed)="onGoogleSignIn()"></app-google-signin-button>
+<app-google-signin-button
+  (pressed)="onGoogleSignIn()"
+></app-google-signin-button>
 
 <div class="divider d-flex align-items-center gap-3 my-4">
   <hr />
   <span class="divider-label text-secondary small">{{
-    'register.or' | translate
+    'register.or' | transloco
   }}</span>
   <hr />
 </div>
@@ -15,61 +17,43 @@
 >
   <div class="row g-3">
     <div class="col-12 col-sm-6">
-      <label class="visually-hidden" for="reg-first-name">{{
-        'register.firstName' | translate
-      }}</label>
-      <input
-        id="reg-first-name"
-        class="form-control form-control-auth"
-        type="text"
-        formControlName="firstName"
-        [attr.placeholder]="'register.firstName' | translate"
+      <app-auth-input
+        [control]="form.controls.firstName"
+        inputId="reg-first-name"
+        labelKey="register.firstName"
         autocomplete="given-name"
-      />
+      ></app-auth-input>
     </div>
 
     <div class="col-12 col-sm-6">
-      <label class="visually-hidden" for="reg-last-name">{{
-        'register.lastName' | translate
-      }}</label>
-      <input
-        id="reg-last-name"
-        class="form-control form-control-auth"
-        type="text"
-        formControlName="lastName"
-        [attr.placeholder]="'register.lastName' | translate"
+      <app-auth-input
+        [control]="form.controls.lastName"
+        inputId="reg-last-name"
+        labelKey="register.lastName"
         autocomplete="family-name"
-      />
+      ></app-auth-input>
     </div>
   </div>
 
   <div class="row g-3">
     <div class="col-12 col-sm-6">
-      <label class="visually-hidden" for="reg-email">{{
-        'register.email' | translate
-      }}</label>
-      <input
-        id="reg-email"
-        class="form-control form-control-auth"
+      <app-auth-input
+        [control]="form.controls.email"
+        inputId="reg-email"
+        labelKey="register.email"
         type="email"
-        formControlName="email"
-        [attr.placeholder]="'register.email' | translate"
         autocomplete="email"
-      />
+      ></app-auth-input>
     </div>
 
     <div class="col-12 col-sm-6">
-      <label class="visually-hidden" for="reg-phone">{{
-        'register.phone' | translate
-      }}</label>
-      <input
-        id="reg-phone"
-        class="form-control form-control-auth"
+      <app-auth-input
+        [control]="form.controls.phone"
+        inputId="reg-phone"
+        labelKey="register.phone"
         type="tel"
-        formControlName="phone"
-        [attr.placeholder]="'register.phone' | translate"
         autocomplete="tel"
-      />
+      ></app-auth-input>
     </div>
   </div>
 
@@ -79,83 +63,27 @@
     autocomplete="new-password"
   ></app-password-field>
 
-  <fieldset class="consents d-flex flex-column gap-2 m-0 p-3">
-    <legend class="visually-hidden">{{
-      'register.consentsLegend' | translate
-    }}</legend>
+  <app-register-consents variant="boxed"></app-register-consents>
 
-    <label class="consent-item d-flex align-items-start gap-2 m-0">
-      <input
-        class="consent-check"
-        type="checkbox"
-        formControlName="termsAccepted"
-      />
-      <small class="consent-text">
-        {{ 'register.terms.prefix' | translate }}
-        <button type="button" class="consent-link">{{
-          'register.terms.cookie' | translate
-        }}</button
-        >,
-        <button type="button" class="consent-link">{{
-          'register.terms.security' | translate
-        }}</button
-        >,
-        <button type="button" class="consent-link">{{
-          'register.terms.membership' | translate
-        }}</button
-        >,
-        <button type="button" class="consent-link">{{
-          'register.terms.potentialUser' | translate
-        }}</button
-        >,
-        <button type="button" class="consent-link">{{
-          'register.terms.portal' | translate
-        }}</button
-        >{{ 'register.terms.suffix' | translate }}
-      </small>
-    </label>
-
-    <label class="consent-item d-flex align-items-start gap-2 m-0">
-      <input
-        class="consent-check"
-        type="checkbox"
-        formControlName="marketingAccepted"
-      />
-      <small class="consent-text">{{
-        'register.marketing' | translate
-      }}</small>
-    </label>
-
-    <label class="consent-item d-flex align-items-start gap-2 m-0">
-      <input
-        class="consent-check"
-        type="checkbox"
-        formControlName="surveyAccepted"
-      />
-      <small class="consent-text">{{ 'register.survey' | translate }}</small>
-    </label>
-  </fieldset>
-
-  <button
-    type="button"
-    class="corporate-cta d-flex flex-column w-100 text-start gap-2"
-    (click)="onCorporateAccount()"
+  <a
+    class="corporate-cta d-flex flex-column w-100 text-start gap-2 text-decoration-none"
+    routerLink="/corporate-register"
   >
     <span class="corporate-cta__text">{{
-      'register.corporateCta' | translate
+      'register.corporateCta' | transloco
     }}</span>
     <span
       class="corporate-cta__footer d-flex justify-content-end align-items-center pt-2"
     >
       <app-icon name="chevron-right" class="corporate-cta__arrow"></app-icon>
     </span>
-  </button>
+  </a>
 
   <div
     class="auth-actions d-flex flex-column flex-sm-row-reverse justify-content-sm-between align-items-stretch align-items-sm-center gap-2 gap-sm-3"
   >
     <button type="submit" class="btn btn-auth btn-auth-primary">
-      {{ 'register.submit' | translate }}
+      {{ 'register.submit' | transloco }}
       <app-icon name="login" class="btn-icon btn-icon--login"></app-icon>
     </button>
 
@@ -165,7 +93,7 @@
       [skipLocationChange]="skipLocationChange"
     >
       <app-icon name="chevron-left" class="btn-icon"></app-icon>
-      {{ 'register.login' | translate }}
+      {{ 'register.login' | transloco }}
     </a>
   </div>
 </form>

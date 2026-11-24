@@ -1,10 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLinkWithHref } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslocoModule } from '@ngneat/transloco';
 import { GoogleSigninButton } from '../google-signin-button/google-signin-button';
-import { PasswordField } from '../password-field/password-field';
 import { Icon } from '../../shared/icon/icon';
+import { PasswordField } from '../../shared/password-field/password-field';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +15,7 @@ import { Icon } from '../../shared/icon/icon';
     PasswordField,
     GoogleSigninButton,
     Icon,
-    TranslateModule,
+    TranslocoModule,
   ],
   templateUrl: './login.html',
   styleUrls: ['./login.css'],
