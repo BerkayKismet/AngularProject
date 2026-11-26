@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { matchAuthMode } from './auth/auth.routes';
+import { matchAuthMode } from './auth/auth-mode.matcher';
 
 export const routes: Routes = [
   {
@@ -11,13 +11,6 @@ export const routes: Routes = [
     path: '',
     loadChildren: () =>
       import('./auth/auth.routes').then((m) => m.AUTH_ROUTES),
-  },
-  {
-    path: 'corporate-register',
-    loadChildren: () =>
-      import('./corporate-register/corporate-register.routes').then(
-        (m) => m.CORPORATE_REGISTER_ROUTES
-      ),
   },
   {
     path: ':mode',

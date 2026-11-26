@@ -1,11 +1,8 @@
 :host {
-  display: flex;
-  flex-direction: column;
   background: var(--surface);
 }
 
 .home-page {
-  box-sizing: border-box;
   flex: 1 1 auto;
   padding-inline: var(--content-pad-inline);
   padding-block: 1.5rem

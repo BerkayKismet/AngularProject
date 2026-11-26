@@ -30,31 +30,31 @@
   "login": {
     "identifier": "E-Posta Adresi veya GSM",
     "forgotPassword": "Şifreni mi unuttun?",
-    "submit": "Giriş Yap",
-    "register": "Kayıt Ol",
+    "submit": "GIRIŞ YAP",
+    "register": "KAYIT OL",
     "orGoogle": "veya Google ile giriş yap"
   },
   "register": {
-    "or": "VEYA",
+    "or": "veya",
     "firstName": "Ad",
     "lastName": "Soyad",
     "email": "E-Posta Adresiniz",
     "phone": "Cep Telefonu",
     "consentsLegend": "Sözleşme ve onaylar",
-    "terms": {
-      "prefix": "",
-      "cookie": "Çerez Politikası’nı",
-      "security": "Bilgi Güvenliği Politikası’nı",
-      "membership": "Üyelik Sözleşmesi’ni",
-      "potentialUser": "Potansiyel Ürün veya Hizmet Alan Kişi (Potansiyel Kullanıcı) Aydınlatma Metni’ni",
+    "consentModal": {
+      "gap": "",
+      "cookie": "Çerez Politikası’ni,",
+      "security": "Bilgi Güvenliği Politikası’ni,",
+      "membership": "Üyelik Sözleşmesi’ni,",
+      "potentialUser": "Potansiyel Ürün veya Hizmet Alan Kişi (Potansiyel Kullanıcı) Aydınlatma Metni’ni,",
       "portal": "Portal Sözleşmesi’ni",
-      "suffix": " okudum, onayladım."
+      "suffix": " okudum, onayladım.",
+      "marketing": "İletişim bilgilerime kampanya, tanıtım ve reklam içerikli ticari elektronik ileti gönderilmesine, bu amaçla kişisel verilerimin işlenmesine, tedarikçileriniz ve İYS AŞ ile paylaşılmasına Açık Rıza veriyorum,",
+      "survey": "İşletmeniz tarafından reklam/pazarlama ve memnuniyet sağlama amacı ile gerçekleştirilen anket-çekiliş faaliyetlerinde kişisel verilerimin işlenmesine, internet sitesi ve sair ortamlar ile kamuoyu ile paylaşılmasına, bu faaliyetin gerçekleştirilebilmesi için tedarikçileriniz ile paylaşılmasına Açık Rıza veriyorum,"
     },
-    "marketing": "İletişim bilgilerime kampanya, tanıtım ve reklam içerikli ticari elektronik ileti gönderilmesine, bu amaçla kişisel verilerimin işlenmesine, tedarikçileriniz ve İYS AŞ ile paylaşılmasına Açık Rıza veriyorum, okudum, onayladım.",
-    "survey": "İşletmeniz tarafından reklam/pazarlama ve memnuniyet sağlama amacı ile gerçekleştirilen anket-çekiliş faaliyetlerinde kişisel verilerimin işlenmesine, internet sitesi ve sair ortamlar ile kamuoyu ile paylaşılmasına, bu faaliyetin gerçekleştirilebilmesi için tedarikçileriniz ile paylaşılmasına Açık Rıza veriyorum, okudum, onayladım.",
     "corporateCta": "Bir işletmeniz mi var? Hemen kurumsal hesap oluşturun!",
-    "submit": "Kayıt Ol",
-    "login": "Giriş Yap"
+    "submit": "KAYIT OL",
+    "login": "GIRIŞ YAP"
   },
   "password": {
     "label": "Parola",
@@ -67,8 +67,8 @@
   },
   "footer": {
     "logoAlt": "Gaboraş logosu",
-    "navLabel": "Alt menü",
-    "address": "YTÜ Davutpaşa Kampüsü Yıldız Teknopark 151/8 A2 Blok, Daire 706 Esenler/İSTANBUL",
+    "addressLine1": "YTÜ Davutpaşa Kampüsü Yıldız Teknopark 151/B A2 Blok,",
+    "addressLine2": "Daire Z06 Esenler/İSTANBUL",
     "email": "info@gaboras.com.tr",
     "phoneLabel": "Telefon",
     "phone": "+90 (850) 711 06 00",
@@ -89,7 +89,6 @@
       "market": "Piyasa",
       "propertyMgmt": "Mülk Yönetimi",
       "createRequest": "Talep Oluştur",
-      "requestList": "Talep Listesi",
       "rentMgmt": "Kira Yönetimi"
     },
     "legal": {
@@ -129,7 +128,12 @@
     "taxProvince": "Vergi Dairesi İli",
     "taxOffice": "Vergi Dairesi",
     "taxId": "Vergi Kimlik No",
-    "nationalId": "T.C. Kimlik No",
+    "nationalId": "T.C Kimlik No",
+    "floatingLabel": {
+      "province": "İl:",
+      "district": "İlçe:",
+      "neighborhood": "Mahalle:"
+    },
     "submit": "Hesap Oluştur",
     "hints": {
       "email": "E-posta adresinizin güncel ve aktif bir adres olmasına özen göstermenizi rica ederiz. Bilgilendirmeler, bu e-posta adresi üzerinden yapılacaktır.",

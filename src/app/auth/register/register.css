@@ -2,61 +2,29 @@
   display: block;
 }
 
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+/* gaboras register: "VEYA" büyük harf */
+.divider--upper .divider-text {
+  text-transform: uppercase;
+}
+
+.form-check-container {
+  border: 1px solid var(--bs-gray-200);
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.04);
+}
+
+/* Kurumsal kayıt CTA'sı (sol vurgu çizgisi + hafif zemin) */
 .corporate-cta {
-  padding: 0.9rem 1rem 0.7rem;
-  border: 0;
-  border-left: 4px solid var(--brand-navy);
-  border-radius: 0.55rem;
-  background: var(--brand-tint);
-  color: var(--text-ink);
-  font: inherit;
-  cursor: pointer;
-  transition:
-    background-color 0.15s ease,
-    box-shadow 0.15s ease;
+  border-left: 3px solid var(--bs-primary);
+  border-radius: 10px;
+  background: rgb(0 123 255 / 0.03);
 }
 
-.corporate-cta:focus-visible {
-  outline: 2px solid var(--brand-navy);
-  outline-offset: 2px;
-}
-
-.corporate-cta:hover {
-  background: var(--brand-tint-hover);
-  box-shadow: 0 1px 3px rgb(var(--shadow-ink) / 0.06);
-}
-
-.corporate-cta__text {
-  font-size: 0.92rem;
-  font-weight: 600;
-  line-height: 1.35;
-}
-
-.corporate-cta__footer {
-  border-top: 1px solid var(--border-brand-soft);
-}
-
-.corporate-cta__arrow {
-  color: var(--text-primary);
-  font-size: 1.1rem;
-  line-height: 0;
-}
-
-.divider-label {
-  letter-spacing: 0.06em;
-  font-size: 0.75rem;
-}
-
-@media (max-width: 575.98px) {
-  .corporate-cta {
-    padding: 0.7rem 0.8rem 0.55rem;
-  }
-
-  .corporate-cta__text {
-    font-size: 0.85rem;
-  }
-
-  .corporate-cta__footer {
-    padding-top: 0.4rem;
-  }
+.corporate-cta a {
+  color: inherit;
 }

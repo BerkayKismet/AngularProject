@@ -15,5 +15,4 @@ export class AuthInput {
   @Input() labelKey!: string;
   @Input() type = 'text';
   @Input() autocomplete = 'off';
-  @Input() inputmode: string | null = null;
 }

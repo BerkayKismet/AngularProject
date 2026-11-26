@@ -12,7 +12,6 @@ import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterLinkWithHref } from '@angular/router';
 import { TranslocoModule, TranslocoService } from '@ngneat/transloco';
 import { Subscription } from 'rxjs';
-import { Icon } from '../../shared/icon/icon';
 import { Login } from '../login/login';
 import { Register } from '../register/register';
 
@@ -21,7 +20,7 @@ type AuthCommands = string | unknown[];
 @Component({
   selector: 'app-auth-shell',
   standalone: true,
-  imports: [NgIf, RouterLinkWithHref, Icon, Login, Register, TranslocoModule],
+  imports: [NgIf, RouterLinkWithHref, Login, Register, TranslocoModule],
   templateUrl: './auth-shell.html',
   styleUrls: ['./auth-shell.css'],
   host: {
@@ -29,8 +28,7 @@ type AuthCommands = string | unknown[];
   },
 })
 export class AuthShell implements OnInit, AfterViewInit, OnDestroy {
-  private modeSub?: Subscription;
-  private localeSub?: Subscription;
+  private readonly subscriptions = new Subscription();
   private viewReady = false;
 
   readonly isModal = this.route.outlet === 'modal';
@@ -47,8 +45,6 @@ export class AuthShell implements OnInit, AfterViewInit, OnDestroy {
   private registerPanelRef?: ElementRef<HTMLElement>;
 
   isRegister = false;
-  slideHeight: number | null = null;
-  heightReady = false;
 
   constructor(
     private readonly route: ActivatedRoute,
@@ -62,32 +58,34 @@ export class AuthShell implements OnInit, AfterViewInit, OnDestroy {
       document.body.classList.add('auth-modal-open');
     }
 
-    this.modeSub = this.route.paramMap.subscribe((params) => {
-      this.isRegister = params.get('mode') === 'register';
-      this.updateTitle();
-      this.queueHeightSync();
-    });
+    this.subscriptions.add(
+      this.route.paramMap.subscribe((params) => {
+        this.isRegister = params.get('mode') === 'register';
+        this.refresh();
+      }),
+    );
 
-    this.localeSub = this.transloco.langChanges$.subscribe(() => {
-      this.updateTitle();
-      this.queueHeightSync();
-    });
+    this.subscriptions.add(
+      this.transloco.langChanges$.subscribe(() => this.refresh()),
+    );
   }
 
   ngAfterViewInit(): void {
     this.viewReady = true;
     this.syncHeight();
-    requestAnimationFrame(() => {
-      this.heightReady = true;
-    });
   }
 
   ngOnDestroy(): void {
     if (this.isModal) {
       document.body.classList.remove('auth-modal-open');
     }
-    this.modeSub?.unsubscribe();
-    this.localeSub?.unsubscribe();
+    this.subscriptions.unsubscribe();
+  }
+
+  /** Mod veya dil değişince başlık ve panel yüksekliği güncellenir. */
+  private refresh(): void {
+    this.updateTitle();
+    this.queueHeightSync();
   }
 
   private updateTitle(): void {
@@ -103,14 +101,6 @@ export class AuthShell implements OnInit, AfterViewInit, OnDestroy {
     if (this.isModal) {
       this.close();
     }
-  }
-
-  onBackdropClick(event: MouseEvent): void {
-    if (!this.isModal || event.target !== event.currentTarget) {
-      return;
-    }
-
-    this.close();
   }
 
   close(): void {
@@ -141,15 +131,25 @@ export class AuthShell implements OnInit, AfterViewInit, OnDestroy {
     const contentHeight = panel.scrollHeight;
 
     if (!this.isRegister) {
-      this.slideHeight = contentHeight;
+      this.applyHeight(contentHeight);
       return;
     }
 
     const maxHeight = parseFloat(getComputedStyle(slide).maxHeight);
 
-    this.slideHeight =
+    this.applyHeight(
       Number.isFinite(maxHeight) && maxHeight > 0
         ? Math.min(contentHeight, maxHeight)
-        : contentHeight;
+        : contentHeight,
+    );
+  }
+
+  /** Doğrudan DOM'a yazar; ilk açılışta change detection beklemeden uygulanır. */
+  private applyHeight(height: number): void {
+    const slide = this.authSlideRef?.nativeElement;
+
+    if (slide) {
+      slide.style.height = `${height}px`;
+    }
   }
 }

@@ -1,69 +1,60 @@
-<fieldset class="consents m-0">
-  <legend class="visually-hidden">{{
-    'register.consentsLegend' | transloco
-  }}</legend>
+<!-- İki varyant (switch: kurumsal kayıt, modal: kayıt) aynı yapıyı paylaşır; fark CSS sınıfı ve link ayraçtadır. -->
+<ng-template #linkGap>
+  <ng-container *ngIf="variant === 'switch'; else modalGap">{{ ' ' }}</ng-container>
+  <ng-template #modalGap>{{ 'register.consentModal.gap' | transloco }}</ng-template>
+</ng-template>
 
-  <label class="consent-item m-0">
+<div
+  class="consents"
+  [class.consents--switch]="variant === 'switch'"
+  [class.consents--modal]="variant === 'modal'"
+>
+  <div class="form-check form-switch">
     <input
+      id="consent-terms"
       type="checkbox"
-      class="consent-control"
+      class="form-check-input cpointer"
       formControlName="termsAccepted"
-      [attr.role]="variant === 'switch' ? 'switch' : null"
     />
-    <small class="consent-text"
-      >{{ 'register.terms.prefix' | transloco
-      }}<a
-        href="#"
-        class="consent-link"
-        (click)="$event.preventDefault()"
-        >{{ 'register.terms.cookie' | transloco }}</a
-      >,
-      <a
-        href="#"
-        class="consent-link"
-        (click)="$event.preventDefault()"
-        >{{ 'register.terms.security' | transloco }}</a
-      >,
-      <a
-        href="#"
-        class="consent-link"
-        (click)="$event.preventDefault()"
-        >{{ 'register.terms.membership' | transloco }}</a
-      >,
-      <a
-        href="#"
-        class="consent-link"
-        (click)="$event.preventDefault()"
-        >{{ 'register.terms.potentialUser' | transloco }}</a
-      >,
-      <a
-        href="#"
-        class="consent-link"
-        (click)="$event.preventDefault()"
-        >{{ 'register.terms.portal' | transloco }}</a
-      >{{ 'register.terms.suffix' | transloco }}</small
+    <label
+      for="consent-terms"
+      class="form-check-label lh-1 cpointer" [class.fs-12]="variant === 'switch'"
+      ><a href="#" (click)="$event.preventDefault()">{{ 'register.consentModal.cookie' | transloco }}</a
+      ><ng-container *ngTemplateOutlet="linkGap"></ng-container
+      ><a href="#" (click)="$event.preventDefault()">{{ 'register.consentModal.security' | transloco }}</a
+      ><ng-container *ngTemplateOutlet="linkGap"></ng-container
+      ><a href="#" (click)="$event.preventDefault()">{{ 'register.consentModal.membership' | transloco }}</a
+      ><ng-container *ngTemplateOutlet="linkGap"></ng-container
+      ><a href="#" (click)="$event.preventDefault()">{{ 'register.consentModal.potentialUser' | transloco }}</a
+      ><ng-container *ngTemplateOutlet="linkGap"></ng-container
+      ><a href="#" (click)="$event.preventDefault()">{{ 'register.consentModal.portal' | transloco }}</a
+      >{{ 'register.consentModal.suffix' | transloco }}</label
     >
-  </label>
+  </div>
 
-  <label class="consent-item m-0">
+  <div class="form-check form-switch">
     <input
+      id="consent-marketing"
       type="checkbox"
-      class="consent-control"
+      class="form-check-input cpointer"
       formControlName="marketingAccepted"
-      [attr.role]="variant === 'switch' ? 'switch' : null"
     />
-    <small class="consent-text">{{
-      'register.marketing' | transloco
-    }}</small>
-  </label>
+    <label for="consent-marketing" class="form-check-label lh-1 cpointer" [class.fs-12]="variant === 'switch'"
+      ><span>{{ 'register.consentModal.marketing' | transloco }}</span
+      >{{ 'register.consentModal.suffix' | transloco }}</label
+    >
+  </div>
 
-  <label class="consent-item m-0">
+  <div class="form-check form-switch">
     <input
+      id="consent-survey"
       type="checkbox"
-      class="consent-control"
+      class="form-check-input cpointer"
       formControlName="surveyAccepted"
-      [attr.role]="variant === 'switch' ? 'switch' : null"
     />
-    <small class="consent-text">{{ 'register.survey' | transloco }}</small>
-  </label>
-</fieldset>
+    <label for="consent-survey" class="form-check-label lh-1 cpointer" [class.fs-12]="variant === 'switch'"
+      ><span>{{ 'register.consentModal.survey' | transloco }}</span
+      >{{ 'register.consentModal.suffix' | transloco }}</label
+    >
+  </div>
+</div>

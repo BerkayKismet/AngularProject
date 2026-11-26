@@ -7,11 +7,8 @@ import {
 } from '@angular/forms';
 import { TranslocoModule } from '@ngneat/transloco';
 import { Subscription } from 'rxjs';
-import { AuthInput } from '../shared/auth-input/auth-input';
-import { AuthSelect } from '../shared/auth-select/auth-select';
-import { HintField } from '../shared/hint-field/hint-field';
-import { PasswordField } from '../shared/password-field/password-field';
-import { RegisterConsents } from '../shared/register-consents/register-consents';
+import { PasswordField } from '../../shared/password-field/password-field';
+import { RegisterConsents } from '../../shared/register-consents/register-consents';
 
 export type BusinessType = 'sole' | 'limited';
 
@@ -21,9 +18,6 @@ export type BusinessType = 'sole' | 'limited';
   imports: [
     ReactiveFormsModule,
     PasswordField,
-    AuthInput,
-    AuthSelect,
-    HintField,
     RegisterConsents,
     TranslocoModule,
   ],
@@ -43,13 +37,13 @@ export class CorporateRegister implements OnInit, OnDestroy {
     province: ['', [Validators.required]],
     district: [{ value: '', disabled: true }, [Validators.required]],
     neighborhood: [{ value: '', disabled: true }, [Validators.required]],
-    businessType: this.fb.nonNullable.control<BusinessType>('limited', [
+    businessType: this.fb.nonNullable.control<BusinessType>('sole', [
       Validators.required,
     ]),
     taxProvince: ['', [Validators.required]],
     taxOffice: [{ value: '', disabled: true }, [Validators.required]],
     taxId: ['', [Validators.required]],
-    nationalId: [{ value: '', disabled: true }],
+    nationalId: ['', [Validators.required]],
     termsAccepted: [false, [Validators.requiredTrue]],
     marketingAccepted: [false],
     surveyAccepted: [false],
@@ -60,24 +54,26 @@ export class CorporateRegister implements OnInit, OnDestroy {
   constructor(private readonly fb: FormBuilder) {}
 
   ngOnInit(): void {
+    const { businessType, province, district, taxProvince } = this.form.controls;
+
     this.subscriptions.add(
-      this.form.controls.businessType.valueChanges.subscribe((type) =>
+      businessType.valueChanges.subscribe((type) =>
         this.syncNationalIdForBusinessType(type)
       )
     );
     this.subscriptions.add(
-      this.form.controls.province.valueChanges.subscribe((province) =>
-        this.syncDistrictForProvince(province)
+      province.valueChanges.subscribe((value) =>
+        this.syncDistrictForProvince(value)
       )
     );
     this.subscriptions.add(
-      this.form.controls.district.valueChanges.subscribe((district) =>
-        this.syncNeighborhoodForDistrict(district)
+      district.valueChanges.subscribe((value) =>
+        this.syncNeighborhoodForDistrict(value)
       )
     );
     this.subscriptions.add(
-      this.form.controls.taxProvince.valueChanges.subscribe((taxProvince) =>
-        this.syncTaxOfficeForTaxProvince(taxProvince)
+      taxProvince.valueChanges.subscribe((value) =>
+        this.syncTaxOfficeForTaxProvince(value)
       )
     );
   }
@@ -94,46 +90,27 @@ export class CorporateRegister implements OnInit, OnDestroy {
   }
 
   private syncDistrictForProvince(province: string): void {
-    const district = this.form.controls.district;
-
-    if (!province) {
-      this.disableAndReset(district);
-      this.disableAndReset(this.form.controls.neighborhood);
-      return;
-    }
-
-    district.reset('', { emitEvent: false });
-    this.disableAndReset(this.form.controls.neighborhood);
-    district.enable({ emitEvent: false });
+    this.syncDependent(this.form.controls.district, province);
+    this.syncDependent(this.form.controls.neighborhood, '');
   }
 
   private syncNeighborhoodForDistrict(district: string): void {
-    const neighborhood = this.form.controls.neighborhood;
-
-    if (!district) {
-      this.disableAndReset(neighborhood);
-      return;
-    }
-
-    neighborhood.reset('', { emitEvent: false });
-    neighborhood.enable({ emitEvent: false });
+    this.syncDependent(this.form.controls.neighborhood, district);
   }
 
   private syncTaxOfficeForTaxProvince(taxProvince: string): void {
-    const taxOffice = this.form.controls.taxOffice;
-
-    if (!taxProvince) {
-      this.disableAndReset(taxOffice);
-      return;
-    }
-
-    taxOffice.reset('', { emitEvent: false });
-    taxOffice.enable({ emitEvent: false });
+    this.syncDependent(this.form.controls.taxOffice, taxProvince);
   }
 
-  private disableAndReset(control: FormControl<string>): void {
+  /** Üst alan doluysa bağımlı alanı sıfırlayıp açar; boşsa sıfırlayıp kapatır. */
+  private syncDependent(control: FormControl<string>, parentValue: string): void {
     control.reset('', { emitEvent: false });
-    control.disable({ emitEvent: false });
+
+    if (parentValue) {
+      control.enable({ emitEvent: false });
+    } else {
+      control.disable({ emitEvent: false });
+    }
   }
 
   private syncNationalIdForBusinessType(type: BusinessType): void {

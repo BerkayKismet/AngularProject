@@ -1,56 +1,69 @@
-<form class="d-flex flex-column gap-3" [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div>
-    <label class="visually-hidden" for="identifier">{{
-      'login.identifier' | transloco
-    }}</label>
-    <input
-      id="identifier"
-      class="form-control form-control-auth"
-      type="text"
-      formControlName="identifier"
-      [attr.placeholder]="'login.identifier' | transloco"
-      autocomplete="username"
-    />
-  </div>
+<form
+  novalidate
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+>
+  <div class="row g-4">
+    <div class="col-12 mb-4">
+      <label class="visually-hidden" for="identifier">{{
+        'login.identifier' | transloco
+      }}</label>
+      <input
+        id="identifier"
+        class="form-control form-control-auth"
+        type="text"
+        formControlName="identifier"
+        [attr.placeholder]="'login.identifier' | transloco"
+        autocomplete="username"
+      />
+    </div>
 
-  <app-password-field
-    [control]="form.controls.password"
-    inputId="password"
-    autocomplete="current-password"
-  ></app-password-field>
+    <div class="col-12 mb-4">
+      <app-password-field
+        [control]="form.controls.password"
+        inputId="password"
+        autocomplete="current-password"
+      ></app-password-field>
+    </div>
 
-  <button
-    type="button"
-    class="forgot-link btn btn-link p-0 border-0 align-self-end fw-medium"
-  >
-    {{ 'login.forgotPassword' | transloco }}
-  </button>
+    <div class="col-12 text-end mt-1">
+      <a href="#" class="cpointer" (click)="$event.preventDefault()">{{
+        'login.forgotPassword' | transloco
+      }}</a>
+    </div>
 
-  <div
-    class="auth-actions d-flex flex-column flex-sm-row-reverse justify-content-sm-between align-items-stretch align-items-sm-center gap-2 gap-sm-3"
-  >
-    <button type="submit" class="btn btn-auth btn-auth-primary">
-      {{ 'login.submit' | transloco }}
-      <app-icon name="login" class="btn-icon btn-icon--login"></app-icon>
-    </button>
+    <div class="col-12 my-3">
+      <div class="d-flex align-items-center justify-content-between">
+        <a
+          class="btn btn-auth btn-auth-gold"
+          [routerLink]="registerLink"
+          [skipLocationChange]="skipLocationChange"
+        >
+          <i class="icon-arrow-left" aria-hidden="true">&#xf110;</i>
+          <span>{{ 'login.register' | transloco }}</span>
+        </a>
 
-    <a
-      class="btn btn-auth btn-auth-gold"
-      [routerLink]="registerLink"
-      [skipLocationChange]="skipLocationChange"
-    >
-      <app-icon name="chevron-left" class="btn-icon"></app-icon>
-      {{ 'login.register' | transloco }}
-    </a>
+        <button type="submit" class="btn btn-auth btn-auth-primary">
+          <span>{{ 'login.submit' | transloco }}</span>
+          <i class="icon-sign-in-alt" aria-hidden="true">&#xf1a8;</i>
+        </button>
+      </div>
+    </div>
+
+    <div class="col-12 mt-2">
+      <div class="divider d-flex align-items-center w-100 my-4">
+        <span class="divider-line" aria-hidden="true"></span>
+        <small class="divider-text text-secondary px-3 fw-semibold text-nowrap">{{
+          'login.orGoogle' | transloco
+        }}</small>
+        <span class="divider-line" aria-hidden="true"></span>
+      </div>
+
+      <div class="d-flex justify-content-center mt-3">
+        <app-google-signin-button
+          (pressed)="onGoogleSignIn()"
+        ></app-google-signin-button>
+      </div>
+    </div>
   </div>
 </form>
-
-<div class="divider d-flex align-items-center gap-3 my-4">
-  <hr />
-  <span class="text-secondary small">{{ 'login.orGoogle' | transloco }}</span>
-  <hr />
-</div>
-
-<app-google-signin-button
-  (pressed)="onGoogleSignIn()"
-></app-google-signin-button>

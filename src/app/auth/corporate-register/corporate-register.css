@@ -1,0 +1,144 @@
+/* gaboras.com.tr/auth/corporate-register birebir: auth arka planı, 900px form */
+.corporate-register-bg {
+  --bs-body-color: #212529;
+  --bs-body-bg: #fff;
+  --bs-border-radius: 0.375rem;
+  flex: none;
+  width: 100%;
+  height: 100vh;
+  color: var(--bs-primary);
+  background-color: var(--bs-primary);
+  background-image: url('/assets/images/auth-background.png');
+  background-repeat: repeat;
+  background-position: center top;
+}
+
+.corporate-register-container {
+  min-height: 75vh;
+}
+
+.corporate-register-box {
+  width: 900px;
+  height: 600px;
+}
+
+/* .custom-input, .form-check-input ve .form-select:focus ortak stiller olarak styles.css'te;
+   göz ikonu şifre alanı bileşeninde (password-field). */
+
+.custom-border {
+  border-right: 1px solid #ccc;
+}
+
+.tooltip-position {
+  position: absolute;
+  top: 15px;
+  right: 8px;
+  z-index: 3;
+  color: var(--brand-secondary);
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+/* Angular Material .mat-tooltip: aşağıda, ikonun ortasında, 14px boşluk.
+   Metin HTML'de (.tooltip-position__text); CSS yalnızca görünümü ve geçişi verir. */
+.tooltip-position__text {
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 50%;
+  width: max-content;
+  max-width: 250px;
+  padding: 6px 8px;
+  border-radius: 4px;
+  background: rgb(97 97 97 / 0.9);
+  color: #fff;
+  font-family: Mulish;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 15px;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateX(-50%) scale(0);
+  transition:
+    transform 0.15s cubic-bezier(0, 0, 0.2, 1),
+    opacity 0.15s cubic-bezier(0, 0, 0.2, 1);
+}
+
+.tooltip-position:hover .tooltip-position__text,
+.tooltip-position:focus-visible .tooltip-position__text {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+.form-select {
+  border-radius: 2px;
+  padding-bottom: 0.15rem;
+  height: 50px;
+  min-height: 50px;
+}
+
+/* il → ilçe → mahalle bağımlılığı: devre dışı alanlar sitedeki etkin görünümle aynı */
+.form-select:disabled {
+  color: var(--bs-body-color);
+  background-color: var(--bs-body-bg);
+}
+
+.form-floating > .form-select:disabled ~ label {
+  color: rgba(var(--bs-body-color-rgb), 0.65);
+}
+
+.form-floating > .form-select:disabled ~ label::after {
+  background-color: var(--bs-body-bg);
+}
+
+.btn-new-primary {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: var(--brand-blue);
+  --bs-btn-border-color: transparent;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: var(--brand-blue-hover);
+  --bs-btn-hover-border-color: transparent;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: var(--brand-blue-hover);
+  --bs-btn-active-border-color: transparent;
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: var(--brand-blue);
+  --bs-btn-disabled-border-color: transparent;
+}
+
+.btn-new-primary:focus {
+  background-color: var(--brand-blue-hover);
+  color: #fff;
+}
+
+@media (max-height: 700px) {
+  .corporate-register-bg {
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .custom-border {
+    border-right: 0 none;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .tooltip-position__text {
+    left: auto;
+    right: 0;
+    transform: scale(0);
+    transform-origin: top right;
+  }
+
+  .tooltip-position:hover .tooltip-position__text,
+  .tooltip-position:focus-visible .tooltip-position__text {
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tooltip-position__text {
+    transition: none;
+  }
+}

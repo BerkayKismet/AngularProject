@@ -1,11 +1,14 @@
-import { CanMatchFn, Routes, UrlSegment } from '@angular/router';
-
-export const matchAuthMode: CanMatchFn = (_route, segments: UrlSegment[]) => {
-  const mode = segments[0]?.path;
-  return mode === 'login' || mode === 'register';
-};
+import { Routes } from '@angular/router';
+import { matchAuthMode } from './auth-mode.matcher';
 
 export const AUTH_ROUTES: Routes = [
+  {
+    path: 'corporate-register',
+    loadChildren: () =>
+      import('./corporate-register/corporate-register.routes').then(
+        (m) => m.CORPORATE_REGISTER_ROUTES
+      ),
+  },
   {
     path: ':mode',
     canMatch: [matchAuthMode],

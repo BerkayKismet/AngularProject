@@ -1,49 +1,50 @@
+/* sticky header app-root'a göre yapışsın */
 :host {
-  display: block;
+  display: contents;
 }
 
 .app-header {
-  /* İçerik en fazla --content-max-width kadar genişler ve ortalanır;
-     arka plan ve alt çizgi yine tam genişlikte kalır. */
-  box-sizing: border-box;
-  height: calc(4rem + env(safe-area-inset-top, 0px));
-  gap: 1.5rem;
-  padding-inline: var(--content-pad-inline);
-  padding-top: env(safe-area-inset-top, 0px);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  height: calc(64px + env(safe-area-inset-top, 0px));
+  padding: env(safe-area-inset-top, 0px) 0.75rem 0;
   background-color: var(--surface);
-  border-bottom: 1px solid var(--border-default);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.app-header__bar {
+  width: 100%;
+  max-width: 1280px;
+  height: 64px;
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+
+.app-header__brand {
+  line-height: 0;
 }
 
 .app-header__logo {
-  width: 160px;
+  width: auto;
   height: 56px;
-  object-fit: contain;
-  flex-shrink: 0;
+  margin: 3px 0 0 -6px;
 }
 
-.app-header__backdrop {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 999;
-  margin: 0;
-  background: rgb(15 23 42 / 0.4);
-  cursor: pointer;
-}
-
-.app-header__search {
-  position: relative;
-  flex: 1 1 auto;
-  max-width: 22rem;
-}
-
+/* Arama (masaüstü + mobil panel); konumlandırma HTML'de (position-relative) */
 .app-header__search-input {
-  height: 2.5rem;
-  padding-right: 2.75rem;
-  font-size: 0.9rem;
-  border-color: var(--border-input);
-  border-radius: 0.35rem;
-  background-color: #fff;
+  width: 300px;
+  height: 40px;
+  padding: 6px 50px 6px 12px;
+  border: 1px solid var(--header-search-border);
+  border-radius: 4px;
+  background-color: var(--header-search-bg);
+  color: var(--header-search-text);
+}
+
+.app-header__search-input::placeholder {
+  color: var(--header-search-placeholder);
+  opacity: 1;
 }
 
 .app-header__search-input::-webkit-search-cancel-button {
@@ -51,547 +52,412 @@
 }
 
 .app-header__search-input:focus {
-  border-color: var(--border-strong);
-  box-shadow: 0 0 0 0.2rem color-mix(in srgb, var(--text-muted) 28%, transparent);
+  background-color: var(--surface);
+  border-color: var(--header-search-focus-border);
+  box-shadow: 0 0 0 0.2rem rgb(0 43 73 / 0.25);
   outline: none;
 }
 
 .app-header__search-btn {
-  position: absolute;
-  top: 50%;
-  right: 0.35rem;
-  transform: translateY(-50%);
-  width: 2rem;
-  height: 2rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: 0;
-  border-radius: 0.3rem;
-  background-color: var(--surface-soft);
-  color: var(--text-muted);
-  font-size: 1.1rem;
+  right: 5px;
+  width: 30px;
+  height: 30px;
+  background-color: var(--header-search-btn);
+  color: var(--header-search-icon);
+  font-size: 14px;
+  transition: all 0.3s ease;
 }
 
 .app-header__search-btn:hover {
-  background-color: var(--surface-soft-hover);
+  background-color: var(--header-search-btn-hover);
+  color: var(--header-search-icon-hover);
 }
 
-.app-header__nav {
-  gap: 1.25rem;
-  white-space: nowrap;
+.app-header__search-btn:active {
+  background-color: var(--header-search-btn-active);
+  color: var(--header-search-icon-active);
 }
 
-/* Panel: lg ve üstünde satır içi (arama + nav), altında açılır menü */
-.app-header__panel {
-  flex: 1 1 auto;
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  min-width: 0;
+.app-header__right {
+  color: var(--header-ink);
+  -webkit-tap-highlight-color: transparent;
 }
 
-@media (min-width: 992px) {
-  .app-header__panel,
-  .app-header__nav {
-    align-self: stretch;
-  }
-}
-
-.app-header__toggle {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.app-header__burger {
-  width: 2.5rem;
-  height: 2.5rem;
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.3rem;
-  margin-inline-start: auto;
-  flex-shrink: 0;
-  border-radius: 0.35rem;
-  cursor: pointer;
-}
-
-.app-header__burger:hover {
-  background-color: var(--surface-soft);
-}
-
-.app-header__burger span {
-  width: 1.4rem;
-  height: 2px;
-  border-radius: 2px;
-  background-color: var(--header-link);
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.app-header__toggle:focus-visible ~ .app-header__burger {
-  outline: 2px solid var(--accent-teal);
-  outline-offset: 2px;
-}
-
-.app-header__toggle:checked ~ .app-header__burger {
-  display: none;
-}
-
-.app-header__panel-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding-bottom: 0.85rem;
-  border-bottom: 1px solid var(--border-default);
-}
-
-.app-header__panel-title {
-  margin: 0;
-  color: var(--header-avatar);
-  font-size: 1.15rem;
-  font-weight: 700;
-  line-height: 1.2;
-}
-
-.app-header__panel-close {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2rem;
-  height: 2rem;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  border-radius: 0.35rem;
-  background: transparent;
-  color: var(--text-muted);
-  font-size: 1.25rem;
-  cursor: pointer;
-}
-
-.app-header__panel-close:hover {
-  background-color: var(--surface-soft);
-  color: var(--text-secondary);
-}
-
-.app-header__panel-close:focus-visible {
-  outline: 2px solid var(--accent-teal);
-  outline-offset: 2px;
-}
-
-.app-header__sections {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.app-header__section-title {
-  margin: 0 0 0.55rem;
-  padding-bottom: 0.45rem;
-  border-bottom: 1px solid var(--border-default);
-  color: var(--header-avatar);
-  font-size: 1rem;
-  font-weight: 700;
-  line-height: 1.2;
-}
-
-.app-header__section-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-}
-
-.app-header__section-link {
-  display: block;
-  padding: 0.55rem 0.65rem;
-  margin-inline: -0.65rem;
-  border-radius: 0.35rem;
-  color: var(--text-secondary);
-  font-size: 0.95rem;
-  font-weight: 500;
-  text-decoration: none;
-  transition: color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
-}
-
-.app-header__section-link:hover,
-.app-header__section-link:focus-visible {
-  color: var(--header-avatar);
-  background-color: var(--page-bg);
-  box-shadow: 0 0.2rem 0.65rem color-mix(in srgb, var(--page-bg-deep) 70%, transparent);
-  outline: none;
-}
-
-.app-header__lang-pills {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.app-header__lang-pill {
-  flex: 1 1 0;
-  min-height: 2.5rem;
-  padding: 0.45rem 0.5rem;
-  border: 1px solid var(--border-input);
-  border-radius: 0.4rem;
-  background-color: var(--surface);
-  color: var(--text-secondary);
-  font-size: 0.9rem;
-  font-weight: 600;
-  line-height: 1;
-  cursor: pointer;
-  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
-}
-
-.app-header__lang-pill:hover {
-  border-color: var(--border-strong);
-  color: var(--header-avatar);
-}
-
-.app-header__lang-pill:focus-visible {
-  outline: 2px solid var(--accent-teal);
-  outline-offset: 2px;
-}
-
-.app-header__lang-pill--active {
-  border-color: var(--header-avatar);
-  background-color: var(--header-avatar);
-  color: var(--surface);
-}
-
-.app-header__lang-pill--active:hover {
-  border-color: var(--header-avatar);
-  color: var(--surface);
-}
-
-@media (max-width: 991.98px) {
-  .app-header {
-    position: relative;
-  }
-
-  .app-header__toggle:checked ~ .app-header__backdrop {
-    display: block;
-  }
-
-  .app-header__panel {
-    display: none;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    inset-inline-end: 0;
-    inset-inline-start: auto;
-    width: min(20rem, 100%);
-    z-index: 1000;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 1.25rem;
-    padding: calc(1rem + env(safe-area-inset-top, 0px)) 1.25rem
-      calc(1.25rem + env(safe-area-inset-bottom, 0px));
-    overflow-y: auto;
-    background-color: var(--surface);
-    border: 1px solid var(--border-default);
-    border-block: 0;
-    border-inline-end: 0;
-    border-radius: 0;
-    box-shadow: -0.35rem 0 1.25rem rgba(0, 0, 0, 0.1);
-  }
-
-  .app-header__toggle:checked ~ .app-header__panel {
-    display: flex;
-  }
-
-  .app-header__search {
-    max-width: none;
-    flex: 0 0 auto;
-  }
-
-  .app-header__search-btn {
-    background-color: var(--header-avatar);
-    color: var(--surface);
-  }
-
-  .app-header__search-btn:hover {
-    background-color: var(--header-link);
-    color: var(--surface);
-  }
-}
-
+/* Masaüstü menü bağlantıları */
 .app-header__link {
-  color: var(--header-avatar);
-  font-size: 0.95rem;
+  padding: 8px 12px;
+  color: var(--header-link);
+  font-size: 15px;
   font-weight: 600;
-  text-decoration: none;
-  padding: 0.35rem 0.55rem;
-  border-radius: 0.35rem;
-  transition: box-shadow 0.15s ease;
+  line-height: 1.5;
+  transition: all 0.3s ease;
 }
 
 .app-header__link:hover {
-  color: var(--header-avatar);
-  background-color: var(--page-bg);
-  box-shadow: 0 0.2rem 0.65rem color-mix(in srgb, var(--page-bg-deep) 70%, transparent);
+  color: var(--header-avatar-hover);
+  background-color: rgb(29 69 150 / 0.1);
 }
 
-/* Ürünler: hover ile yeşil çizgi + açılır menü (masaüstü) */
-.app-header__dropdown {
-  position: relative;
-  display: flex;
-  align-items: center;
-  align-self: stretch;
+.app-header__link:active {
+  color: var(--header-link-active);
 }
 
 .app-header__link--dropdown {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  height: 100%;
-  padding-inline: 0.15rem;
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
+  border-bottom: 2px solid transparent;
 }
 
-.app-header__link--dropdown::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -1px;
-  z-index: 1;
-  height: 3px;
-  border-radius: 999px;
-  background-color: var(--brand-green);
-  opacity: 0;
-  transform: scaleX(0.85);
-  transition: opacity 0.15s ease, transform 0.15s ease;
-}
-
-.app-header__link--dropdown:hover,
 .app-header__dropdown:hover > .app-header__link--dropdown,
 .app-header__dropdown:focus-within > .app-header__link--dropdown {
-  color: var(--header-avatar);
+  color: var(--brand-blue);
   background-color: transparent;
-  box-shadow: none;
+  border-bottom-color: var(--header-accent-green);
 }
-
-.app-header__dropdown:hover > .app-header__link--dropdown::after,
-.app-header__dropdown:focus-within > .app-header__link--dropdown::after {
-  opacity: 1;
-  transform: scaleX(1);
-}
-
-.app-header__dropdown-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: 1100;
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-  min-width: 13.5rem;
-  padding: 0;
-  background-color: transparent;
-  border: 0;
-  box-shadow: none;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transform: translateY(0.25rem);
-  transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s ease;
-}
-
-/* Hover köprüsü: tetikleyiciden menüye geçerken menü kapanmasın */
-.app-header__dropdown-menu::before {
-  content: '';
-  position: absolute;
-  top: -0.75rem;
-  left: 0;
-  right: 0;
-  height: 0.75rem;
-}
-
-.app-header__dropdown:focus-within > .app-header__dropdown-menu {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  transform: translateY(0);
-}
-
-.app-header__dropdown-item {
-  display: block;
-  padding: 0.85rem 1.1rem;
-  background-color: var(--surface);
-  color: var(--header-avatar);
-  font-size: 0.95rem;
-  font-weight: 600;
-  text-decoration: none;
-  box-shadow: 0 0.15rem 0.45rem rgba(0, 0, 0, 0.06);
-  transition: background-color 0.15s ease, color 0.15s ease;
-}
-
-.app-header__dropdown-item:hover,
-.app-header__dropdown-item:focus-visible {
-  background-color: var(--brand-green);
-  color: var(--surface);
-  outline: none;
-}
-
 
 .app-header__signup.btn {
-  padding: 0.45rem 1.1rem;
-  border: 1.5px solid var(--brand-green);
-  border-radius: 999px;
-  background-color: transparent;
-  color: var(--brand-green);
-  font-size: 0.95rem;
-  font-weight: 700;
-  line-height: 1.2;
+  padding: 8px 20px;
+  border: 2px solid var(--header-accent-green);
+  color: var(--header-accent-green);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.5;
 }
 
 .app-header__signup.btn:hover,
 .app-header__signup.btn:focus-visible {
-  background-color: var(--brand-green);
-  border-color: var(--brand-green);
+  background-color: var(--header-accent-green);
+  border-color: var(--header-accent-green);
   color: var(--surface);
 }
 
-.app-header__lang {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  align-self: stretch;
+.app-header__signup.btn:active {
+  background-color: var(--header-green-active);
+  border-color: var(--header-green-active);
+  color: var(--surface);
+}
+
+/* Açılır menüler (ürünler + dil) */
+.app-header__dropdown-menu,
+.app-header__lang-menu {
+  position: absolute;
+  z-index: 1100;
+  gap: 5px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.app-header__dropdown-menu {
+  top: 100%;
+  left: 0;
+  min-width: 200px;
+  margin-top: 12px;
+}
+
+.app-header__lang-menu {
+  top: calc(100% + 12px);
+  inset-inline-end: 0;
+  min-width: 120px;
+}
+
+/* hover köprüsü */
+.app-header__dropdown-menu::before,
+.app-header__lang-menu::before {
+  content: '';
+  position: absolute;
+  inset: -12px 0 auto;
+  height: 12px;
+}
+
+.app-header__dropdown:focus-within > .app-header__dropdown-menu,
+.app-header__lang:focus-within > .app-header__lang-menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.app-header__dropdown-item,
+.app-header__lang-item {
+  padding: 8px 16px;
+  border: 1px solid var(--header-dropdown-border);
+  background-color: var(--surface);
+  color: var(--header-dropdown-text);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 0.1);
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.app-header__dropdown-item {
+  padding: 10px 16px;
+}
+
+.app-header__dropdown-item:hover,
+.app-header__dropdown-item:focus-visible,
+.app-header__lang-item:hover,
+.app-header__lang-item:focus-visible {
+  background-color: var(--header-accent-green);
+  border-color: var(--header-accent-green);
+  color: var(--surface);
+  box-shadow: 0 4px 8px rgb(40 167 69 / 0.3);
+  outline: none;
+}
+
+/* Dil kodları (tr/en/ar) büyük harfle gösterilir; metin TS'de dönüştürülmez */
+.app-header__avatar,
+.app-header__lang-item,
+.app-header__lang-pill {
+  text-transform: uppercase;
 }
 
 .app-header__avatar {
-  width: 2.5rem;
-  height: 2.5rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  border: 0;
-  border-radius: 50%;
+  width: 40px;
+  height: 40px;
   background-color: var(--header-avatar);
   color: var(--surface);
-  font-size: 0.85rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: opacity 0.15s ease, transform 0.15s ease;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+  transition: background-color 0.3s ease;
 }
 
 .app-header__avatar:hover {
-  opacity: 0.9;
+  background-color: var(--header-avatar-hover);
 }
 
+.app-header__toggle:focus-visible ~ .app-header__burger,
+.app-header__panel-close:focus-visible,
+.app-header__lang-pill:focus-visible,
 .app-header__avatar:focus-visible {
   outline: 2px solid var(--accent-teal);
   outline-offset: 2px;
 }
 
-.app-header__lang-menu {
-  position: absolute;
-  top: calc(100% + 0.35rem);
-  inset-inline-end: 0;
-  z-index: 1100;
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-  min-width: 7.5rem;
-  padding: 0.35rem;
-  background-color: var(--surface);
-  border: 1px solid var(--border-default);
-  border-radius: 0.5rem;
-  box-shadow: 0 0.35rem 0.85rem rgba(0, 0, 0, 0.08);
+/* Mobil: hamburger + sağdan kayan panel (checkbox ile açılır; gizleme HTML'de visually-hidden) */
+.app-header__burger {
+  padding: 8px;
+  color: var(--header-link);
+  font-size: 24px;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.app-header__burger:hover {
+  color: var(--header-avatar-hover);
+  transform: scale(1.1);
+}
+
+.app-header__sidebar {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transform: translateY(0.25rem);
-  transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s ease;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-/* Hover köprüsü: avatar ile menü arasında boşlukta kapanmasın */
-.app-header__lang-menu::before {
-  content: '';
-  position: absolute;
-  top: -0.5rem;
-  left: 0;
-  right: 0;
-  height: 0.5rem;
-}
-
-.app-header__lang:focus-within > .app-header__lang-menu {
+.app-header__toggle:checked ~ .app-header__sidebar {
   opacity: 1;
   visibility: visible;
-  pointer-events: auto;
-  transform: translateY(0);
 }
 
-.app-header__lang-item {
-  display: block;
-  width: 100%;
-  padding: 0.55rem 0.75rem;
-  border: 0;
-  border-radius: 0.35rem;
-  background-color: transparent;
-  color: var(--header-avatar);
-  font-size: 0.9rem;
-  font-weight: 400;
-  text-align: center;
+.app-header__backdrop {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  background-color: rgb(0 0 0 / 0.5);
   cursor: pointer;
-  transition: background-color 0.15s ease, color 0.15s ease;
 }
 
-.app-header__lang-item--active {
-  font-weight: 700;
+.app-header__panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 320px;
+  height: 100%;
+  overflow-y: auto;
+  background-color: #fff;
+  box-shadow: -5px 0 15px rgb(0 0 0 / 0.1);
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  pointer-events: auto;
 }
 
-.app-header__lang-item:hover,
-.app-header__lang-item:focus-visible {
-  background-color: var(--brand-green);
-  color: var(--surface);
+.app-header__toggle:checked ~ .app-header__sidebar .app-header__panel {
+  transform: translateX(0);
+}
+
+.app-header__panel-bar {
+  padding: 20px;
+}
+
+.app-header__panel-title,
+.app-header__section-title {
+  margin: 0;
+  color: var(--header-link);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.app-header__panel-title {
+  font-size: 1.25rem;
+}
+
+.app-header__panel-close {
+  width: 32px;
+  height: 32px;
+  color: var(--bs-gray-600);
+  font-size: 24px;
+  transition: all 0.3s ease;
+}
+
+.app-header__panel-close:hover {
+  background-color: var(--bs-gray-200);
+  color: var(--bs-gray-700);
+}
+
+.app-header__panel-body {
+  padding: 20px;
+}
+
+.app-header__panel-body .app-header__search,
+.app-header__section {
+  margin-bottom: 30px;
+}
+
+.app-header__section-title {
+  margin-bottom: 15px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--bs-gray-200);
+  font-size: 16px;
+}
+
+.app-header__section-link,
+.app-header__lang-pill {
+  border-radius: 6px;
+  color: var(--bs-gray-700);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  transition: all 0.3s ease;
+}
+
+.app-header__section-link {
+  margin: 0 0 8px;
+  padding: 12px 16px;
+}
+
+.app-header__section-link:last-child {
+  margin-bottom: 0;
+}
+
+.app-header__section-link:hover,
+.app-header__section-link:focus-visible {
+  background-color: rgb(29 69 150 / 0.1);
+  color: var(--header-link);
   outline: none;
 }
 
-@media (max-width: 575.98px) {
-  .app-header {
-    height: calc(3.5rem + env(safe-area-inset-top, 0px));
-    gap: 0.75rem;
+.app-header__lang-pill {
+  flex: 1 1 0;
+  padding: 10px 16px;
+  border: 1px solid var(--bs-gray-300);
+  background-color: #fff;
+}
+
+.app-header__lang-pill:hover {
+  border-color: var(--header-link);
+  color: var(--header-link);
+}
+
+.app-header__lang-pill--active,
+.app-header__lang-pill--active:hover {
+  border-color: var(--header-link);
+  background-color: var(--header-link);
+  color: #fff;
+}
+
+/* Paneldeki arama (mobil) */
+.app-header__panel .app-header__search-input {
+  width: 100%;
+  height: 44px;
+  padding: 0 50px 0 16px;
+  border-radius: 6px;
+}
+
+.app-header__panel .app-header__search-input:focus {
+  border-color: var(--header-link);
+  box-shadow: 0 0 0 0.2rem rgb(29 69 150 / 0.25);
+}
+
+.app-header__panel .app-header__search-btn {
+  width: 34px;
+  height: 34px;
+  background-color: var(--header-link);
+  color: #fff;
+}
+
+.app-header__panel .app-header__search-btn:hover,
+.app-header__panel .app-header__search-btn:active {
+  background-color: var(--header-avatar-hover);
+  color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 1199.98px) {
+  .app-header__bar {
+    padding-inline: 15px;
   }
 
-  .app-header__logo {
-    width: 132px;
-    height: 46px;
+  .app-header__search-input {
+    width: 250px;
   }
 
-  .app-header__nav {
-    gap: 0.75rem;
+  .app-header__dropdown-menu {
+    min-width: 180px;
+  }
+
+  .app-header__link {
+    padding: 6px 10px;
+    font-size: 14px;
+  }
+
+  .app-header__link--dropdown {
+    padding: 6px 12px;
   }
 
   .app-header__signup.btn {
-    padding: 0.35rem 0.8rem;
-    font-size: 0.85rem;
-  }
-
-  .app-header__avatar {
-    width: 2.25rem;
-    height: 2.25rem;
-  }
-
-  .app-header__panel {
-    width: min(100%, 20rem);
+    padding: 6px 16px;
+    font-size: 14px;
   }
 }
 
-/* Hover menüleri yalnızca fare/izleme noktası olan cihazlarda */
+@media (max-width: 767.98px) {
+  .app-header__bar {
+    padding-inline: 10px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .app-header__bar {
+    padding-inline: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-header__panel {
+    width: 100%;
+  }
+}
+
 @media (hover: hover) and (pointer: fine) {
   .app-header__dropdown:hover > .app-header__dropdown-menu,
   .app-header__lang:hover > .app-header__lang-menu {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
-    transform: translateY(0);
   }
 }

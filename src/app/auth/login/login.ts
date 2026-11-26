@@ -3,7 +3,6 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLinkWithHref } from '@angular/router';
 import { TranslocoModule } from '@ngneat/transloco';
 import { GoogleSigninButton } from '../google-signin-button/google-signin-button';
-import { Icon } from '../../shared/icon/icon';
 import { PasswordField } from '../../shared/password-field/password-field';
 
 @Component({
@@ -14,7 +13,6 @@ import { PasswordField } from '../../shared/password-field/password-field';
     RouterLinkWithHref,
     PasswordField,
     GoogleSigninButton,
-    Icon,
     TranslocoModule,
   ],
   templateUrl: './login.html',

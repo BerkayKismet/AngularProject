@@ -3,13 +3,8 @@ import { CommonModule } from '@angular/common';
 
 export type IconName =
   | 'close'
-  | 'eye'
-  | 'eye-off'
-  | 'chevron-left'
-  | 'chevron-right'
-  | 'login'
+  | 'menu'
   | 'search'
-  | 'help'
   | 'instagram'
   | 'facebook'
   | 'youtube'

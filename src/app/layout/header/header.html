@@ -1,181 +1,212 @@
-<!-- Üst bar: logo | arama | menü + kayıt butonu + dil.
-     lg altında yalnızca logo + hamburger görünür; öğeler açılır panelde listelenir. -->
-<header class="app-header d-flex align-items-center">
-  <a routerLink="/" class="app-header__brand">
-    <img
-      class="app-header__logo"
-      src="assets/images/gaboraslogo.png"
-      [attr.alt]="'header.logoAlt' | transloco"
-    />
-  </a>
-
-  <input
-    #menuToggle
-    type="checkbox"
-    id="app-header-toggle"
-    class="app-header__toggle"
-    [attr.aria-label]="'header.menuToggle' | transloco"
-    (change)="onMenuToggle()"
-  />
-  <label for="app-header-toggle" class="app-header__burger d-lg-none" aria-hidden="true">
-    <span></span>
-    <span></span>
-    <span></span>
-  </label>
-  <label
-    for="app-header-toggle"
-    class="app-header__backdrop d-lg-none"
-    aria-hidden="true"
-  ></label>
-
-  <div class="app-header__panel">
-    <div class="app-header__panel-bar d-lg-none">
-      <p class="app-header__panel-title">{{ 'header.panelTitle' | transloco }}</p>
-      <button
-        type="button"
-        class="app-header__panel-close"
-        [attr.aria-label]="'auth.close' | transloco"
-        (click)="closeMenu()"
-      >
-        <app-icon name="close"></app-icon>
-      </button>
-    </div>
-
-    <div class="app-header__search">
-      <input
-        type="search"
-        class="form-control app-header__search-input"
-        [attr.placeholder]="'header.search' | transloco"
-        [attr.aria-label]="'header.search' | transloco"
-      />
-      <button
-        type="button"
-        class="app-header__search-btn"
-        [attr.aria-label]="'header.search' | transloco"
-      >
-        <app-icon name="search"></app-icon>
-      </button>
-    </div>
-
-    <!-- Masaüstü: satır içi nav -->
-    <nav class="app-header__nav ms-lg-auto d-none d-lg-flex align-items-lg-center">
-      <div class="app-header__dropdown">
-        <a href="#" class="app-header__link app-header__link--dropdown" aria-haspopup="true">
-          {{ 'header.products' | transloco }}
-        </a>
-        <div class="app-header__dropdown-menu" role="menu">
-          <a href="#" class="app-header__dropdown-item" role="menuitem">
-            {{ 'header.product.broker' | transloco }}
-          </a>
-          <a href="#" class="app-header__dropdown-item" role="menuitem">
-            {{ 'header.product.propertyMgmt' | transloco }}
-          </a>
-          <a href="#" class="app-header__dropdown-item" role="menuitem">
-            {{ 'header.product.report' | transloco }}
-          </a>
-        </div>
-      </div>
-      <a class="app-header__link" routerLink="/login">
-        {{ 'header.freeListing' | transloco }}
+<!-- Üst bar: sol (logo + arama) | sağ (menü); gaboras.com.tr ile aynı hizalama.
+     lg altında yalnızca logo + hamburger; öğeler açılır panelde. -->
+<header class="app-header">
+  <div class="app-header__bar d-flex align-items-center justify-content-between">
+    <div class="app-header__left d-flex align-items-center gap-5 flex-shrink-0">
+      <a routerLink="/" class="app-header__brand flex-shrink-0">
+        <img
+          class="app-header__logo"
+          src="assets/images/gaboraslogo2.svg"
+          [attr.alt]="'header.logoAlt' | transloco"
+        />
       </a>
-      <a
-        class="app-header__link"
-        [routerLink]="[{ outlets: { modal: ['login'] } }]"
-        [skipLocationChange]="true"
-      >
-        {{ 'header.login' | transloco }}
-      </a>
-      <a
-        class="app-header__signup btn"
-        [routerLink]="[{ outlets: { modal: ['register'] } }]"
-        [skipLocationChange]="true"
-      >
-        {{ 'header.freeRegister' | transloco }}
-      </a>
-      <div class="app-header__lang">
+
+      <div class="app-header__search position-relative d-none d-lg-block flex-shrink-0">
+        <input
+          type="search"
+          class="form-control app-header__search-input"
+          [attr.placeholder]="'header.search' | transloco"
+          [attr.aria-label]="'header.search' | transloco"
+        />
         <button
           type="button"
-          class="app-header__avatar"
-          [attr.aria-label]="'header.languageMenu' | transloco"
-          aria-haspopup="true"
+          class="app-header__search-btn position-absolute top-50 translate-middle-y d-flex align-items-center justify-content-center user-select-none border-0 p-0 rounded-1"
+          [attr.aria-label]="'header.search' | transloco"
         >
-          {{ languageLabel }}
+          <app-icon name="search"></app-icon>
         </button>
-        <div class="app-header__lang-menu" role="menu">
-          <button
-            *ngFor="let locale of locales"
-            type="button"
-            class="app-header__lang-item"
-            role="menuitem"
-            [class.app-header__lang-item--active]="isCurrentLocale(locale)"
-            (click)="selectLocale(locale)"
+      </div>
+    </div>
+
+    <input
+      #menuToggle
+      type="checkbox"
+      id="app-header-toggle"
+      class="app-header__toggle visually-hidden"
+      [attr.aria-label]="'header.menuToggle' | transloco"
+    />
+    <label
+      for="app-header-toggle"
+      class="app-header__burger d-lg-none d-inline-flex align-items-center justify-content-center flex-shrink-0 m-0 ms-auto lh-1"
+      aria-hidden="true"
+    >
+      <app-icon name="menu"></app-icon>
+    </label>
+
+    <!-- Masaüstü: sağ bölüm (gaboras .right-section) -->
+    <div class="app-header__right d-none d-lg-block flex-shrink-0">
+      <nav class="app-header__nav d-flex align-items-center gap-3 text-nowrap">
+        <div class="app-header__dropdown position-relative d-flex align-items-center">
+          <a
+            href="#"
+            class="app-header__link app-header__link--dropdown d-block text-decoration-none text-start text-nowrap rounded-1"
+            aria-haspopup="true"
           >
-            {{ localeLabel(locale) }}
+            {{ 'header.products' | transloco }}
+          </a>
+          <div class="app-header__dropdown-menu d-flex flex-column" role="menu">
+            <a href="#" class="app-header__dropdown-item d-block text-decoration-none" role="menuitem">
+              {{ 'header.product.broker' | transloco }}
+            </a>
+            <a href="#" class="app-header__dropdown-item d-block text-decoration-none" role="menuitem">
+              {{ 'header.product.propertyMgmt' | transloco }}
+            </a>
+            <a href="#" class="app-header__dropdown-item d-block text-decoration-none" role="menuitem">
+              {{ 'header.product.report' | transloco }}
+            </a>
+          </div>
+        </div>
+        <a
+          class="app-header__link d-block text-decoration-none text-start text-nowrap rounded-1"
+          routerLink="/login"
+        >
+          {{ 'header.freeListing' | transloco }}
+        </a>
+        <a
+          class="app-header__link d-block text-decoration-none text-start text-nowrap rounded-1"
+          [routerLink]="[{ outlets: { modal: ['login'] } }]"
+          [skipLocationChange]="true"
+        >
+          {{ 'header.login' | transloco }}
+        </a>
+        <a
+          class="app-header__signup btn d-block text-nowrap rounded-pill"
+          [routerLink]="[{ outlets: { modal: ['register'] } }]"
+          [skipLocationChange]="true"
+        >
+          {{ 'header.freeRegister' | transloco }}
+        </a>
+        <div class="app-header__lang position-relative d-inline-flex align-items-center">
+          <button
+            type="button"
+            class="app-header__avatar d-inline-flex align-items-center justify-content-center flex-shrink-0 rounded-circle border-0"
+            [attr.aria-label]="'header.languageMenu' | transloco"
+            aria-haspopup="true"
+          >
+            {{ currentLocale }}
           </button>
+          <div class="app-header__lang-menu d-flex flex-column" role="menu">
+            <button
+              *ngFor="let locale of locales"
+              type="button"
+              class="app-header__lang-item d-block w-100 text-center"
+              role="menuitem"
+              [class.fw-bold]="isCurrentLocale(locale)"
+              (click)="selectLocale(locale)"
+            >
+              {{ locale }}
+            </button>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Mobil sidebar (gaboras .mobile-sidebar) -->
+    <div class="app-header__sidebar d-lg-none" aria-hidden="true">
+      <label for="app-header-toggle" class="app-header__backdrop" aria-hidden="true"></label>
+
+      <div class="app-header__panel">
+        <div class="app-header__panel-bar border-bottom bg-body-tertiary d-flex align-items-center justify-content-between">
+          <h2 class="app-header__panel-title">{{ 'header.panelTitle' | transloco }}</h2>
+          <button
+            type="button"
+            class="app-header__panel-close d-inline-flex align-items-center justify-content-center border-0 bg-transparent m-0 p-0 rounded-1 lh-1"
+            [attr.aria-label]="'auth.close' | transloco"
+            (click)="closeMenu()"
+          >
+            <app-icon name="close"></app-icon>
+          </button>
+        </div>
+
+        <div class="app-header__panel-body">
+          <div class="app-header__search position-relative">
+            <input
+              type="search"
+              class="form-control app-header__search-input"
+              [attr.placeholder]="'header.search' | transloco"
+              [attr.aria-label]="'header.search' | transloco"
+            />
+            <button
+              type="button"
+              class="app-header__search-btn position-absolute top-50 translate-middle-y d-flex align-items-center justify-content-center user-select-none border-0 p-0 rounded-1"
+              [attr.aria-label]="'header.search' | transloco"
+            >
+              <app-icon name="search"></app-icon>
+            </button>
+          </div>
+
+          <div class="app-header__sections d-flex flex-column">
+            <section class="app-header__section">
+              <h3 class="app-header__section-title">{{ 'header.products' | transloco }}</h3>
+              <nav class="app-header__section-list d-flex flex-column" [attr.aria-label]="'header.products' | transloco">
+                <a href="#" class="app-header__section-link d-block text-decoration-none" (click)="closeMenu()">
+                  {{ 'header.product.broker' | transloco }}
+                </a>
+                <a href="#" class="app-header__section-link d-block text-decoration-none" (click)="closeMenu()">
+                  {{ 'header.product.propertyMgmt' | transloco }}
+                </a>
+                <a href="#" class="app-header__section-link d-block text-decoration-none" (click)="closeMenu()">
+                  {{ 'header.product.report' | transloco }}
+                </a>
+              </nav>
+            </section>
+
+            <section class="app-header__section">
+              <h3 class="app-header__section-title">{{ 'header.actions' | transloco }}</h3>
+              <nav class="app-header__section-list d-flex flex-column" [attr.aria-label]="'header.actions' | transloco">
+                <a class="app-header__section-link d-block text-decoration-none" routerLink="/login" (click)="closeMenu()">
+                  {{ 'header.freeListing' | transloco }}
+                </a>
+                <a
+                  class="app-header__section-link d-block text-decoration-none"
+                  [routerLink]="[{ outlets: { modal: ['login'] } }]"
+                  [skipLocationChange]="true"
+                  (click)="closeMenu()"
+                >
+                  {{ 'header.login' | transloco }}
+                </a>
+                <a
+                  class="app-header__section-link d-block text-decoration-none"
+                  [routerLink]="[{ outlets: { modal: ['register'] } }]"
+                  [skipLocationChange]="true"
+                  (click)="closeMenu()"
+                >
+                  {{ 'header.freeRegister' | transloco }}
+                </a>
+              </nav>
+            </section>
+
+            <section class="app-header__section">
+              <h3 class="app-header__section-title">{{ 'header.language' | transloco }}</h3>
+              <div
+                class="app-header__lang-pills d-flex gap-2"
+                role="group"
+                [attr.aria-label]="'header.languageMenu' | transloco"
+              >
+                <button
+                  *ngFor="let locale of locales"
+                  type="button"
+                  class="app-header__lang-pill"
+                  [class.app-header__lang-pill--active]="isCurrentLocale(locale)"
+                  (click)="selectLocale(locale)"
+                >
+                  {{ locale }}
+                </button>
+              </div>
+            </section>
+          </div>
         </div>
       </div>
-    </nav>
-
-    <!-- Mobil: bölümlü panel -->
-    <div class="app-header__sections d-lg-none">
-      <section class="app-header__section">
-        <h2 class="app-header__section-title">{{ 'header.products' | transloco }}</h2>
-        <nav class="app-header__section-list" [attr.aria-label]="'header.products' | transloco">
-          <a href="#" class="app-header__section-link" (click)="closeMenu()">
-            {{ 'header.product.broker' | transloco }}
-          </a>
-          <a href="#" class="app-header__section-link" (click)="closeMenu()">
-            {{ 'header.product.propertyMgmt' | transloco }}
-          </a>
-          <a href="#" class="app-header__section-link" (click)="closeMenu()">
-            {{ 'header.product.report' | transloco }}
-          </a>
-        </nav>
-      </section>
-
-      <section class="app-header__section">
-        <h2 class="app-header__section-title">{{ 'header.actions' | transloco }}</h2>
-        <nav class="app-header__section-list" [attr.aria-label]="'header.actions' | transloco">
-          <a class="app-header__section-link" routerLink="/login" (click)="closeMenu()">
-            {{ 'header.freeListing' | transloco }}
-          </a>
-          <a
-            class="app-header__section-link"
-            [routerLink]="[{ outlets: { modal: ['login'] } }]"
-            [skipLocationChange]="true"
-            (click)="closeMenu()"
-          >
-            {{ 'header.login' | transloco }}
-          </a>
-          <a
-            class="app-header__section-link"
-            [routerLink]="[{ outlets: { modal: ['register'] } }]"
-            [skipLocationChange]="true"
-            (click)="closeMenu()"
-          >
-            {{ 'header.freeRegister' | transloco }}
-          </a>
-        </nav>
-      </section>
-
-      <section class="app-header__section">
-        <h2 class="app-header__section-title">{{ 'header.language' | transloco }}</h2>
-        <div
-          class="app-header__lang-pills"
-          role="group"
-          [attr.aria-label]="'header.languageMenu' | transloco"
-        >
-          <button
-            *ngFor="let locale of locales"
-            type="button"
-            class="app-header__lang-pill"
-            [class.app-header__lang-pill--active]="isCurrentLocale(locale)"
-            (click)="selectLocale(locale)"
-          >
-            {{ localeLabel(locale) }}
-          </button>
-        </div>
-      </section>
     </div>
   </div>
 </header>

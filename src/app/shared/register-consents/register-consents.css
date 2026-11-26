@@ -2,169 +2,133 @@
   display: block;
 }
 
-.consents {
-  min-inline-size: 0;
-  border: 0;
+/* —— switch (gaboras.com.tr kurumsal kayıt: düz Bootstrap .form-switch) ——
+   Focus çerçevesi ve işaretli renk styles.css'teki ortak .form-check-input kurallarından gelir;
+   burada yalnızca switch'in düğme (daire) görseli değiştirilir. */
+.consents--switch .form-check-input:focus {
+  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%238095a4'/%3e%3c/svg%3e");
 }
 
-.consent-item {
+.consents--switch .form-check-input:checked {
+  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+}
+
+.consents--switch .form-check-label a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* —— modal (gaboras.com.tr kayıt modalı .form-check) —— */
+.consents--modal .form-check {
   display: flex;
   align-items: flex-start;
-  cursor: pointer;
-}
-
-.consent-text {
-  color: var(--text-secondary);
-  font-size: 0.78rem;
-  font-weight: 400;
-  line-height: 1.45;
-  cursor: pointer;
-}
-
-.consent-link {
-  color: var(--brand-navy);
-  font-weight: 700;
-  text-decoration: none;
-}
-
-.consent-link:hover {
-  text-decoration: underline;
-}
-
-/* —— boxed (bireysel kayıt) —— */
-:host.register-consents--boxed .consents {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  margin-bottom: 0.875rem;
   padding: 1rem;
-  border: 1px solid var(--border-default);
-  border-radius: 0.95rem;
-  background: var(--surface);
-  box-shadow: 0 1px 2px rgb(var(--shadow-ink) / 0.04);
-}
-
-:host.register-consents--boxed .consent-item {
-  gap: 0.5rem;
-  padding: 0.9rem 1rem;
-  border: 1px solid transparent;
-  border-radius: 0.75rem;
-  background: var(--surface-muted);
-  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.7);
-  transition:
-    border-color 0.15s ease,
-    box-shadow 0.15s ease;
-}
-
-:host.register-consents--boxed .consent-item:focus-within {
-  border-color: var(--accent-sky);
-  box-shadow: 0 0 0 1px rgb(185 215 234 / 0.55);
-}
-
-:host.register-consents--boxed .consent-control {
-  appearance: none;
-  position: relative;
-  flex-shrink: 0;
-  width: 1.2rem;
-  height: 1.2rem;
-  margin-top: 0.1rem;
-  border: 1.5px solid var(--border-strong);
-  border-radius: 0.3rem;
-  background: var(--surface);
+  border: 1px solid var(--bs-gray-200);
+  border-radius: 10px;
+  background: var(--bs-gray-100);
   cursor: pointer;
-  transition:
-    border-color 0.15s ease,
-    background-color 0.15s ease,
-    box-shadow 0.15s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-:host.register-consents--boxed .consent-control::before {
+.consents--modal .form-check:hover {
+  transform: translateY(-1px);
+  border-color: rgb(0 123 255 / 0.2);
+  background: linear-gradient(
+    135deg,
+    rgb(0 123 255 / 0.05) 0%,
+    rgb(40 167 69 / 0.05) 100%
+  );
+  box-shadow: 0 4px 12px rgb(0 123 255 / 0.1);
+}
+
+.consents--modal .form-check:not(:first-child) {
+  margin-bottom: 0;
+}
+
+.consents--modal .form-check:has(.form-check-input:checked) {
+  border-color: var(--bs-primary);
+  background: linear-gradient(
+    135deg,
+    rgb(0 123 255 / 0.08) 0%,
+    rgb(40 167 69 / 0.08) 100%
+  );
+}
+
+.consents--modal .form-check .form-check-input {
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-top: 0.125rem;
+  margin-right: 0.875rem;
+  margin-left: 0;
+  border: 2px solid var(--bs-gray-400);
+  border-radius: 4px;
+  background-color: #fff;
+  color: #fff;
+  transition: 0.2s;
+}
+
+.consents--modal .form-check .form-check-input:hover:not(:checked) {
+  border-color: var(--bs-primary);
+}
+
+.consents--modal .form-check .form-check-input:focus {
+  border-color: var(--bs-primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgb(0 123 255 / 0.15);
+}
+
+.consents--modal .form-check .form-check-input:checked {
+  border-color: var(--bs-primary);
+  background-color: var(--bs-primary);
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3l6-6'/%3e%3c/svg%3e");
+  box-shadow: 0 0 0 3px rgb(0 123 255 / 0.15);
+}
+
+.consents--modal .form-check .form-check-label {
+  flex: 1 1 0%;
+  padding-top: 0.125rem;
+  color: var(--bs-gray-800);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.consents--modal .form-check .form-check-input:checked ~ .form-check-label {
+  color: var(--bs-primary);
+  font-weight: 500;
+}
+
+.consents--modal .form-check .form-check-label span {
+  color: var(--bs-gray-700);
+}
+
+.consents--modal .form-check .form-check-label a {
+  position: relative;
+  display: inline-block;
+  color: var(--bs-primary);
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.consents--modal .form-check .form-check-label a::after {
   content: '';
   position: absolute;
-  inset: 50%;
-  width: 2.75rem;
-  height: 2.75rem;
-  transform: translate(-50%, -50%);
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  border-radius: 1px;
+  background: linear-gradient(90deg, var(--bs-primary) 0%, var(--brand-green) 100%);
+  transition: width 0.3s;
 }
 
-:host.register-consents--boxed .consent-control:checked {
-  border-color: var(--brand-navy);
-  background: var(--brand-navy);
-  box-shadow: inset 0 0 0 0.22rem var(--surface);
+.consents--modal .form-check .form-check-label a:hover {
+  color: var(--brand-green);
 }
 
-:host.register-consents--boxed .consent-control:focus-visible {
-  outline: 0;
-  border-color: var(--brand-navy);
-  box-shadow:
-    inset 0 0 0 0.22rem var(--surface),
-    0 0 0 0.2rem var(--focus-ring-soft);
-}
-
-:host.register-consents--boxed .consent-control:checked + .consent-text {
-  font-weight: 700;
-}
-
-/* —— switch (kurumsal kayıt) —— */
-:host.register-consents--switch .consent-item {
-  gap: 0.75rem;
-  padding: 0.55rem 0;
-}
-
-:host.register-consents--switch .consent-control {
-  flex-shrink: 0;
-  width: 2.5rem;
-  height: 1.35rem;
-  margin: 0.15rem 0 0;
-  background-color: var(--border-strong);
-  border: 0;
-  border-radius: 2rem;
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
-  background-repeat: no-repeat;
-  background-position: left center;
-  cursor: pointer;
-  appearance: none;
-  transition:
-    background-color 0.15s ease,
-    background-position 0.15s ease;
-}
-
-:host.register-consents--switch .consent-control:focus {
-  box-shadow: none;
-}
-
-:host.register-consents--switch .consent-control:focus-visible {
-  outline: 0;
-  box-shadow: 0 0 0 0.2rem var(--focus-ring-soft);
-}
-
-:host.register-consents--switch .consent-control:checked {
-  background-color: var(--brand-primary);
-  background-position: right center;
-}
-
-@media (max-width: 575.98px) {
-  :host.register-consents--boxed .consents {
-    padding: 0.55rem;
-    border-radius: 0.75rem;
-  }
-
-  :host.register-consents--boxed .consent-item {
-    padding: 0.65rem 0.7rem;
-    border-radius: 0.6rem;
-  }
-
-  :host.register-consents--boxed .consent-control {
-    width: 1.15rem;
-    height: 1.15rem;
-  }
-
-  :host.register-consents--switch .consent-item {
-    gap: 0.65rem;
-    padding: 0.45rem 0;
-  }
-
-  .consent-text {
-    font-size: 0.72rem;
-    line-height: 1.4;
-  }
+.consents--modal .form-check .form-check-label a:hover::after {
+  width: 100%;
 }

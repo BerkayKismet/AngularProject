@@ -3,7 +3,6 @@ import {
   Component,
   ElementRef,
   HostListener,
-  OnDestroy,
   ViewChild,
 } from '@angular/core';
 import { RouterLinkWithHref } from '@angular/router';
@@ -12,8 +11,6 @@ import { LanguageService } from '../../core/i18n/language.service';
 import { Locale, LOCALES } from '../../core/i18n/locale';
 import { Icon } from '../../shared/icon/icon';
 
-const MENU_OPEN_CLASS = 'header-menu-open';
-
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -21,19 +18,15 @@ const MENU_OPEN_CLASS = 'header-menu-open';
   templateUrl: './header.html',
   styleUrls: ['./header.css'],
 })
-export class Header implements OnDestroy {
+export class Header {
   @ViewChild('menuToggle') private menuToggle?: ElementRef<HTMLInputElement>;
 
   readonly locales = LOCALES;
 
   constructor(private readonly language: LanguageService) {}
 
-  get languageLabel(): string {
-    return this.localeLabel(this.language.current);
-  }
-
-  localeLabel(locale: Locale): string {
-    return locale.toUpperCase();
+  get currentLocale(): Locale {
+    return this.language.current;
   }
 
   isCurrentLocale(locale: Locale): boolean {
@@ -45,22 +38,12 @@ export class Header implements OnDestroy {
     this.closeMenu();
   }
 
-  onMenuToggle(): void {
-    this.syncMenuOpenClass();
-  }
-
   closeMenu(): void {
     const toggle = this.menuToggle?.nativeElement;
 
     if (toggle) {
       toggle.checked = false;
     }
-
-    this.syncMenuOpenClass();
-  }
-
-  ngOnDestroy(): void {
-    document.body.classList.remove(MENU_OPEN_CLASS);
   }
 
   @HostListener('window:resize')
@@ -73,11 +56,5 @@ export class Header implements OnDestroy {
   @HostListener('document:keydown.escape')
   onEscape(): void {
     this.closeMenu();
-  }
-
-  private syncMenuOpenClass(): void {
-    const open = !!this.menuToggle?.nativeElement.checked;
-
-    document.body.classList.toggle(MENU_OPEN_CLASS, open);
   }
 }

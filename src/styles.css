@@ -1,16 +1,33 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
-@import '@fontsource/manrope/400.css';
-@import '@fontsource/manrope/500.css';
-@import '@fontsource/manrope/600.css';
-@import '@fontsource/manrope/700.css';
+/* gaboras.com.tr yalnızca Fira Sans Condensed 400/700 yükler; 600 isteği 700 yüzüne düşer */
+@import '@fontsource/poppins/400.css';
+@import '@fontsource/poppins/700.css';
+@import '@fontsource/fira-sans-condensed/400.css';
+@import '@fontsource/fira-sans-condensed/700.css';
+/* gaboras.com.tr tooltip metni (.mat-tooltip) Mulish 400 kullanır */
+@import '@fontsource/mulish/400.css';
+/* Google Identity Services düğme metni */
+@import '@fontsource/roboto/500.css';
+
+/* gaboras.com.tr ikon fontu (auth: ok, göz, kapat ikonları) */
+@font-face {
+  font-family: 'icons';
+  src: url('./assets/fonts/icons.woff2') format('woff2');
+  font-display: block;
+}
 
 :root {
-  --font-sans: 'Manrope', 'Segoe UI', sans-serif;
-  --content-max-width: 1200px;
+  /* gaboras.com.tr gövde yığını: "Muli" yüzü yüklenmez → Windows'ta Segoe UI'ya düşer */
+  --font-sans: Muli, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-display: 'Poppins', Arial, Helvetica, sans-serif;
+  --font-auth-btn: 'Fira Sans Condensed', sans-serif;
+  --content-max-width: 1240px;
   --content-pad-inline: max(
       1rem,
       env(safe-area-inset-left, 0px),
-      calc((100% - var(--content-max-width)) / 2)
+    calc((100% - var(--content-max-width)) / 2)
     )
     max(
       1rem,
@@ -19,76 +36,59 @@
     );
 
   --surface: #ffffff;
-  --surface-muted: #f5f7fa;
-  --surface-subtle: #f3f5f7;
-  --surface-soft: #eceff3;
-  --surface-soft-hover: #e2e6eb;
 
   --page-bg: #eef1f4;
-  --page-bg-mid: #e4e8ed;
-  --page-bg-deep: #dfe4ea;
 
-  --brand-navy: #0a3d5c;
-  --brand-navy-deep: #0c2348;
-  --brand-primary: #006698;
-  --brand-primary-hover: #005780;
-  --brand-primary-active: #004d73;
-  --accent-gold: #c5a367;
-  --accent-gold-hover: #d4b57a;
-  --accent-gold-active: #b8945a;
+  --brand-secondary: #0067a0;
   --accent-teal: #20b4c0;
-  --accent-sky: #b9d7ea;
-  --gradient-brand: linear-gradient(90deg, #00a8e8 0%, #00c4a7 100%);
-
+  --bs-primary: #002b49;
+  --bs-primary-rgb: 0, 43, 73;
   --text-primary: #1f2937;
-  --text-secondary: #4d5563;
-  --text-muted: #7b8491;
-  --text-subtle: #6b7280;
-  --text-strong: #374151;
-  --text-ink: #2f3f55;
-  --text-ink-deep: #0f172a;
-  --text-placeholder: #9aa3af;
 
-  --border-subtle: #e8ebef;
-  --border-default: #e3e7ec;
-  --border-input: #d9dee5;
-  --border-strong: #c5ccd6;
-  --border-brand-soft: #d5e0ea;
+  /* Tekrar eden marka renkleri: component CSS'lerinde hex yerine bunlar kullanılır */
+  --brand-blue: #1d4596;
+  --brand-blue-hover: #4658a6;
+  --brand-focus: #8095a4;
+  --brand-gold: #cfad67;
+  --brand-green: #28a745;
 
-  --brand-tint: #eef5fa;
-  --brand-tint-hover: #e7f0f7;
-
-  --header-link: #1f3b68;
-  --header-avatar: #1d4a96;
-  --footer-bg: #1a4099;
+  --header-ink: var(--bs-primary);
+  --header-link: var(--brand-blue);
+  --header-link-active: #112856;
+  --header-avatar: var(--brand-blue);
+  --header-avatar-hover: #15316b;
+  --header-search-bg: #ffffff;
+  --header-search-text: #212529;
+  --header-search-placeholder: rgb(33 37 41 / 0.75);
+  --header-search-border: var(--bs-gray-300);
+  --header-search-focus-border: #86b7fe;
+  --header-search-btn: var(--bs-gray-200);
+  --header-search-btn-hover: var(--bs-gray-300);
+  --header-search-btn-active: var(--bs-gray-400);
+  --header-search-icon: var(--bs-gray-600);
+  --header-search-icon-hover: var(--bs-gray-700);
+  --header-search-icon-active: var(--bs-gray-800);
+  --header-dropdown-text: #244a99;
+  --header-dropdown-border: var(--bs-gray-300);
+  --header-accent-green: var(--brand-green);
+  --header-green-active: #218838;
+  --footer-bg: var(--brand-blue);
   --footer-text: #ffffff;
-  --footer-muted: rgb(255 255 255 / 0.88);
-  --footer-divider: rgb(255 255 255 / 0.28);
-  --social-instagram: linear-gradient(45deg, #f58529, #dd2a7b 50%, #8134af);
+  --footer-divider: rgb(255 255 255 / 0.1);
+  --social-instagram: #e4405f;
   --social-facebook: #1877f2;
   --social-youtube: #ff0000;
-  --social-twitter: #14171a;
+  --social-twitter: #000000;
   --social-linkedin: #0a66c2;
-  --brand-green: #1f9d5c;
-  --brand-green-tint: #eaf7f0;
-
-  --shadow-ink: 15 23 42;
-  --focus-ring: rgb(32 180 192 / 0.35);
-  --focus-ring-soft: rgb(32 180 192 / 0.28);
-  --focus-ring-input: rgb(32 180 192 / 0.18);
 
   --bs-body-font-family: var(--font-sans);
   --bs-body-color: var(--text-primary);
   --bs-body-bg: var(--page-bg);
   --bs-border-radius: 0.7rem;
-  --bs-focus-ring-color: var(--focus-ring);
   color-scheme: light;
 }
 
 body {
-  margin: 0;
-  font-family: var(--font-sans);
-  background: var(--page-bg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -102,134 +102,255 @@ body {
   min-width: 0;
 }
 
-body.auth-modal-open,
-body.header-menu-open {
+/* gaboras.com.tr body zemini #f8f8f9; kurumsal kayıt formu 600px kutudan taşar */
+body:has(app-corporate-register) {
+  background: #f8f8f9;
+}
+
+/* Kurumsal kayıtta footer gizli (eskiden route data + TS ile yönetiliyordu).
+   Sınıf seçicisi kullanılır: footer.css'teki :host { display: block } kuralını geçmek için. */
+body:has(app-corporate-register) .app-footer-host {
+  display: none;
+}
+
+body.auth-modal-open {
   overflow: hidden;
 }
 
-/* Auth brand button variants (Bootstrap .btn üzerine) */
+/* Mobil header paneli açıkken (hamburger checkbox işaretli) sayfa kaydırılmasın */
+body:has(.app-header__toggle:checked) {
+  overflow: hidden;
+}
+
+/* Auth — gaboras.com.tr birebir ölçü / tipografi */
+
+/* gaboras .icon-* ikon fontu (ok, göz, kapat).
+   Glif karakteri HTML'de (<i class="icon-times">&#xf1c3;</i>); CSS yalnızca fontu ve yerleşimi verir. */
+[class^='icon-'],
+[class*=' icon-'] {
+  display: inline-flex;
+  vertical-align: -0.125em;
+  font-family: 'icons';
+  font-style: normal;
+  font-weight: 400;
+  font-variant: normal;
+  font-feature-settings: normal;
+  line-height: 1;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* gaboras.com.tr yardımcı sınıfları */
+.cpointer {
+  cursor: pointer;
+}
+
+.fs-12 {
+  font-size: 12px;
+}
+
+.fs-18 {
+  font-size: 18px;
+}
+
+.fs-24 {
+  font-size: 24px;
+}
+
+/* Bootstrap .btn-secondary (#0067a0) ve .btn-warning (#cfad67) tema türevleri */
 .btn-auth-primary {
-  --bs-btn-color: var(--surface);
-  --bs-btn-bg: var(--brand-primary);
-  --bs-btn-border-color: var(--brand-primary);
-  --bs-btn-hover-color: var(--surface);
-  --bs-btn-hover-bg: var(--brand-primary-hover);
-  --bs-btn-hover-border-color: var(--brand-primary-hover);
-  --bs-btn-active-color: var(--surface);
-  --bs-btn-active-bg: var(--brand-primary-active);
-  --bs-btn-active-border-color: var(--brand-primary-active);
-  --bs-btn-disabled-color: var(--surface);
-  --bs-btn-disabled-bg: var(--brand-primary);
-  --bs-btn-disabled-border-color: var(--brand-primary);
-  box-shadow: 0 4px 10px rgb(0 102 152 / 0.28);
+  --bs-btn-color: #ffffff;
+  --bs-btn-bg: var(--brand-secondary);
+  --bs-btn-border-color: var(--brand-secondary);
+  --bs-btn-hover-color: #ffffff;
+  --bs-btn-hover-bg: #005888;
+  --bs-btn-hover-border-color: #005280;
+  --bs-btn-focus-shadow-rgb: 38, 126, 174;
+  --bs-btn-active-color: #ffffff;
+  --bs-btn-active-bg: #005280;
+  --bs-btn-active-border-color: #004d78;
+  --bs-btn-disabled-color: #ffffff;
+  --bs-btn-disabled-bg: var(--brand-secondary);
+  --bs-btn-disabled-border-color: var(--brand-secondary);
 }
 
 .btn-auth-gold {
-  --bs-btn-color: var(--brand-navy);
-  --bs-btn-bg: var(--accent-gold);
-  --bs-btn-border-color: var(--accent-gold);
-  --bs-btn-hover-color: var(--brand-navy);
-  --bs-btn-hover-bg: var(--accent-gold-hover);
-  --bs-btn-hover-border-color: var(--accent-gold-hover);
-  --bs-btn-active-color: var(--brand-navy);
-  --bs-btn-active-bg: var(--accent-gold-active);
-  --bs-btn-active-border-color: var(--accent-gold-active);
-  --bs-btn-disabled-color: var(--brand-navy);
-  --bs-btn-disabled-bg: var(--accent-gold);
-  --bs-btn-disabled-border-color: var(--accent-gold);
-  box-shadow: 0 4px 10px rgb(184 146 74 / 0.22);
+  --bs-btn-color: #000000;
+  --bs-btn-bg: var(--brand-gold);
+  --bs-btn-border-color: var(--brand-gold);
+  --bs-btn-hover-color: #000000;
+  --bs-btn-hover-bg: #d6b97e;
+  --bs-btn-hover-border-color: #d4b576;
+  --bs-btn-focus-shadow-rgb: 176, 147, 88;
+  --bs-btn-active-color: #000000;
+  --bs-btn-active-bg: #d9bd85;
+  --bs-btn-active-border-color: #d4b576;
+  --bs-btn-disabled-color: #000000;
+  --bs-btn-disabled-bg: var(--brand-gold);
+  --bs-btn-disabled-border-color: var(--brand-gold);
 }
 
 .btn-auth {
-  --bs-btn-padding-x: 1.15rem;
-  --bs-btn-padding-y: 0.7rem;
-  --bs-btn-font-weight: 700;
-  --bs-btn-border-radius: 999px;
-  min-width: 8.5rem;
-  min-height: 3rem;
+  --bs-btn-padding-x: 1rem;
+  --bs-btn-padding-y: 0.5rem;
+  --bs-btn-font-family: var(--font-auth-btn);
+  --bs-btn-font-size: 0.875rem;
+  --bs-btn-font-weight: 600;
+  --bs-btn-border-radius: 50px;
+  position: relative;
+  overflow: hidden;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.35rem;
-  line-height: 1;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-auth > i:first-child {
+  margin-right: 10px;
+}
+
+.btn-auth > i:last-child {
+  margin-left: 10px;
+}
+
+.btn-auth > span,
+.btn-auth > i {
+  position: relative;
+  z-index: 1;
+}
+
+.btn-auth::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 0.3);
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.6s,
+    height 0.6s;
+}
+
+.btn-auth:hover:not(:disabled)::before {
+  width: 300px;
+  height: 300px;
+}
+
+.btn-auth:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgb(0 123 255 / 0.3);
+}
+
+.btn-auth-gold:hover:not(:disabled) {
+  box-shadow: 0 8px 20px rgb(255 193 7 / 0.4);
+}
+
+.btn-auth:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgb(0 123 255 / 0.2);
 }
 
 .form-control-auth {
-  height: 3.15rem;
-  padding: 0 1rem;
-  background-color: var(--surface-muted);
-  border-color: var(--border-input);
-  border-radius: var(--bs-border-radius);
+  height: 3.3rem;
+  padding: 0.875rem 1.25rem;
+  background-color: #fafafa;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 12px;
+  color: #212529;
   font-size: 0.95rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .form-control-auth::placeholder {
-  color: var(--text-placeholder);
+  color: #9e9e9e;
+  transition: opacity 0.3s;
+}
+
+.form-control-auth:focus::placeholder {
+  opacity: 0.6;
+}
+
+.form-control-auth:hover:not(:focus) {
+  border-color: #d0d0d0;
+  background-color: #f5f5f5;
 }
 
 .form-control-auth:focus {
-  background-color: var(--surface);
-  border-color: var(--accent-teal);
-  box-shadow: 0 0 0 0.25rem var(--focus-ring-input);
+  background-color: #ffffff;
+  border-color: var(--bs-primary, #002b49);
+  box-shadow:
+    0 0 0 4px rgb(0 123 255 / 0.1),
+    0 4px 12px rgb(0 123 255 / 0.15);
+  transform: translateY(-1px);
 }
 
-.divider hr {
+/* Kurumsal kayıt formu ve onay kutuları: component'ler arası ortak stiller.
+   Eskiden corporate-register.css ve register-consents.css'te tekrar ediyordu. */
+.custom-input {
+  width: 100%;
+  height: 50px;
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  background: #fff;
+  outline: 0;
+  font-size: 16px;
+  font-weight: 400;
+  color: #333;
+  transition: border-color 0.2s;
+  appearance: none;
+}
+
+.custom-input:focus {
+  border-color: var(--brand-blue);
+}
+
+/* Limited/Anonim şirkette T.C. Kimlik No girilemez */
+.custom-input:disabled {
+  background: var(--bs-gray-200);
+  cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .custom-input {
+    transition: none;
+  }
+}
+
+.form-select:focus,
+.form-check-input:focus {
+  border-color: var(--brand-focus);
+  box-shadow: 0 0 0 0.25rem rgb(0 43 73 / 0.25);
+}
+
+.form-check-input:checked {
+  background-color: var(--brand-blue);
+  border-color: var(--brand-blue);
+}
+
+.divider .divider-line {
   flex: 1 1 0;
-  width: auto;
-  min-width: 0;
-  height: 0;
-  margin: 0;
-  border: 0;
-  border-top: 1px solid var(--border-default);
-  opacity: 1;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--bs-gray-300),
+    var(--bs-gray-300),
+    transparent
+  );
 }
 
-.auth-actions .btn-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  font-size: 1.15rem;
-  line-height: 0;
+.divider-text {
+  letter-spacing: 0.5px;
 }
 
-.auth-actions .btn-icon--login {
-  font-size: 1.25rem;
-}
 @media (max-width: 575.98px) {
   :root {
     --content-pad-inline: max(0.75rem, env(safe-area-inset-left, 0px))
       max(0.75rem, env(safe-area-inset-right, 0px));
   }
-
-  .auth-actions {
-    position: sticky;
-    bottom: 0;
-    z-index: 1;
-    margin-top: 0.15rem;
-    margin-inline: -0.25rem;
-    padding: 0.95rem 0.25rem
-      calc(0.35rem + env(safe-area-inset-bottom, 0px));
-    border-top: 1px solid var(--border-subtle);
-    background: linear-gradient(
-      to top,
-      var(--surface) 70%,
-      rgb(255 255 255 / 0.88)
-    );
-  }
-
-  .auth-actions .btn-auth {
-    width: 100%;
-  }
-
-  .auth-actions .btn-auth-primary {
-    min-height: 3.15rem;
-    box-shadow: 0 6px 14px rgb(0 102 152 / 0.32);
-  }
-
-  .auth-actions .btn-auth-gold {
-    min-height: 2.85rem;
-    box-shadow: none;
-  }
 }
-

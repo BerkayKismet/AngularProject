@@ -1,63 +1,198 @@
 <footer class="app-footer">
   <div class="app-footer__inner">
-    <div class="app-footer__top">
-      <div class="app-footer__brand">
-        <a class="app-footer__logo-link" href="/">
+    <div class="row app-footer__content mb-5">
+      <div class="app-footer__brand col-12 col-md-6 col-lg-4">
+        <a class="d-block text-decoration-none mb-4" href="/">
           <img
-            class="app-footer__logo"
+            class="app-footer__logo d-block mw-100"
             src="assets/images/gaboraslogo.png"
             [attr.alt]="'footer.logoAlt' | transloco"
           />
         </a>
 
-        <p class="app-footer__address">{{ 'footer.address' | transloco }}</p>
+        <div class="mb-4">
+          <p class="app-footer__address mb-2">
+            {{ 'footer.addressLine1' | transloco }}<br />
+            {{ 'footer.addressLine2' | transloco }}
+          </p>
+          <p class="app-footer__contact mb-0">
+            {{ 'footer.email' | transloco }} -
+            {{ 'footer.phoneLabel' | transloco }}:
+            {{ 'footer.phone' | transloco }}
+          </p>
+        </div>
 
-        <p class="app-footer__contact">
-          <span>{{ 'footer.email' | transloco }}</span>
-          <span class="app-footer__contact-sep" aria-hidden="true">-</span>
-          <span>{{ 'footer.phoneLabel' | transloco }}:</span>
-          <span>{{ 'footer.phone' | transloco }}</span>
-        </p>
+        <div class="app-footer__social d-flex flex-wrap">
+          <a
+            class="app-footer__social-link app-footer__social-link--instagram d-flex align-items-center justify-content-center flex-shrink-0 rounded-circle text-decoration-none"
+            href="https://www.instagram.com/gaborascomtr"
+            target="_blank"
+            rel="noopener noreferrer"
+            [attr.aria-label]="'footer.social.instagram' | transloco"
+          >
+            <app-icon class="app-footer__social-icon" name="instagram"></app-icon>
+          </a>
+          <a
+            class="app-footer__social-link app-footer__social-link--facebook d-flex align-items-center justify-content-center flex-shrink-0 rounded-circle text-decoration-none"
+            href="https://www.facebook.com/gaboraskurumsal/"
+            target="_blank"
+            rel="noopener noreferrer"
+            [attr.aria-label]="'footer.social.facebook' | transloco"
+          >
+            <app-icon class="app-footer__social-icon" name="facebook"></app-icon>
+          </a>
+          <a
+            class="app-footer__social-link app-footer__social-link--youtube d-flex align-items-center justify-content-center flex-shrink-0 rounded-circle text-decoration-none"
+            href="https://www.youtube.com/channel/UCJd3utFghwi9LG4-o2qEH1A"
+            target="_blank"
+            rel="noopener noreferrer"
+            [attr.aria-label]="'footer.social.youtube' | transloco"
+          >
+            <app-icon class="app-footer__social-icon" name="youtube"></app-icon>
+          </a>
+          <a
+            class="app-footer__social-link app-footer__social-link--twitter d-flex align-items-center justify-content-center flex-shrink-0 rounded-circle text-decoration-none"
+            href="https://x.com/gaborascomtr"
+            target="_blank"
+            rel="noopener noreferrer"
+            [attr.aria-label]="'footer.social.twitter' | transloco"
+          >
+            <app-icon class="app-footer__social-icon" name="twitter"></app-icon>
+          </a>
+          <a
+            class="app-footer__social-link app-footer__social-link--linkedin d-flex align-items-center justify-content-center flex-shrink-0 rounded-circle text-decoration-none"
+            href="https://www.linkedin.com/company/gaboras/"
+            target="_blank"
+            rel="noopener noreferrer"
+            [attr.aria-label]="'footer.social.linkedin' | transloco"
+          >
+            <app-icon class="app-footer__social-icon" name="linkedin"></app-icon>
+          </a>
+        </div>
+      </div>
 
-        <ul class="app-footer__social">
-          <li *ngFor="let social of socialLinks">
-            <a
-              class="app-footer__social-link"
-              [ngClass]="'app-footer__social-link--' + social.name"
-              [attr.href]="social.href"
-              target="_blank"
-              rel="noopener noreferrer"
-              [attr.aria-label]="social.labelKey | transloco"
-            >
-              <app-icon
-                class="app-footer__social-icon"
-                [name]="social.name"
-              ></app-icon>
+      <div class="app-footer__col col-12 col-md-6 col-lg-2">
+        <h2 class="app-footer__heading text-uppercase fw-bold">{{
+          'footer.about.title' | transloco
+        }}</h2>
+        <ul class="app-footer__links list-unstyled m-0">
+          <li>
+            <a class="app-footer__link d-block text-decoration-none" href="#" (click)="$event.preventDefault()">
+              {{ 'footer.about.about' | transloco }}
             </a>
           </li>
         </ul>
       </div>
 
-      <nav class="app-footer__nav" [attr.aria-label]="'footer.navLabel' | transloco">
-        <div class="app-footer__col" *ngFor="let column of columns">
-          <h2 class="app-footer__heading">{{ column.titleKey | transloco }}</h2>
-          <ul class="app-footer__links">
-            <li *ngFor="let link of column.links">
-              <a
-                class="app-footer__link"
-                href="#"
-                (click)="$event.preventDefault()"
-              >
-                {{ link.labelKey | transloco }}
-              </a>
-            </li>
-          </ul>
-        </div>
-      </nav>
+      <div class="app-footer__col col-12 col-md-6 col-lg-2">
+        <h2 class="app-footer__heading text-uppercase fw-bold">{{
+          'footer.gaboras.title' | transloco
+        }}</h2>
+        <ul class="app-footer__links list-unstyled m-0">
+          <li>
+            <a class="app-footer__link d-block text-decoration-none" href="#" (click)="$event.preventDefault()">
+              {{ 'footer.gaboras.market' | transloco }}
+            </a>
+          </li>
+          <li>
+            <a class="app-footer__link d-block text-decoration-none" href="#" (click)="$event.preventDefault()">
+              {{ 'footer.gaboras.propertyMgmt' | transloco }}
+            </a>
+          </li>
+          <li>
+            <a class="app-footer__link d-block text-decoration-none" href="#" (click)="$event.preventDefault()">
+              {{ 'footer.gaboras.createRequest' | transloco }}
+            </a>
+          </li>
+          <li>
+            <a class="app-footer__link d-block text-decoration-none" href="#" (click)="$event.preventDefault()">
+              {{ 'footer.gaboras.rentMgmt' | transloco }}
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="app-footer__col col-12 col-md-6 col-lg-2">
+        <h2 class="app-footer__heading text-uppercase fw-bold">{{
+          'footer.legal.title' | transloco
+        }}</h2>
+        <ul class="app-footer__links list-unstyled m-0">
+          <li>
+            <a class="app-footer__link d-block text-decoration-none" href="#" (click)="$event.preventDefault()">
+              {{ 'footer.legal.membership' | transloco }}
+            </a>
+          </li>
+          <li>
+            <a class="app-footer__link d-block text-decoration-none" href="#" (click)="$event.preventDefault()">
+              {{ 'footer.legal.kvkk' | transloco }}
+            </a>
+          </li>
+          <li>
+            <a class="app-footer__link d-block text-decoration-none" href="#" (click)="$event.preventDefault()">
+              {{ 'footer.legal.terms' | transloco }}
+            </a>
+          </li>
+          <li>
+            <a class="app-footer__link d-block text-decoration-none" href="#" (click)="$event.preventDefault()">
+              {{ 'footer.legal.security' | transloco }}
+            </a>
+          </li>
+          <li>
+            <a class="app-footer__link d-block text-decoration-none" href="#" (click)="$event.preventDefault()">
+              {{ 'footer.legal.cookie' | transloco }}
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="app-footer__col col-12 col-md-6 col-lg-2">
+        <h2 class="app-footer__heading text-uppercase fw-bold">{{
+          'footer.more.title' | transloco
+        }}</h2>
+        <ul class="app-footer__links list-unstyled m-0">
+          <li>
+            <a class="app-footer__link d-block text-decoration-none" href="#" (click)="$event.preventDefault()">
+              {{ 'footer.more.faq' | transloco }}
+            </a>
+          </li>
+          <li>
+            <a class="app-footer__link d-block text-decoration-none" href="#" (click)="$event.preventDefault()">
+              {{ 'footer.more.mobileApp' | transloco }}
+            </a>
+          </li>
+          <li>
+            <a class="app-footer__link d-block text-decoration-none" href="#" (click)="$event.preventDefault()">
+              {{ 'footer.more.contact' | transloco }}
+            </a>
+          </li>
+          <li>
+            <a class="app-footer__link d-block text-decoration-none" href="#" (click)="$event.preventDefault()">
+              {{ 'footer.more.blog' | transloco }}
+            </a>
+          </li>
+          <li>
+            <a class="app-footer__link d-block text-decoration-none" href="#" (click)="$event.preventDefault()">
+              {{ 'footer.more.press' | transloco }}
+            </a>
+          </li>
+          <li>
+            <a class="app-footer__link d-block text-decoration-none" href="#" (click)="$event.preventDefault()">
+              {{ 'footer.more.references' | transloco }}
+            </a>
+          </li>
+          <li>
+            <a class="app-footer__link d-block text-decoration-none" href="#" (click)="$event.preventDefault()">
+              {{ 'footer.more.tv' | transloco }}
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
 
-    <p class="app-footer__copyright">
-      {{ 'footer.copyright' | transloco:{ year: copyrightYear } }}
-    </p>
+    <div class="app-footer__bottom text-start">
+      <p class="app-footer__copyright mb-0">
+        {{ 'footer.copyright' | transloco:{ year: copyrightYear } }}
+      </p>
+    </div>
   </div>
 </footer>

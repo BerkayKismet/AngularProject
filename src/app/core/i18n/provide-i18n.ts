@@ -20,7 +20,7 @@ export function provideI18n() {
         reRenderOnLangChange: true,
         prodMode: !isDevMode(),
         missingHandler: {
-          // TR `register.terms.prefix` gibi bilinçli boş metinler anahtar olarak basılmasın
+          // TR `register.consentModal.gap` gibi bilinçli boş metinler anahtar olarak basılmasın
           allowEmpty: true,
         },
       }),

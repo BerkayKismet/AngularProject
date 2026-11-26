@@ -1,0 +1,323 @@
+<div class="corporate-register-bg">
+  <div
+    class="container-fluid d-flex align-items-center justify-content-center corporate-register-container"
+  >
+    <div class="corporate-register-box">
+      <form
+        class="bg-white border rounded-1 p-5"
+        [formGroup]="form"
+        (ngSubmit)="onSubmit()"
+        novalidate
+      >
+        <h4 class="mb-4">{{ 'corporateRegister.title' | transloco }}</h4>
+
+        <div class="row">
+          <div class="col-lg-6 col-12 pe-lg-5 custom-border">
+            <div class="d-flex gap-2 mb-4">
+              <div class="w-100">
+                <input
+                  class="custom-input"
+                  type="text"
+                  id="corp-first-name"
+                  formControlName="firstName"
+                  autocomplete="given-name"
+                  [attr.placeholder]="'corporateRegister.firstName' | transloco"
+                  [attr.aria-label]="'corporateRegister.firstName' | transloco"
+                />
+              </div>
+              <div class="w-100">
+                <input
+                  class="custom-input"
+                  type="text"
+                  id="corp-last-name"
+                  formControlName="lastName"
+                  autocomplete="family-name"
+                  [attr.placeholder]="'corporateRegister.lastName' | transloco"
+                  [attr.aria-label]="'corporateRegister.lastName' | transloco"
+                />
+              </div>
+            </div>
+
+            <div class="mb-4 position-relative">
+              <i
+                class="icon-question-circle fs-24 tooltip-position"
+                role="img"
+                tabindex="0"
+                [attr.aria-label]="'corporateRegister.hints.email' | transloco"
+              >&#xf19b;<span class="tooltip-position__text">{{
+                'corporateRegister.hints.email' | transloco
+              }}</span></i>
+              <input
+                class="custom-input"
+                type="email"
+                id="corp-email"
+                formControlName="email"
+                autocomplete="email"
+                [attr.placeholder]="'corporateRegister.email' | transloco"
+                [attr.aria-label]="'corporateRegister.email' | transloco"
+              />
+            </div>
+
+            <div class="mb-4">
+              <app-password-field
+                [control]="form.controls.password"
+                inputId="corp-password"
+                autocomplete="new-password"
+                inputClass="custom-input"
+              ></app-password-field>
+            </div>
+
+            <div class="mb-4 position-relative">
+              <i
+                class="icon-question-circle fs-24 tooltip-position"
+                role="img"
+                tabindex="0"
+                [attr.aria-label]="
+                  'corporateRegister.hints.mobilePhone' | transloco
+                "
+              >&#xf19b;<span class="tooltip-position__text">{{
+                'corporateRegister.hints.mobilePhone' | transloco
+              }}</span></i>
+              <input
+                class="custom-input"
+                type="tel"
+                id="corp-mobile"
+                formControlName="mobilePhone"
+                autocomplete="tel"
+                [attr.placeholder]="'corporateRegister.mobilePhone' | transloco"
+                [attr.aria-label]="'corporateRegister.mobilePhone' | transloco"
+              />
+            </div>
+
+            <div class="mb-4 position-relative">
+              <i
+                class="icon-question-circle fs-24 tooltip-position"
+                role="img"
+                tabindex="0"
+                [attr.aria-label]="
+                  'corporateRegister.hints.landlinePhone' | transloco
+                "
+              >&#xf19b;<span class="tooltip-position__text">{{
+                'corporateRegister.hints.landlinePhone' | transloco
+              }}</span></i>
+              <input
+                class="custom-input"
+                type="tel"
+                id="corp-landline"
+                formControlName="landlinePhone"
+                autocomplete="tel-national"
+                [attr.placeholder]="
+                  'corporateRegister.landlinePhone' | transloco
+                "
+                [attr.aria-label]="
+                  'corporateRegister.landlinePhone' | transloco
+                "
+              />
+            </div>
+
+            <div class="mb-4 position-relative">
+              <i
+                class="icon-question-circle fs-24 tooltip-position"
+                role="img"
+                tabindex="0"
+                [attr.aria-label]="
+                  'corporateRegister.hints.authorizationCertificateNumber'
+                    | transloco
+                "
+              >&#xf19b;<span class="tooltip-position__text">{{
+                'corporateRegister.hints.authorizationCertificateNumber'
+                  | transloco
+              }}</span></i>
+              <input
+                class="custom-input"
+                type="text"
+                id="corp-auth-cert"
+                formControlName="authorizationCertificateNumber"
+                autocomplete="off"
+                [attr.placeholder]="
+                  'corporateRegister.authorizationCertificateNumber' | transloco
+                "
+                [attr.aria-label]="
+                  'corporateRegister.authorizationCertificateNumber' | transloco
+                "
+              />
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-12 ps-lg-5">
+            <div class="mb-4">
+              <input
+                class="custom-input"
+                type="text"
+                id="corp-company"
+                formControlName="companyName"
+                autocomplete="organization"
+                [attr.placeholder]="'corporateRegister.companyName' | transloco"
+                [attr.aria-label]="'corporateRegister.companyName' | transloco"
+              />
+            </div>
+
+            <div class="form-floating mb-4">
+              <select
+                class="form-select cpointer"
+                id="corp-province"
+                formControlName="province"
+              >
+                <option value="">
+                  {{ 'corporateRegister.province' | transloco }}
+                </option>
+              </select>
+              <label for="corp-province">{{
+                'corporateRegister.floatingLabel.province' | transloco
+              }}</label>
+            </div>
+
+            <div class="d-flex gap-2 mb-4">
+              <div class="form-floating w-100">
+                <select
+                  class="form-select cpointer"
+                  id="corp-district"
+                  formControlName="district"
+                >
+                  <option value="">
+                    {{ 'corporateRegister.district' | transloco }}
+                  </option>
+                </select>
+                <label for="corp-district">{{
+                  'corporateRegister.floatingLabel.district' | transloco
+                }}</label>
+              </div>
+              <div class="form-floating w-100">
+                <select
+                  class="form-select cpointer"
+                  id="corp-neighborhood"
+                  formControlName="neighborhood"
+                >
+                  <option value="">
+                    {{ 'corporateRegister.neighborhood' | transloco }}
+                  </option>
+                </select>
+                <label for="corp-neighborhood">{{
+                  'corporateRegister.floatingLabel.neighborhood' | transloco
+                }}</label>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <span
+                class="d-inline-block"
+                id="corp-business-type-label"
+                >{{
+                'corporateRegister.businessType' | transloco
+              }}</span>
+              <div
+                class="d-flex gap-3"
+                role="radiogroup"
+                aria-labelledby="corp-business-type-label"
+              >
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    id="corp-business-sole"
+                    formControlName="businessType"
+                    value="sole"
+                  />
+                  <label class="form-check-label" for="corp-business-sole">
+                    {{ 'corporateRegister.businessTypeSole' | transloco }}
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    id="corp-business-limited"
+                    formControlName="businessType"
+                    value="limited"
+                  />
+                  <label class="form-check-label" for="corp-business-limited">
+                    {{ 'corporateRegister.businessTypeLimited' | transloco }}
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-md-flex gap-2 mb-4">
+              <div class="form-floating w-100">
+                <select
+                  class="form-select cpointer"
+                  id="corp-tax-province"
+                  formControlName="taxProvince"
+                >
+                  <option value="">
+                    {{ 'corporateRegister.taxProvince' | transloco }}
+                  </option>
+                </select>
+                <label for="corp-tax-province">{{
+                  'corporateRegister.taxProvince' | transloco
+                }}</label>
+              </div>
+              <div class="form-floating w-100">
+                <select
+                  class="form-select cpointer"
+                  id="corp-tax-office"
+                  formControlName="taxOffice"
+                >
+                  <option value="">
+                    {{ 'corporateRegister.taxOffice' | transloco }}
+                  </option>
+                </select>
+                <label for="corp-tax-office">{{
+                  'corporateRegister.taxOffice' | transloco
+                }}</label>
+              </div>
+            </div>
+
+            <div class="d-md-flex gap-2 mb-4">
+              <div class="w-100">
+                <input
+                  class="custom-input"
+                  type="text"
+                  id="corp-tax-id"
+                  formControlName="taxId"
+                  autocomplete="off"
+                  inputmode="numeric"
+                  [attr.placeholder]="'corporateRegister.taxId' | transloco"
+                  [attr.aria-label]="'corporateRegister.taxId' | transloco"
+                />
+              </div>
+              <div class="w-100">
+                <input
+                  class="custom-input"
+                  type="text"
+                  id="corp-national-id"
+                  formControlName="nationalId"
+                  autocomplete="off"
+                  inputmode="numeric"
+                  maxlength="11"
+                  [attr.placeholder]="'corporateRegister.nationalId' | transloco"
+                  [attr.aria-label]="'corporateRegister.nationalId' | transloco"
+                />
+              </div>
+            </div>
+          </div>
+
+          <app-register-consents
+            class="col-12 my-4"
+            variant="switch"
+          ></app-register-consents>
+
+          <div class="text-end">
+            <button
+              type="submit"
+              class="btn btn-new-primary px-4"
+              [disabled]="form.invalid"
+            >
+              {{ 'corporateRegister.submit' | transloco }}
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

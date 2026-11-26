@@ -1,22 +1,26 @@
-<app-google-signin-button
-  (pressed)="onGoogleSignIn()"
-></app-google-signin-button>
-
-<div class="divider d-flex align-items-center gap-3 my-4">
-  <hr />
-  <span class="divider-label text-secondary small">{{
-    'register.or' | transloco
-  }}</span>
-  <hr />
-</div>
-
 <form
-  class="d-flex flex-column gap-3"
+  novalidate
   [formGroup]="form"
   (ngSubmit)="onSubmit()"
 >
-  <div class="row g-3">
-    <div class="col-12 col-sm-6">
+  <div class="row g-3 mb-2">
+    <div class="col-12 mb-4">
+      <div class="d-flex justify-content-center mb-3">
+        <app-google-signin-button
+          (pressed)="onGoogleSignIn()"
+        ></app-google-signin-button>
+      </div>
+
+      <div class="divider divider--upper d-flex align-items-center w-100 my-4">
+        <span class="divider-line" aria-hidden="true"></span>
+        <small class="divider-text text-secondary px-3 fw-semibold text-nowrap">{{
+          'register.or' | transloco
+        }}</small>
+        <span class="divider-line" aria-hidden="true"></span>
+      </div>
+    </div>
+
+    <div class="form-group col-12 col-xl-6">
       <app-auth-input
         [control]="form.controls.firstName"
         inputId="reg-first-name"
@@ -25,7 +29,7 @@
       ></app-auth-input>
     </div>
 
-    <div class="col-12 col-sm-6">
+    <div class="form-group col-12 col-xl-6">
       <app-auth-input
         [control]="form.controls.lastName"
         inputId="reg-last-name"
@@ -33,10 +37,8 @@
         autocomplete="family-name"
       ></app-auth-input>
     </div>
-  </div>
 
-  <div class="row g-3">
-    <div class="col-12 col-sm-6">
+    <div class="form-group col-12 col-xl-6">
       <app-auth-input
         [control]="form.controls.email"
         inputId="reg-email"
@@ -46,7 +48,7 @@
       ></app-auth-input>
     </div>
 
-    <div class="col-12 col-sm-6">
+    <div class="form-group col-12 col-xl-6">
       <app-auth-input
         [control]="form.controls.phone"
         inputId="reg-phone"
@@ -55,45 +57,51 @@
         autocomplete="tel"
       ></app-auth-input>
     </div>
-  </div>
 
-  <app-password-field
-    [control]="form.controls.password"
-    inputId="reg-password"
-    autocomplete="new-password"
-  ></app-password-field>
+    <div class="form-group col-12">
+      <app-password-field
+        [control]="form.controls.password"
+        inputId="reg-password"
+        autocomplete="new-password"
+      ></app-password-field>
+    </div>
 
-  <app-register-consents variant="boxed"></app-register-consents>
-
-  <a
-    class="corporate-cta d-flex flex-column w-100 text-start gap-2 text-decoration-none"
-    routerLink="/corporate-register"
-  >
-    <span class="corporate-cta__text">{{
-      'register.corporateCta' | transloco
-    }}</span>
-    <span
-      class="corporate-cta__footer d-flex justify-content-end align-items-center pt-2"
+    <div
+      class="col-12 form-check-container mt-3 mb-4 p-4"
+      role="group"
+      [attr.aria-label]="'register.consentsLegend' | transloco"
     >
-      <app-icon name="chevron-right" class="corporate-cta__arrow"></app-icon>
-    </span>
-  </a>
+      <app-register-consents variant="modal"></app-register-consents>
+    </div>
 
-  <div
-    class="auth-actions d-flex flex-column flex-sm-row-reverse justify-content-sm-between align-items-stretch align-items-sm-center gap-2 gap-sm-3"
-  >
-    <button type="submit" class="btn btn-auth btn-auth-primary">
-      {{ 'register.submit' | transloco }}
-      <app-icon name="login" class="btn-icon btn-icon--login"></app-icon>
-    </button>
+    <div class="corporate-cta col-12 my-4 p-3">
+      <a
+        class="text-end text-decoration-none"
+        [routerLink]="corporateRegisterCommands"
+      >
+        <span class="text-primary d-inline-block border-bottom border-primary">
+          {{ 'register.corporateCta' | transloco }}
+          <i class="icon-arrow-right fs-18 me-1" aria-hidden="true">&#xf111;</i>
+        </span>
+      </a>
+    </div>
 
-    <a
-      class="btn btn-auth btn-auth-gold"
-      [routerLink]="loginLink"
-      [skipLocationChange]="skipLocationChange"
-    >
-      <app-icon name="chevron-left" class="btn-icon"></app-icon>
-      {{ 'register.login' | transloco }}
-    </a>
+    <div class="col-12">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <a
+          class="btn btn-auth btn-auth-gold"
+          [routerLink]="loginLink"
+          [skipLocationChange]="skipLocationChange"
+        >
+          <i class="icon-arrow-left" aria-hidden="true">&#xf110;</i>
+          <span>{{ 'register.login' | transloco }}</span>
+        </a>
+
+        <button type="submit" class="btn btn-auth btn-auth-primary">
+          <span>{{ 'register.submit' | transloco }}</span>
+          <i class="icon-sign-in-alt" aria-hidden="true">&#xf1a8;</i>
+        </button>
+      </div>
+    </div>
   </div>
 </form>

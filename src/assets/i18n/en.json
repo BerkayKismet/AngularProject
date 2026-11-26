@@ -35,23 +35,23 @@
     "orGoogle": "or sign in with Google"
   },
   "register": {
-    "or": "OR",
+    "or": "or",
     "firstName": "First name",
     "lastName": "Last name",
     "email": "Your email address",
     "phone": "Mobile phone",
     "consentsLegend": "Agreements and consents",
-    "terms": {
-      "prefix": "I have read and accept the ",
-      "cookie": "Cookie Policy",
-      "security": "Information Security Policy",
-      "membership": "Membership Agreement",
-      "potentialUser": "Potential Product or Service Recipient (Potential User) Privacy Notice",
+    "consentModal": {
+      "gap": " ",
+      "cookie": "Cookie Policy,",
+      "security": "Information Security Policy,",
+      "membership": "Membership Agreement,",
+      "potentialUser": "Potential Product or Service Recipient (Potential User) Privacy Notice,",
       "portal": "Portal Agreement",
-      "suffix": "."
+      "suffix": " I have read and accept.",
+      "marketing": "I give my explicit consent to receiving commercial electronic messages with campaign, promotional and advertising content to my contact details, and to the processing of my personal data for this purpose and sharing it with your suppliers and İYS AŞ;",
+      "survey": "I give my explicit consent to the processing of my personal data in survey and raffle activities carried out by your business for advertising/marketing and satisfaction purposes, to sharing them with the public via the website and other media, and to sharing them with your suppliers so these activities can be carried out;"
     },
-    "marketing": "I give my explicit consent to receiving commercial electronic messages with campaign, promotional and advertising content to my contact details, and to the processing of my personal data for this purpose and sharing it with your suppliers and İYS AŞ; I have read and accept.",
-    "survey": "I give my explicit consent to the processing of my personal data in survey and raffle activities carried out by your business for advertising/marketing and satisfaction purposes, to sharing them with the public via the website and other media, and to sharing them with your suppliers so these activities can be carried out; I have read and accept.",
     "corporateCta": "Do you have a business? Create a corporate account now!",
     "submit": "Sign Up",
     "login": "Sign In"
@@ -67,8 +67,8 @@
   },
   "footer": {
     "logoAlt": "Gaboras logo",
-    "navLabel": "Footer menu",
-    "address": "YTÜ Davutpaşa Campus Yıldız Technopark 151/8 A2 Block, Apt 706 Esenler/ISTANBUL",
+    "addressLine1": "YTÜ Davutpaşa Campus Yıldız Technopark 151/B A2 Block,",
+    "addressLine2": "Apt Z06 Esenler/ISTANBUL",
     "email": "info@gaboras.com.tr",
     "phoneLabel": "Phone",
     "phone": "+90 (850) 711 06 00",
@@ -89,7 +89,6 @@
       "market": "Market",
       "propertyMgmt": "Property Management",
       "createRequest": "Create Request",
-      "requestList": "Request List",
       "rentMgmt": "Rent Management"
     },
     "legal": {
@@ -130,6 +129,11 @@
     "taxOffice": "Tax office",
     "taxId": "Tax ID number",
     "nationalId": "National ID number",
+    "floatingLabel": {
+      "province": "Province:",
+      "district": "District:",
+      "neighborhood": "Neighborhood:"
+    },
     "submit": "Create Account",
     "hints": {
       "email": "Please make sure your email address is current and active. Notifications will be sent to this address.",

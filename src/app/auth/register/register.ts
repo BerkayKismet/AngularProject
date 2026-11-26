@@ -3,7 +3,6 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLinkWithHref } from '@angular/router';
 import { TranslocoModule } from '@ngneat/transloco';
 import { AuthInput } from '../../shared/auth-input/auth-input';
-import { Icon } from '../../shared/icon/icon';
 import { PasswordField } from '../../shared/password-field/password-field';
 import { RegisterConsents } from '../../shared/register-consents/register-consents';
 import { GoogleSigninButton } from '../google-signin-button/google-signin-button';
@@ -18,7 +17,6 @@ import { GoogleSigninButton } from '../google-signin-button/google-signin-button
     GoogleSigninButton,
     AuthInput,
     RegisterConsents,
-    Icon,
     TranslocoModule,
   ],
   templateUrl: './register.html',
@@ -27,6 +25,12 @@ import { GoogleSigninButton } from '../google-signin-button/google-signin-button
 export class Register {
   @Input() loginLink: string | unknown[] = '/login';
   @Input() skipLocationChange = false;
+
+  /** Kurumsal kayıt sayfasına gider ve açık auth modalını kapatır. */
+  readonly corporateRegisterCommands: unknown[] = [
+    '/',
+    { outlets: { primary: ['corporate-register'], modal: null } },
+  ];
 
   readonly form = this.fb.nonNullable.group({
     firstName: ['', [Validators.required]],
